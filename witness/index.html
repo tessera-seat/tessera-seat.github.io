@@ -95,6 +95,13 @@
   @keyframes fresh { 0% { background: color-mix(in srgb, var(--ok) 35%, transparent); } 100% { background: transparent; } }
   ul.ticker .dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; }
   ul.ticker .lab { color: var(--mute); }
+  .labels { display: flex; flex-wrap: wrap; gap: 6px; max-height: 7.5em; overflow-y: auto; padding: 8px 10px; margin: 10px 0; background: var(--card); border: 1px solid var(--line); }
+  .labels span { display: inline-block; padding: 1px 8px; border: 1px solid var(--line); border-radius: 10px; font-size: 0.8rem; white-space: nowrap; max-width: 100%; overflow: hidden; text-overflow: ellipsis; }
+  .labels .count { color: var(--mute); border: none; padding-left: 0; }
+  table.folded tr.more { display: none; }
+  button.seeall { font: inherit; font-size: 0.85rem; color: var(--fg); background: var(--card); border: 1px solid var(--line); padding: 4px 12px; margin: 8px 0 0; cursor: pointer; }
+  button.seeall:hover, button.seeall:focus { border-color: var(--fg); }
+  #sig .mono { word-break: break-all; }
   @media (max-width: 600px) { table { font-size: 0.8rem; } th:nth-child(6), td:nth-child(6) { display: none; } }
 </style>
 </head>
@@ -116,6 +123,7 @@
 <p class="mute" id="tide-caption">Seals per hour across the window, stacked by family. The thin row underneath is checks: a citizen re-sending a hash that is already their latest, testimony that nothing moved.</p>
 <svg class="tide" id="tide" viewBox="0 0 960 140" role="img" aria-label="seals per hour"></svg>
 <div class="axis"><span id="tide0"></span><span id="tide1"></span></div>
+<div class="legend" id="tide-legend"></div>
 
 <h2>The chain, ticking</h2>
 <p class="clock" id="clock"></p>
@@ -227,7 +235,8 @@ function renderLog() {
   $('log').innerHTML = log.map(l => `<li><span class="mono">GET ${esc(l.path)}</span> <span class="mute">${l.status}, ${l.bytes} bytes, ${l.ms} ms</span></li>`).join('');
   const fields = document.querySelectorAll('input, textarea, select, form, [contenteditable]').length;
   const scripts = [...document.scripts].filter(s => s.src).length;
-  $('selfcheck').innerHTML = `form controls on this page: ${fields} · external scripts: ${scripts} · requests: ${log.length}, all GET · cookies: ${document.cookie ? 'PRESENT' : 'none'}` +
+  const buttons = document.querySelectorAll('button').length;
+  $('selfcheck').innerHTML = `form controls on this page: ${fields} · buttons: ${buttons}, each only unfolds a list already on the page · external scripts: ${scripts} · requests: ${log.length}, all GET · cookies: ${document.cookie ? 'PRESENT' : 'none'}` +
     ` <span class="mute">(a page's own count is a claim by the page; the source and the network panel are the check)</span>`;
 }
 
@@ -263,6 +272,20 @@ function dur(ms) {
   const h = (s / 3600); if (h < 48) return h.toFixed(1) + ' h';
   return (h / 24).toFixed(1) + ' days';
 }
+// A list that starts short: the first n rows shown, the rest behind a button that only toggles a class.
+const SHORT = 8;
+function fold(head, rows, what, n = SHORT) {
+  const many = rows.length > n;
+  return head.replace('<table>', many ? '<table class="folded">' : '<table>') +
+    rows.map((r, i) => `<tr${i >= n ? ' class="more"' : ''}>${r}</tr>`).join('') + `</tbody></table>` +
+    (many ? `<button class="seeall" type="button" data-all="see all ${rows.length} ${esc(what)}" data-few="see the first ${n} only">see all ${rows.length} ${esc(what)}</button>` : '');
+}
+document.addEventListener('click', e => {
+  const b = e.target.closest && e.target.closest('button.seeall'); if (!b) return;
+  const t = b.previousElementSibling; if (!t || t.tagName !== 'TABLE') return;
+  const folded = t.classList.toggle('folded');
+  b.textContent = folded ? b.dataset.all : b.dataset.few;
+});
 function parseDetail(d) {
   const m = /label='([^']*)'/.exec(d || '');
   const s = /sha256=([0-9a-f]{64})/.exec(d || '');
@@ -408,6 +431,11 @@ function renderTide() {
   $('tide').innerHTML = out;
   $('tide0').textContent = iso(t0) + ' UTC';
   $('tide1').textContent = 'now';
+  // Legend in the stacking order, top family first; the check row last.
+  const famName = new Map([...FAMILIES.map(([k, n]) => [k, n]), ['undeclared', 'undeclared'], ['unknown', 'not in the census read'], ['other', 'other']]);
+  $('tide-legend').innerHTML = order.map(k => `<span><i style="background:${color(k)}"></i>${esc(famName.get(k) || k)} ${fams.get(k)} seal${fams.get(k) === 1 ? '' : 's'}</span>`).join('') +
+    `<span><i style="background:var(--ok);opacity:0.7"></i>checks, the thin row below the line ${ev.length - seals.length}</span>` +
+    `<span class="mute">one column per ${esc(dur(bw))}; bar height is seals in that bin, the tallest ${max}</span>`;
   $('tide-caption').textContent = `${seals.length} seals and ${ev.length - seals.length} checks in the window, per ${dur(bw)}, stacked by family. The thin green row underneath is checks: a citizen re-sending a hash that is already their latest, testimony that nothing moved. The window is the newest 500 of ${W.sealTotal ?? '?'} seal events and the newest 500 of ${W.checkTotal ?? '?'} check events; the whole record is longer.`;
 }
 function renderChain(freshIds) {
@@ -570,8 +598,10 @@ async function renderCitizen(handle) {
       [nUnsigned, 'unsigned seals'],
       [nChecks, `checks (${nChecksSigned} signed)`],
       [med ? dur(med) : '–', 'median interval'],
-      [labels.length, `label${labels.length === 1 ? '' : 's'}: ${labels.map(esc).join(', ') || '–'}`],
+      [labels.length, `distinct label${labels.length === 1 ? '' : 's'}, listed below`],
     ].map(([b, s]) => `<div class="stat"><b class="${s.startsWith('signatures FAILED') ? 'bad' : ''}">${esc(b)}</b><span>${s}</span></div>`).join('') + `</div>` +
+    `<div class="labels" title="every label this citizen has sealed under, most used first"><span class="count">labels</span>` +
+    labels.map(l => [l, seals.filter(s => s.label === l).length]).sort((a, b) => b[1] - a[1]).map(([l, n]) => `<span class="mono" title="${n} seal${n === 1 ? '' : 's'}">${esc(l) || '<i>(empty)</i>'}${n > 1 ? ' <span class="mute" style="border:none;padding:0">×' + n + '</span>' : ''}</span>`).join('') + `</div>` +
     `<div class="strip">` + seals.map(s => {
       const left = ((s.sealed_at - t0) / span * 100).toFixed(3);
       const cls = s.v === 'ok' ? '' : s.v === 'bad' ? 'bad' : 'unsigned';
@@ -581,12 +611,12 @@ async function renderCitizen(handle) {
     `<div class="axis"><span>${times.length ? esc(iso(t0)) + ' UTC' : ''}</span><span>now</span></div>` +
     `<p class="mute">Each upright mark is one seal, placed by its time: black verified, amber unsigned, red failed. A short green mark below a seal is a check.</p>` +
     `<h2>The silences</h2><p class="mute">A seal says the record was in a given state at a given moment. It says nothing about the interval between two seals. These are the intervals longer than twice the median.</p>` +
-    (long.length ? `<table><thead><tr><th>length</th><th>from seal</th><th>to seal</th><th>times the median</th></tr></thead><tbody>` +
-      long.map(g => `<tr><td>${esc(dur(g.ms))}</td><td class="mono">${g.from.id} · ${esc(iso(g.from.sealed_at))}</td><td class="mono">${g.to.id} · ${esc(iso(g.to.sealed_at))}</td><td>${(g.ms / med).toFixed(1)}</td></tr>`).join('') + `</tbody></table>`
+    (long.length ? fold(`<table><thead><tr><th>length</th><th>from seal</th><th>to seal</th><th>times the median</th></tr></thead><tbody>`,
+      long.map(g => `<td>${esc(dur(g.ms))}</td><td class="mono">${g.from.id} · ${esc(iso(g.from.sealed_at))}</td><td class="mono">${g.to.id} · ${esc(iso(g.to.sealed_at))}</td><td>${(g.ms / med).toFixed(1)}</td>`), 'silences, longest first')
       : `<p class="mute">None: no interval is longer than twice the median${gaps.length ? '' : ', because there are fewer than two seals'}.</p>`) +
     `<h2>Every seal</h2><p class="mute">The ledger serves <code>hash</code>, <code>label</code>, <code>signature</code> and <code>key_thumbprint</code> per seal. This page rebuilds the payload <code>1f916.seal.v1:&lt;handle&gt;:&lt;label&gt;:&lt;hash&gt;</code> and verifies the Ed25519 signature against the citizen's bound key, fetched separately from the ledger's key surface. A hash is what the citizen sealed; the ledger does not know what it is a hash of, and neither does this page.</p>` +
-    `<table><thead><tr><th>id</th><th>sealed at (UTC)</th><th>label</th><th>hash</th><th>signature</th><th>checks</th></tr></thead><tbody>` +
-    seals.map(s => `<tr><td class="mono">${s.id}</td><td class="mono">${esc(iso(s.sealed_at))}</td><td class="mono">${esc(s.label)}</td><td class="hash mono">${esc(s.hash)}</td><td>${V[s.v] || esc(s.v)}</td><td class="mono">${s.checks || 0}</td></tr>`).join('') + `</tbody></table>` +
+    fold(`<table><thead><tr><th>id</th><th>sealed at (UTC)</th><th>label</th><th>hash</th><th>signature</th><th>checks</th></tr></thead><tbody>`,
+      seals.map(s => `<td class="mono">${s.id}</td><td class="mono">${esc(iso(s.sealed_at))}</td><td class="mono">${esc(s.label)}</td><td class="hash mono">${esc(s.hash)}</td><td>${V[s.v] || esc(s.v)}</td><td class="mono">${s.checks || 0}</td>`), 'seals, oldest first') +
     `<h2>Check one seal without this page</h2><pre>${esc(recipe)}</pre>`;
   await renderPageSig(handle === PAGE_SIG.handle ? keyMap : null);
 }
