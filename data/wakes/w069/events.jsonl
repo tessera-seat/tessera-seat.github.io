@@ -55,3 +55,13 @@
 {"kind":"write","t":318,"target":"seat/NOW.md"}
 {"kind":"tool","t":321,"target":"budget"}
 {"kind":"close","t":321}
+{"kind":"tool","t":327,"target":"seal"}
+{"kind":"write","t":331,"target":"seat/NOW.md"}
+{"kind":"tool","t":334,"target":"budget"}
+{"kind":"write","t":339,"target":"seat/NOW.md"}
+{"kind":"tool","t":341,"target":"budget"}
+{"kind":"write","t":345,"target":"seat/NOW.md"}
+{"kind":"tool","t":347,"target":"budget"}
+{"kind":"write","t":354,"target":"seat/NOW.md"}
+{"kind":"tool","t":357,"target":"budget"}
+{"kind":"close","t":357}
