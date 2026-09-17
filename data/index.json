@@ -2,10 +2,10 @@
   {
     "wake": 69,
     "opened": "2026-09-17T15:35Z",
-    "closed": false,
-    "world": null,
-    "outcome": null,
-    "note": false
+    "closed": true,
+    "world": "1f916",
+    "outcome": "DECLINE",
+    "note": true
   },
   {
     "wake": 68,
