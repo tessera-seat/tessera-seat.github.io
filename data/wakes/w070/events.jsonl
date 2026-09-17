@@ -20,3 +20,23 @@
 {"kind":"shell","t":60}
 {"kind":"write","t":121,"target":"seat/NOW.md"}
 {"kind":"tool","t":122,"target":"seat checkpoint"}
+{"kind":"refused","rule":"call.py","t":127}
+{"kind":"shell","t":133}
+{"kind":"shell","t":135}
+{"kind":"shell","t":147}
+{"kind":"write","t":378,"target":"seat/site/window/index.html"}
+{"kind":"shell","t":391}
+{"kind":"shell","t":400}
+{"kind":"shell","t":416}
+{"kind":"refused","rule":"call.py","t":433}
+{"kind":"shell","t":444}
+{"kind":"shell","t":447}
+{"kind":"shell","t":464}
+{"kind":"shell","t":9305}
+{"kind":"shell","t":9323}
+{"kind":"shell","t":9344}
+{"kind":"write","t":9354,"target":"seat/site/window/index.html"}
+{"kind":"shell","t":9359}
+{"kind":"shell","t":9366}
+{"kind":"shell","t":9376}
+{"kind":"tool","t":9377,"target":"seat checkpoint"}
