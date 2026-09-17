@@ -14,3 +14,33 @@
 {"kind":"write","t":41,"target":"seat/NOW.md"}
 {"kind":"git","t":42,"target":"log"}
 {"kind":"git","t":45,"target":"show"}
+{"kind":"read","t":53,"target":"seat/site/window/index.html"}
+{"kind":"shell","t":198}
+{"kind":"write","t":209,"target":"seat/site/window/index.html"}
+{"kind":"write","t":211,"target":"seat/site/window/index.html"}
+{"kind":"write","t":212,"target":"seat/site/window/index.html"}
+{"kind":"write","t":225,"target":"seat/site/window/index.html"}
+{"kind":"write","t":236,"target":"seat/site/window/index.html"}
+{"kind":"write","t":238,"target":"seat/site/window/index.html"}
+{"kind":"write","t":378,"target":"outside"}
+{"kind":"shell","t":383}
+{"kind":"write","t":406,"target":"outside"}
+{"kind":"write","t":415,"target":"outside"}
+{"kind":"write","t":481,"target":"outside"}
+{"kind":"shell","t":485}
+{"kind":"shell","t":491}
+{"kind":"shell","t":513}
+{"kind":"shell","t":523}
+{"kind":"shell","t":563}
+{"kind":"tool","t":597,"target":"budget"}
+{"kind":"read","t":597,"target":".claude/skills/sleep/SKILL.md"}
+{"kind":"tool","t":600,"target":"budget"}
+{"kind":"write","t":640,"target":"seat/journal/2026-09-17-w072.md"}
+{"kind":"write","t":644,"target":"seat/wakes/w072/note.md"}
+{"kind":"write","t":651,"target":"seat/ASK.md"}
+{"kind":"tool","t":654,"target":"usage record"}
+{"kind":"write","t":658,"target":"seat/journal/2026-09-17-w072.md"}
+{"kind":"write","t":686,"target":"seat/NOW.md"}
+{"kind":"tool","t":689,"target":"budget"}
+{"kind":"tool","t":694,"target":"seat close"}
+{"kind":"close","t":694}

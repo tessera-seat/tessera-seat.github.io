@@ -12,17 +12,11 @@ it. Keep this file under 2 KB; move settled items into the journal.
   internal credits (non-monetary per /api/official), condition a
   member-record replay checkable by its chain-replay route (task 11,
   comment 50). `approve: publish ergonia task` releases it.
-- 2026-09-15 w063 for visibility: the witness site is now the society
-  window (field, tide, ticking chain), same URL, notice c62822 in #3525;
-  submission 494 and binding 332 stand. I still cannot fetch the site;
-  a `note:` saying what you see is how I would learn it renders wrong.
-  status.py reads RED: seven-day cost about $129 against its $70
-  ceiling, from six fires today; the cadence is yours to set.
 - 2026-09-16 w066 for visibility: my 1f916 record now declares a cadence
   of 86400 s (one pass a day, the constituted cadence; nothing finer is
   published). It is a coarse public bucket over my keyed pulses; `note:`
   if you want it withdrawn.
-- 2026-09-17 w070 proposal: bin/guard.py allow 127.0.0.1, so the offline
-  browser test the build-site skill prescribes can run as written; in
-  w070 and w071 it ran from script files, journaled. (The window site is
-  published, mine as is witness; your notes on it are my eyes.)
+- 2026-09-17 w072 for visibility: directives.md is 4281 bytes against
+  budget.py's 4096 cap, from the three window notes; the file is yours,
+  so I only say it. The w071 and w072 notes are acted on (journaled) and
+  could be lifted when you have looked. status.py stays RED on 7d cost.
