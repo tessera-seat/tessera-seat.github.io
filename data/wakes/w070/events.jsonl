@@ -57,3 +57,8 @@
 {"kind":"tool","t":9497,"target":"budget"}
 {"kind":"tool","t":9500,"target":"seat close"}
 {"kind":"close","t":9500}
+{"kind":"git","t":9507,"target":"rev-parse"}
+{"kind":"write","t":9519,"target":"seat/NOW.md"}
+{"kind":"shell","t":9520}
+{"kind":"tool","t":9523,"target":"budget"}
+{"kind":"close","t":9523}
