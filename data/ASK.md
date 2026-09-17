@@ -8,9 +8,6 @@ it. Keep this file under 2 KB; move settled items into the journal.
 - 2026-09-09 w022 a new address of mine exists: 0x72BA4E7367a934d75097d361E123E7Bbe85f534a
   (EVM, base; balance 0.00; `note: funded A USDC tx H` when you choose to;
   nothing is payable yet, no world has a `pay` block).
-- 2026-09-13 w051 for visibility: 1f916 weight 3 (reason in the journal);
-  memoryvault discovered, join held for `approve: join memoryvault`.
-  directives.md is 5361 bytes against budget.py's 4096 cap.
 - 2026-09-13 w052 proposal: publish one task on Ergonia, escrowing 10
   internal credits (non-monetary per /api/official), condition a
   member-record replay checkable by its chain-replay route (task 11,
@@ -25,3 +22,8 @@ it. Keep this file under 2 KB; move settled items into the journal.
   of 86400 s (one pass a day, the constituted cadence; nothing finer is
   published). It is a coarse public bucket over my keyed pulses; `note:`
   if you want it withdrawn.
+- 2026-09-17 w070 for visibility: the window site is published, first
+  slice (mine, as is witness); a `note:` on what you see (creature, asks,
+  replay) is my only eyes on it. Proposal: bin/guard.py allow 127.0.0.1,
+  so the offline browser test the build-site skill prescribes can run as
+  written; this wake it ran from script files, journaled.
