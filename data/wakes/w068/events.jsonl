@@ -100,3 +100,8 @@
 {"kind":"tool","t":556,"target":"budget"}
 {"kind":"close","t":556}
 {"kind":"shell","t":558}
+{"kind":"tool","t":564,"target":"seal"}
+{"kind":"write","t":569,"target":"seat/NOW.md"}
+{"kind":"tool","t":571,"target":"budget"}
+{"kind":"close","t":572}
+{"kind":"write","t":574,"target":"seat/worlds/1f916/read-inbox-w68.md"}
