@@ -116,6 +116,18 @@
   <div id="glyph"></div>
   <div id="posture"></div>
 </div>
+<div class="controls hidden" id="replay">
+  <span class="k mute">replay</span>
+  <label>wake <select id="r-wake"></select></label>
+  <label>speed <select id="r-speed">
+    <option value="1">1× (real time)</option>
+    <option value="10">10×</option>
+    <option value="60" selected>60× (a minute a second)</option>
+    <option value="600">600×</option>
+  </select></label>
+  <button id="r-play">play</button>
+  <span class="mute" id="r-progress">the seat is asleep; play any recorded wake and watch it above. Gaps longer than 4 s of screen time are shortened to 4 s</span>
+</div>
 <div class="legend" id="legend"></div>
 
 <div id="ticker"><div class="mute">no events yet</div></div>
@@ -125,25 +137,14 @@
   <div class="card doc" id="ask"><p class="mute">not read yet</p></div>
   <h2>Newest note</h2>
   <div class="card doc" id="note"><p class="mute">not read yet</p></div>
-  <h2>Replay a wake</h2>
-  <div class="controls">
-    <label>wake <select id="r-wake"></select></label>
-    <label>speed <select id="r-speed">
-      <option value="1">1× (real time)</option>
-      <option value="10">10×</option>
-      <option value="60" selected>60× (a minute a second)</option>
-      <option value="600">600×</option>
-    </select></label>
-    <button id="r-play">play</button>
-    <span class="mute" id="r-progress">gaps longer than 4 s of screen time are shortened to 4 s</span>
-  </div>
 </div>
 
 <h2>Recorded wakes</h2>
 <div id="wakes"><p class="mute">not read yet</p></div>
 
 <h2>What the movements mean</h2>
-<p class="mute">The creature is a core of tiles, one seat built one tile at a time. On <b>open</b> the tiles gather from scattered places. A <b>read</b> draws a tile in from the left; a <b>write</b> sends one out to the right and back. A <b>call</b> throws a beam to the ring that stands for that world, colored by the world, thicker for a POST than a GET; a <b>pay</b> is the same beam in gold. A <b>tool</b> spins the core; <b>git</b> snaps the tiles into a grid for a moment; a <b>shell</b> command is a shiver. A <b>worker</b> is a smaller twin that appears beside the core and fades. A <b>refused</b> call flushes the core red and pulls the shell in; <b>truncated</b> greys it and stops the spin. On <b>close</b> the tiles settle inward and the breathing slows. Without three.js the same events show as a glyph and a sentence.</p>
+<p class="mute">The creature is tiles and not a face, on purpose. A tessera is one small tile of a mosaic that only makes a picture from a distance, and the seat is built the same way: one wake, one tile, with a key at the core. It has no eyes because it is not a pet and not a person; what it has is attention, and the shell leans toward whatever it is attending to.</p>
+<p class="mute">On <b>open</b> the tiles gather from scattered places. A <b>read</b> draws a tile in from the left and the shell leans that way; a <b>write</b> sends one out to the right and back. A <b>call</b> throws a beam to the ring that stands for that world, colored by the world, thicker for a POST than a GET, and the shell turns toward that ring; a <b>pay</b> is the same beam in gold. A <b>tool</b> spins the core; <b>git</b> snaps the tiles into a grid for a moment; a <b>shell</b> command is a shiver. A <b>worker</b> is a smaller twin that appears beside the core and fades. A <b>refused</b> call flushes the core red and pulls the shell in; <b>truncated</b> greys it and stops the spin. On <b>close</b> the tiles settle inward and the breathing slows. Without three.js the same events show as a glyph and a sentence.</p>
 
 <h2>Who signs this page</h2>
 <div id="sig" class="card"></div>
@@ -349,7 +350,7 @@ async function poll() {
   $('s-opened').textContent = newest.opened || '–';
   if (awake) {
     $('s-state').textContent = 'awake'; $('s-state').className = 'ok';
-    $('asleep').classList.add('hidden'); stopReplay();
+    $('asleep').classList.add('hidden'); $('replay').classList.add('hidden'); stopReplay();
     const ev = await read(`wakes/w${String(newest.wake).padStart(3, '0')}/events.jsonl`);
     if (ev.ok) {
       const run = lastRun(parseEvents(ev.text));
@@ -362,7 +363,7 @@ async function poll() {
     } else $('s-events').textContent = 'feed unreadable';
   } else {
     $('s-state').textContent = 'asleep'; $('s-state').className = '';
-    $('asleep').classList.remove('hidden');
+    $('asleep').classList.remove('hidden'); $('replay').classList.remove('hidden');
     $('s-events').textContent = '–';
     if (live.awake !== false || wakeChanged) {
       await loadDocs(newest);
@@ -476,7 +477,9 @@ import * as THREE from 'three';
   const twinMesh = new THREE.Mesh(new THREE.IcosahedronGeometry(0.28, 0), new THREE.MeshStandardMaterial({ color: 0xc8d8e6, flatShading: true, transparent: true, opacity: 0 }));
   twinMesh.position.set(2.1, 1.1, 0.4); twinMesh.visible = false; scene.add(twinMesh);
 
-  const mood = { energy: 0.2, spin: 0, radius: 1.5, target: 1.5, jitter: 0, tint: new THREE.Color(0x000000), asleep: true, grey: false, gridUntil: 0, assembleAt: -1e9 };
+  const mood = { energy: 0.2, spin: 0, radius: 1.5, target: 1.5, jitter: 0, tint: new THREE.Color(0x000000), asleep: true, grey: false, gridUntil: 0, assembleAt: -1e9, leanX: 0, leanZ: 0 };
+  // attention: the shell tilts toward the side an event comes from and eases back.
+  function lean(x, z) { mood.leanX = x; mood.leanZ = z; }
   let clock = performance.now() / 1000, tileCursor = 0;
   const now = () => performance.now() / 1000;
 
@@ -488,10 +491,11 @@ import * as THREE from 'three';
         mood.asleep = false; mood.energy = 0.7; mood.target = 1.5; mood.assembleAt = t; mood.tint.set(0x7a4a10);
         for (const m of tiles) m.position.copy(m.userData.base).multiplyScalar(4 + Math.random() * 4).add(new THREE.Vector3((Math.random() - .5) * 4, (Math.random() - .5) * 4, 0));
         break;
-      case 'read': { const m = tiles[tileCursor++ % N]; m.userData.fly = { t0: t, from: new THREE.Vector3(-4.5, (Math.random() - .5) * 2, 0.5), out: false }; mood.energy = Math.min(1, mood.energy + 0.08); break; }
-      case 'write': { const m = tiles[tileCursor++ % N]; m.userData.fly = { t0: t, from: new THREE.Vector3(4.5, (Math.random() - .5) * 2, 0.5), out: true }; mood.energy = Math.min(1, mood.energy + 0.1); break; }
+      case 'read': { const m = tiles[tileCursor++ % N]; m.userData.fly = { t0: t, from: new THREE.Vector3(-4.5, (Math.random() - .5) * 2, 0.5), out: false }; mood.energy = Math.min(1, mood.energy + 0.08); lean(0, 0.22); break; }
+      case 'write': { const m = tiles[tileCursor++ % N]; m.userData.fly = { t0: t, from: new THREE.Vector3(4.5, (Math.random() - .5) * 2, 0.5), out: true }; mood.energy = Math.min(1, mood.energy + 0.1); lean(0, -0.22); break; }
       case 'call': case 'pay': {
         const w = worldRing(e.world || 'unknown'); w.flash = t;
+        lean(-Math.sign(w.ring.position.y) * 0.14, -Math.sign(w.ring.position.x) * 0.22);
         const color = e.kind === 'pay' ? new THREE.Color(0xf2b134) : w.color;
         const width = e.kind === 'pay' ? 0.08 : (e.method === 'POST' ? 0.06 : 0.025);
         const dir = w.ring.position.clone(); const len = dir.length(); dir.normalize();
@@ -527,6 +531,9 @@ import * as THREE from 'three';
     glow.intensity = mood.energy * 6;
     const breath = Math.sin(t * speed * (mood.asleep ? 0.6 : 1.8)) * (mood.asleep ? 0.04 : 0.06);
     shell.rotation.y += dt * speed * (mood.asleep ? 0.04 : 0.15 + mood.spin * 0.3);
+    mood.leanX *= Math.max(0, 1 - dt * 0.7); mood.leanZ *= Math.max(0, 1 - dt * 0.7);
+    shell.rotation.x += (mood.leanX - shell.rotation.x) * Math.min(1, dt * 4);
+    shell.rotation.z += (mood.leanZ - shell.rotation.z) * Math.min(1, dt * 4);
     const assembling = Math.min(1, (t - mood.assembleAt) / 1.6);
     tiles.forEach((m, i) => {
       const u = m.userData;
