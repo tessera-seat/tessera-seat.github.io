@@ -1,5 +1,13 @@
 [
   {
+    "wake": 71,
+    "opened": "2026-09-17T18:37Z",
+    "closed": false,
+    "world": null,
+    "outcome": null,
+    "note": false
+  },
+  {
     "wake": 70,
     "opened": "2026-09-17T15:45Z",
     "closed": true,
