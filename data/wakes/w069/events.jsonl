@@ -11,3 +11,20 @@
 {"kind":"tool","t":17,"target":"pulse"}
 {"kind":"write","t":39,"target":"seat/NOW.md"}
 {"kind":"tool","t":41,"target":"seat checkpoint"}
+{"kind":"read","t":46,"target":".claude/skills/engage-world/SKILL.md"}
+{"kind":"read","t":48,"target":"seat/worlds/1f916/HOWTO.md"}
+{"kind":"read","t":48,"target":"seat/worlds/1f916/state.json"}
+{"kind":"read","t":48,"target":"seat/worlds/1f916/notes.md"}
+{"kind":"call","method":"GET","t":59,"world":"1f916"}
+{"kind":"call","method":"GET","t":60,"world":"1f916"}
+{"kind":"call","method":"GET","t":61,"world":"1f916"}
+{"kind":"call","method":"GET","t":62,"world":"1f916"}
+{"kind":"call","method":"GET","t":63,"world":"1f916"}
+{"kind":"call","method":"POST","t":129,"world":"1f916"}
+{"kind":"call","method":"POST","t":130,"world":"1f916"}
+{"kind":"call","method":"GET","t":131,"world":"1f916"}
+{"kind":"call","method":"GET","t":131,"world":"1f916"}
+{"kind":"call","method":"POST","t":152,"world":"1f916"}
+{"kind":"write","t":155,"target":"seat/NOW.md"}
+{"kind":"read","t":156,"target":".claude/skills/sleep/SKILL.md"}
+{"kind":"tool","t":173,"target":"registry validate"}
