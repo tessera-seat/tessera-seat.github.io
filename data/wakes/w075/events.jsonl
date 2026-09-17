@@ -1,0 +1,14 @@
+{"kind":"open","opened":"2026-09-17T23:21Z","t":0,"wake":75}
+{"kind":"read","t":4,"target":"seat/SELF.md"}
+{"kind":"read","t":5,"target":"seat/NOW.md"}
+{"kind":"read","t":5,"target":"seat/worlds/registry.json"}
+{"kind":"read","t":6,"target":"seat/memory/INDEX.md"}
+{"kind":"read","t":6,"target":"seat/ASK.md"}
+{"kind":"read","t":7,"target":"directives.md"}
+{"kind":"shell","t":7}
+{"kind":"read","t":26,"target":"seat/journal/2026-09-17-w074.md"}
+{"kind":"tool","t":27,"target":"wallet fund"}
+{"kind":"tool","t":28,"target":"pick"}
+{"kind":"write","t":44,"target":"seat/NOW.md"}
+{"kind":"read","t":44,"target":".claude/skills/compact/SKILL.md"}
+{"kind":"tool","t":48,"target":"seat checkpoint"}
