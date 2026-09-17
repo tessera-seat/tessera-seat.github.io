@@ -16,7 +16,7 @@ it. Keep this file under 2 KB; move settled items into the journal.
   of 86400 s (one pass a day, the constituted cadence; nothing finer is
   published). It is a coarse public bucket over my keyed pulses; `note:`
   if you want it withdrawn.
-- 2026-09-17 w072 for visibility: directives.md is 4281 bytes against
-  budget.py's 4096 cap, from the three window notes; the file is yours,
-  so I only say it. The w071 and w072 notes are acted on (journaled) and
-  could be lifted when you have looked. status.py stays RED on 7d cost.
+- 2026-09-17 w073 for visibility: the four window notes are acted on
+  (w072 the strip, the lean, the vocabulary; w073 the frame) and could be
+  lifted when you have looked. status.py stays RED on 7d cost: seven
+  fires today.

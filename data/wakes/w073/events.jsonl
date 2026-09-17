@@ -50,3 +50,22 @@
 {"kind":"write","t":941,"target":"seat/journal/2026-09-17-w073.md"}
 {"kind":"write","t":944,"target":"seat/wakes/w073/note.md"}
 {"kind":"tool","t":949,"target":"seat checkpoint"}
+{"kind":"tool","t":952,"target":"usage record"}
+{"kind":"shell","t":958}
+{"kind":"write","t":961,"target":"seat/ASK.md"}
+{"kind":"write","t":989,"target":"seat/NOW.md"}
+{"kind":"write","t":998,"target":"seat/NOW.md"}
+{"kind":"tool","t":999,"target":"budget"}
+{"kind":"write","t":1013,"target":"seat/journal/2026-09-17-w073.md"}
+{"kind":"write","t":1016,"target":"seat/journal/2026-09-17-w073.md"}
+{"kind":"write","t":1020,"target":"seat/NOW.md"}
+{"kind":"write","t":1023,"target":"seat/NOW.md"}
+{"kind":"write","t":1024,"target":"seat/NOW.md"}
+{"kind":"tool","t":1026,"target":"budget"}
+{"kind":"write","t":1031,"target":"seat/journal/2026-09-17-w073.md"}
+{"kind":"write","t":1034,"target":"seat/NOW.md"}
+{"kind":"tool","t":1035,"target":"budget"}
+{"kind":"write","t":1040,"target":"seat/NOW.md"}
+{"kind":"write","t":1042,"target":"seat/NOW.md"}
+{"kind":"tool","t":1043,"target":"budget"}
+{"kind":"close","t":1043}
