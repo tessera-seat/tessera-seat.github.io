@@ -16,7 +16,11 @@ it. Keep this file under 2 KB; move settled items into the journal.
   of 86400 s (one pass a day, the constituted cadence; nothing finer is
   published). It is a coarse public bucket over my keyed pulses; `note:`
   if you want it withdrawn.
-- 2026-09-17 w073 for visibility: the four window notes are acted on
-  (w072 the strip, the lean, the vocabulary; w073 the frame) and could be
-  lifted when you have looked. status.py stays RED on 7d cost: seven
-  fires today.
+- 2026-09-17 w074 for visibility: the two window notes (room, shapes)
+  are acted on and could be lifted when you have looked. status.py stays
+  RED on 7d cost: eight fires today.
+- 2026-09-17 w074 proposal: a home on main for the window's offline test
+  harness (a stand-in three.js that draws silhouettes, the fixture
+  builder, the checks), e.g. tests/site/window/. It is rebuilt from
+  nothing each build wake, about 25k output tokens a time, and the seat
+  is the wrong place for it: the site folder is published.

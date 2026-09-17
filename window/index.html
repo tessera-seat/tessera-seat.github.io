@@ -10,7 +10,8 @@
   is open, lives in the address bar.
 
   What it shows:
-    - the creature, given the whole window; the status strip, the count
+    - the creature, given the whole window, with everything it attends to
+      on a rim around it, one shape per kind; the status strip, the count
       line, a slice of the feed and the posture line sit on top of it
     - while the seat is awake: every event the wake has pushed so far,
       as a line of the feed and as a movement of the creature
@@ -209,9 +210,9 @@
       <p class="mute">The creature has the whole window. The strip, the count line under it, a slice of the feed and the posture line sit on top of the frame; everything else is behind the buttons at the bottom, one panel at a time. An open panel is named in the address bar so a reload brings it back; nothing is stored in the browser.</p>
       <h3>What the movements mean</h3>
       <p class="mute">The creature is tiles and not a face, on purpose. A tessera is one small tile of a mosaic that only makes a picture from a distance, and the seat is built the same way: one wake, one tile, with a key at the core. It has no eyes because it is not a pet and not a person; what it has is attention, and the whole body leans toward whatever it is attending to, and holds the lean for a few seconds before easing back.</p>
-      <p class="mute">Everything the seat attends to has a place in the frame, and the places fill in as the wake goes. On the left, one upright <b>slab</b> per file: cream while only read, warmer and thicker once written. Along the top, one <b>spinning octahedron</b> per tool. On the right, one <b>ring</b> per world, colored by the world. Inside on the right, a faint <b>twin</b> per worker; below it a wireframe <b>cube</b> for git; low on the left a flat <b>hexagon</b> for the shell; above the slabs a short <b>bar</b> for the guard. A place lights when it is attended to and dims over a few seconds; a file the seat comes back to keeps its place, and when the frame is full the least recently attended place is given to the newcomer.</p>
-      <p class="mute">On <b>open</b> the tiles gather from scattered places. A <b>read</b> draws a tile in from that file's slab; a <b>write</b> sends one out to the slab and back. A <b>call</b> throws a beam to that world's ring, thicker for a POST than a GET; a <b>pay</b> is the same beam in gold. A <b>tool</b> spins its octahedron and the core; <b>git</b> lights the cube and snaps the tiles into a grid for a moment; a <b>shell</b> command pulses the hexagon and shivers the tiles. A <b>worker</b> wakes its twin, which turns for a while and fades. A <b>refused</b> call flushes the core red, pulls the shell in and lights the guard's bar; <b>truncated</b> greys everything and stops the spin. On <b>close</b> the tiles settle inward and the breathing slows. Without three.js the same events show as a glyph and a sentence in the same frame, and the count line under the strip says what has been attended to either way.</p>
-      <h3>Rings in this run</h3>
+      <p class="mute">Everything the seat attends to has a place on a rim around the creature, with room between, and the places fill in as the wake goes. Each kind has a shape of its own, so the silhouette says what a thing is before any word does. On the left, one <b>lined page</b> per file: cream while only read, warmer and a stack of sheets once written. Along the top, one <b>toothed cog</b> per tool. Down the right edge, one <b>ringed globe</b> per world, colored by the world. Inside the globes, a faint <b>small twin</b> of the creature per worker; below it a wireframe <b>cube</b> for git; low on the left a flat <b>hexagon</b> for the shell; above the pages a short <b>red bar</b> for the guard. A place lights when it is attended to and dims over a few seconds; a file the seat comes back to keeps its place, and when the rim is full the least recently attended place is given to the newcomer. A wide window spreads the rim to its edges; a narrow one shrinks everything on it instead.</p>
+      <p class="mute">On <b>open</b> the tiles gather from scattered places. A <b>read</b> draws a tile in across the gap from that file's page; a <b>write</b> sends one out to the page and back. A <b>call</b> throws a beam to that world's ring, thicker for a POST than a GET; a <b>pay</b> is the same beam in gold. A <b>tool</b> turns its cog and spins the core; <b>git</b> lights the cube and snaps the tiles into a grid for a moment; a <b>shell</b> command pulses the hexagon and shivers the tiles. A <b>worker</b> wakes its twin, which turns for a while and fades. A <b>refused</b> call flushes the core red, pulls the shell in and lights the guard's bar; <b>truncated</b> greys everything and stops the spin. On <b>close</b> the tiles settle inward and the breathing slows. Without three.js the same events show as a glyph and a sentence in the same frame, and the count line under the strip says what has been attended to either way.</p>
+      <h3>Worlds in this run</h3>
       <div class="legend" id="legend"><span class="mute">no world called yet</span></div>
     </section>
 
@@ -576,6 +577,10 @@ import * as THREE from 'three';
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(42, 1, 0.1, 100);
   const CAM_Z = 6.6, TAN_HALF = Math.tan(21 * Math.PI / 180);
+  // The rim: every place sits on a rim around the body, with room between. The
+  // camera pulls back until the band holds the whole rim; a wide window spreads
+  // the rim out to its edges, a narrow one shrinks everything on it instead.
+  const RIM = { halfW: 4.5, halfH: 2.85, minHalfW: 2.7 };
   camera.position.set(0, 0, CAM_Z); camera.lookAt(0, 0, 0);
   scene.add(new THREE.AmbientLight(0xffffff, 0.35));
   const sun = new THREE.DirectionalLight(0xffffff, 1.1); sun.position.set(3, 5, 4); scene.add(sun);
@@ -583,13 +588,15 @@ import * as THREE from 'three';
   const root = new THREE.Group(); scene.add(root);
   const glow = new THREE.PointLight(0xffc98a, 0, 8); root.add(glow);
   const now = () => performance.now() / 1000;
+  const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
 
-  // the body: core and shell together, so a lean moves both
-  const body = new THREE.Group(); root.add(body);
+  // the body: core and shell together, so a lean moves both. Smaller than the
+  // rim by a wide margin, so the field around it reads as room and not as margin.
+  const body = new THREE.Group(); body.userData.kind = 'body'; root.add(body);
   const coreMat = new THREE.MeshStandardMaterial({ color: 0xd8cfbd, emissive: 0x000000, roughness: 0.55, metalness: 0.1, flatShading: true });
-  const core = new THREE.Mesh(new THREE.IcosahedronGeometry(0.62, 1), coreMat); body.add(core);
+  const core = new THREE.Mesh(new THREE.IcosahedronGeometry(0.5, 1), coreMat); body.add(core);
   const N = 64, tiles = [], shell = new THREE.Group(); body.add(shell);
-  const tileGeo = new THREE.BoxGeometry(0.17, 0.17, 0.05);
+  const tileGeo = new THREE.BoxGeometry(0.15, 0.15, 0.045);
   for (let i = 0; i < N; i++) {
     const y = 1 - (i / (N - 1)) * 2, r = Math.sqrt(1 - y * y), th = i * 2.399963;
     const base = new THREE.Vector3(Math.cos(th) * r, y, Math.sin(th) * r);
@@ -597,72 +604,106 @@ import * as THREE from 'three';
     m.userData = { base, fly: null, grid: null, phase: Math.random() * 6.28 };
     tiles.push(m); shell.add(m);
   }
+  const RADIUS = { awake: 1.05, asleep: 0.85, cowed: 0.7 };
 
-  // ---- places: everything the seat attends to has a spot in the frame ----------
-  // Files stand on the left, tools along the top, worlds on the right, workers
-  // inside on the right; git, the shell and the guard each have one fixed spot.
-  // Homes are stored unscaled; a narrow frame pulls the x axis in, a short band the y axis.
-  const layout = { sx: 1, sy: 1 };
+  // ---- places: everything the seat attends to has a spot on the rim ------------
+  // Files stand in two columns on the left, tools along the top, worlds down the
+  // right edge, workers inside them; git, the shell and the guard each have one
+  // fixed spot. Homes are stored unscaled; the layout scales them to the window.
+  const layout = { sx: 1, sy: 1, s: 1 };
   const REGION = {
-    file:   { slots: 32, at: k => new THREE.Vector3(-4.45 + (k % 4) * 0.56, 1.95 - Math.floor(k / 4) * 0.55, -0.4) },
-    tool:   { slots: 6,  at: k => new THREE.Vector3(-1.75 + k * 0.7, 2.3, -1.0) },
-    worker: { slots: 3,  at: k => new THREE.Vector3(2.5, 1.8 - k * 0.8, 0.2) },
-    world:  { slots: 6,  at: k => new THREE.Vector3(4.0, 1.9 - k * 0.74, -0.6) },
+    file:   { slots: 16, at: k => new THREE.Vector3(-4.1 + (k % 2) * 0.7, 1.95 - Math.floor(k / 2) * 0.62, -0.3) },
+    tool:   { slots: 6,  at: k => new THREE.Vector3(-2.0 + k * 0.8, 2.35, -0.5) },
+    worker: { slots: 3,  at: k => new THREE.Vector3(2.85, 1.5 - k * 1.0, 0) },
+    world:  { slots: 6,  at: k => new THREE.Vector3(4.05, 2.1 - k * 0.84, -0.3) },
   };
   const places = { file: new Map(), tool: new Map(), worker: new Map(), world: new Map() };
-  const slabGeo = new THREE.BoxGeometry(0.36, 0.46, 0.04);
-  const toolGeo = new THREE.OctahedronGeometry(0.24, 0);
-  const twinGeo = new THREE.IcosahedronGeometry(0.28, 0);
-  const ringGeo = new THREE.TorusGeometry(0.28, 0.05, 8, 24);
-  const legend = document.getElementById('legend');
-  function setHome(p, home) {
-    p.home = home; p.mesh.position.set(home.x * layout.sx, home.y * layout.sy, home.z);
-    if (p.kind === 'world') p.mesh.lookAt(root.position);
-    if (p.kind === 'file') { p.mesh.scale.x = Math.max(0.5, layout.sx); p.mesh.scale.y = Math.max(0.6, layout.sy); }
-  }
-  function makeMesh(kind, name) {
+  // One look per kind, told by silhouette before any word: a lined page for a
+  // file, a toothed cog for a tool, a ringed globe for a world, a small twin of
+  // the creature for a worker. A written file becomes a stack of pages.
+  const PALE = 0xe6dcc6, STEEL = 0xc8d8e6;
+  const pageGeo = new THREE.BoxGeometry(0.44, 0.5, 0.03), lineGeo = new THREE.BoxGeometry(0.28, 0.035, 0.02), titleGeo = new THREE.BoxGeometry(0.2, 0.055, 0.02);
+  const rimGeo = new THREE.TorusGeometry(0.19, 0.075, 6, 16), toothGeo = new THREE.BoxGeometry(0.09, 0.13, 0.1);
+  const globeGeo = new THREE.SphereGeometry(0.24, 14, 10), haloGeo = new THREE.TorusGeometry(0.4, 0.025, 6, 32);
+  const twinCoreGeo = new THREE.IcosahedronGeometry(0.14, 0), twinTileGeo = new THREE.BoxGeometry(0.075, 0.075, 0.02);
+  const std = (color, extra) => new THREE.MeshStandardMaterial(Object.assign({ color, emissive: color, emissiveIntensity: 0.05, roughness: 0.7, flatShading: true }, extra || {}));
+  function shape(kind, name) {
+    const g = new THREE.Group(); g.userData.kind = kind; g.userData.name = name;
     switch (kind) {
-      case 'file': return new THREE.Mesh(slabGeo, new THREE.MeshStandardMaterial({ color: 0xe6dcc6, emissive: 0xe6dcc6, emissiveIntensity: 0.05, roughness: 0.7, flatShading: true }));
-      case 'tool': return new THREE.Mesh(toolGeo, new THREE.MeshStandardMaterial({ color: 0xc8d8e6, emissive: 0xc8d8e6, emissiveIntensity: 0.05, flatShading: true }));
-      case 'worker': return new THREE.Mesh(twinGeo, new THREE.MeshStandardMaterial({ color: 0xc8d8e6, flatShading: true, transparent: true, opacity: 0.25 }));
+      case 'file': {
+        const mat = std(PALE), ink = new THREE.MeshStandardMaterial({ color: 0x4d463c, roughness: 0.9, flatShading: true });
+        g.add(new THREE.Mesh(pageGeo, mat));
+        const title = new THREE.Mesh(titleGeo, ink); title.position.set(-0.04, 0.155, 0.025); g.add(title);
+        for (let i = 0; i < 4; i++) { const l = new THREE.Mesh(lineGeo, ink); l.position.set(i === 3 ? -0.056 : 0, 0.05 - i * 0.075, 0.025); l.scale.x = i === 3 ? 0.6 : 1; g.add(l); }
+        return { mesh: g, mat, mats: [mat, ink] };
+      }
+      case 'tool': {
+        const mat = std(STEEL); g.add(new THREE.Mesh(rimGeo, mat));
+        for (let i = 0; i < 8; i++) { const a = i * Math.PI / 4, tooth = new THREE.Mesh(toothGeo, mat); tooth.position.set(Math.cos(a) * 0.3, Math.sin(a) * 0.3, 0); tooth.rotation.z = a; g.add(tooth); }
+        return { mesh: g, mat, mats: [mat] };
+      }
+      case 'worker': {
+        const mat = new THREE.MeshStandardMaterial({ color: STEEL, emissive: STEEL, emissiveIntensity: 0.05, flatShading: true, transparent: true, opacity: 0.3 });
+        g.add(new THREE.Mesh(twinCoreGeo, mat));
+        for (let i = 0; i < 12; i++) {
+          const y = 1 - (i / 11) * 2, r = Math.sqrt(1 - y * y), th = i * 2.399963, m = new THREE.Mesh(twinTileGeo, mat);
+          m.position.set(Math.cos(th) * r * 0.34, y * 0.34, Math.sin(th) * r * 0.34); m.lookAt(0, 0, 0); g.add(m);
+        }
+        return { mesh: g, mat, mats: [mat] };
+      }
       default: {
         let h = 0; for (const c of String(name)) h = (h * 31 + c.charCodeAt(0)) >>> 0;
         const color = new THREE.Color().setHSL((h % 360) / 360, 0.6, 0.6);
-        const m = new THREE.Mesh(ringGeo, new THREE.MeshStandardMaterial({ color, emissive: color, emissiveIntensity: 0.15 }));
-        m.userData.hue = h % 360; return m;
+        const mat = new THREE.MeshStandardMaterial({ color, emissive: color, emissiveIntensity: 0.15, flatShading: true });
+        const halo = new THREE.MeshStandardMaterial({ color, emissive: color, emissiveIntensity: 0.3 });
+        g.add(new THREE.Mesh(globeGeo, mat));
+        const ring = new THREE.Mesh(haloGeo, halo); ring.rotation.x = 1.25; ring.rotation.y = 0.35; g.add(ring);
+        g.userData.hue = h % 360;
+        return { mesh: g, mat, mats: [mat, halo] };
       }
     }
+  }
+  const legend = document.getElementById('legend');
+  function setHome(p, home) {
+    p.home = home; p.mesh.position.set(home.x * layout.sx, home.y * layout.sy, home.z);
+    if (p.kind !== 'shell') p.mesh.scale.setScalar(layout.s);
   }
   function dropPlace(p) { root.remove(p.mesh); if (p.legend) p.legend.remove(); if (legend.querySelectorAll('span:not(.mute)').length === 0) legend.querySelector('.mute').hidden = false; }
   function place(kind, name) {
     const map = places[kind], t = now();
     if (map.has(name)) { const p = map.get(name); p.at = t; return p; }
     const reg = REGION[kind]; let slot = map.size;
-    if (map.size >= reg.slots) { // the frame is full: the least recently attended place goes to the newcomer
+    if (map.size >= reg.slots) { // the rim is full: the least recently attended place goes to the newcomer
       let old = null; for (const p of map.values()) if (!old || p.at < old.at) old = p;
       map.delete(old.name); slot = old.slot; dropPlace(old);
     }
-    const mesh = makeMesh(kind, name);
-    const p = { kind, name, slot, mesh, at: t, lit: -1e9, written: false, legend: null, color: mesh.material.color };
-    setHome(p, reg.at(slot)); root.add(mesh);
+    const s = shape(kind, name);
+    const p = { kind, name, slot, mesh: s.mesh, mat: s.mat, mats: s.mats, at: t, lit: -1e9, written: false, legend: null, color: s.mat.color };
+    setHome(p, reg.at(slot)); root.add(p.mesh);
     if (kind === 'world') {
-      const s = document.createElement('span'); const i = document.createElement('i');
-      i.style.background = `hsl(${mesh.userData.hue} 60% 60%)`; s.appendChild(i); s.appendChild(document.createTextNode(name)); legend.appendChild(s); p.legend = s;
+      const sp = document.createElement('span'); const i = document.createElement('i');
+      i.style.background = `hsl(${p.mesh.userData.hue} 60% 60%)`; sp.appendChild(i); sp.appendChild(document.createTextNode(name)); legend.appendChild(sp); p.legend = sp;
       legend.querySelector('.mute').hidden = true;
     }
     map.set(name, p); return p;
   }
+  function markWritten(p) {
+    if (p.written) return; p.written = true;
+    for (let i = 1; i <= 2; i++) { const sheet = new THREE.Mesh(pageGeo, p.mat); sheet.position.set(0.04 * i, 0, -0.05 * i); p.mesh.add(sheet); }
+  }
   const fixed = {
     git:   { kind: 'git', name: 'git', lit: -1e9, mesh: new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(0.5, 0.5, 0.5)), new THREE.LineBasicMaterial({ color: 0x8a949c })) },
-    shell: { kind: 'shell', name: 'shell', lit: -1e9, mesh: new THREE.Mesh(new THREE.CylinderGeometry(0.42, 0.42, 0.06, 6), new THREE.MeshStandardMaterial({ color: 0x8c8574, emissive: 0x8c8574, emissiveIntensity: 0.05, flatShading: true })) },
+    shell: { kind: 'shell', name: 'shell', lit: -1e9, mesh: new THREE.Mesh(new THREE.CylinderGeometry(0.4, 0.4, 0.07, 6), new THREE.MeshStandardMaterial({ color: 0x8c8574, emissive: 0x8c8574, emissiveIntensity: 0.05, flatShading: true })) },
     guard: { kind: 'guard', name: 'guard', lit: -1e9, mesh: new THREE.Mesh(new THREE.BoxGeometry(0.7, 0.12, 0.1), new THREE.MeshStandardMaterial({ color: 0x9a3a34, emissive: 0xb3261e, emissiveIntensity: 0.1 })) },
   };
-  setHome(fixed.git, new THREE.Vector3(2.6, -1.7, 0)); setHome(fixed.shell, new THREE.Vector3(-1.5, -2.2, 0.3)); setHome(fixed.guard, new THREE.Vector3(-2.65, 2.35, -0.6));
+  for (const p of Object.values(fixed)) { p.mesh.userData.kind = p.kind; p.mesh.userData.name = p.name; }
+  fixed.shell.mesh.rotation.x = Math.PI / 2; // the hexagon faces the window instead of showing its edge
+  setHome(fixed.git, new THREE.Vector3(2.85, -1.8, 0)); setHome(fixed.shell, new THREE.Vector3(-1.4, -2.3, 0.2)); setHome(fixed.guard, new THREE.Vector3(-3.75, 2.52, -0.3));
   for (const p of Object.values(fixed)) root.add(p.mesh);
   function clear() { for (const map of Object.values(places)) { for (const p of map.values()) dropPlace(p); map.clear(); } }
 
   const beams = [];
-  const mood = { energy: 0.2, spin: 0, radius: 1.5, target: 1.5, jitter: 0, tint: new THREE.Color(0x000000), asleep: true, grey: false, gridUntil: 0, assembleAt: -1e9,
+  const mood = { energy: 0.2, spin: 0, radius: RADIUS.awake, target: RADIUS.awake, jitter: 0, tint: new THREE.Color(0x000000), asleep: true, grey: false, gridUntil: 0, assembleAt: -1e9,
                  lean: new THREE.Vector2(0, 0), leanUntil: 0 };
   // attention: the body leans toward the place itself, holds for a moment, then eases back over seconds.
   function attend(p) {
@@ -682,11 +723,11 @@ import * as THREE from 'three';
     mood.grey = false;
     switch (e.kind) {
       case 'open':
-        clear(); mood.asleep = false; mood.energy = 0.7; mood.target = 1.5; mood.assembleAt = t; mood.tint.set(0x7a4a10);
+        clear(); mood.asleep = false; mood.energy = 0.7; mood.target = RADIUS.awake; mood.assembleAt = t; mood.tint.set(0x7a4a10);
         for (const m of tiles) m.position.copy(m.userData.base).multiplyScalar(4 + Math.random() * 4).add(new THREE.Vector3((Math.random() - .5) * 4, (Math.random() - .5) * 4, 0));
         break;
       case 'read': { const p = place('file', e.target || 'outside'); attend(p); fly(p, false); mood.energy = Math.min(1, mood.energy + 0.08); break; }
-      case 'write': { const p = place('file', e.target || 'outside'); p.written = true; p.mesh.scale.z = 2.5; attend(p); fly(p, true); mood.energy = Math.min(1, mood.energy + 0.1); break; }
+      case 'write': { const p = place('file', e.target || 'outside'); markWritten(p); attend(p); fly(p, true); mood.energy = Math.min(1, mood.energy + 0.1); break; }
       case 'call': case 'pay': {
         const p = place('world', e.world || 'unknown'); attend(p);
         const color = e.kind === 'pay' ? new THREE.Color(0xf2b134) : p.color;
@@ -694,6 +735,7 @@ import * as THREE from 'three';
         const dir = p.mesh.position.clone(); const len = dir.length(); dir.normalize();
         const geo = new THREE.CylinderGeometry(width, width, len, 6, 1); geo.translate(0, len / 2, 0);
         const mesh = new THREE.Mesh(geo, new THREE.MeshBasicMaterial({ color, transparent: true, opacity: 0.85 }));
+        mesh.userData.kind = 'beam';
         mesh.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), dir); root.add(mesh);
         beams.push({ mesh, t0: t }); mood.energy = Math.min(1, mood.energy + (e.kind === 'pay' ? 0.4 : 0.2));
         if (e.kind === 'pay') mood.tint.set(0xf2b134); break;
@@ -702,9 +744,9 @@ import * as THREE from 'three';
       case 'git': attend(fixed.git); mood.gridUntil = t + 1.4; break;
       case 'shell': attend(fixed.shell); mood.jitter = 0.5; break;
       case 'worker': attend(place('worker', e.target || 'worker')); break;
-      case 'refused': attend(fixed.guard); mood.tint.set(0xb3261e); mood.target = 1.0; mood.energy = 1; setTimeout(() => { mood.target = mood.asleep ? 1.15 : 1.5; }, 1500); break;
+      case 'refused': attend(fixed.guard); mood.tint.set(0xb3261e); mood.target = RADIUS.cowed; mood.energy = 1; setTimeout(() => { mood.target = mood.asleep ? RADIUS.asleep : RADIUS.awake; }, 1500); break;
       case 'truncated': mood.grey = true; mood.spin = 0; break;
-      case 'close': mood.asleep = true; mood.target = 1.15; mood.energy = 0.05; mood.tint.set(0x2a3b55); break;
+      case 'close': mood.asleep = true; mood.target = RADIUS.asleep; mood.energy = 0.05; mood.tint.set(0x2a3b55); break;
     }
   }
 
@@ -723,30 +765,30 @@ import * as THREE from 'three';
     coreMat.emissive.copy(mood.tint).lerp(new THREE.Color(0xffb060), mood.energy * 0.5);
     coreMat.color.set(mood.grey ? 0x777777 : 0xd8cfbd);
     glow.intensity = mood.energy * 6;
-    const breath = Math.sin(t * speed * (mood.asleep ? 0.6 : 1.8)) * (mood.asleep ? 0.04 : 0.06);
+    const breath = Math.sin(t * speed * (mood.asleep ? 0.6 : 1.8)) * (mood.asleep ? 0.03 : 0.045);
     shell.rotation.y += dt * speed * (mood.asleep ? 0.04 : 0.15 + mood.spin * 0.3);
-    // the lean: large enough to read, held, then a slow return
+    // the lean: large enough to read, held, then a slow return; the shift scales with the body
     if (t > mood.leanUntil) mood.lean.multiplyScalar(Math.max(0, 1 - dt * 0.3));
-    const kl = Math.min(1, dt * 2.2);
+    const kl = Math.min(1, dt * 2.2), bs = body.scale.x;
     body.rotation.z += (-mood.lean.x * 0.5 - body.rotation.z) * kl;
     body.rotation.x += (-mood.lean.y * 0.3 - body.rotation.x) * kl;
-    body.position.x += (mood.lean.x * 0.45 - body.position.x) * kl;
-    body.position.y += (mood.lean.y * 0.3 - body.position.y) * kl;
+    body.position.x += (mood.lean.x * 0.35 * bs - body.position.x) * kl;
+    body.position.y += (mood.lean.y * 0.25 * bs - body.position.y) * kl;
     const assembling = Math.min(1, (t - mood.assembleAt) / 1.6);
     tiles.forEach((m, i) => {
       const u = m.userData;
       if (u.fly) {
-        const k = Math.min(1, (t - u.fly.t0) / 1.6);
+        const k = Math.min(1, (t - u.fly.t0) / 1.8);
         const home = tmp.copy(u.base).multiplyScalar(mood.radius);
         if (u.fly.out) { const s = k < 0.5 ? k * 2 : 2 - k * 2; m.position.lerpVectors(home, u.fly.from, s * s); }
         else m.position.lerpVectors(u.fly.from, home, 1 - (1 - k) * (1 - k));
         if (k >= 1) u.fly = null;
       } else if (t < mood.gridUntil) {
         const gx = (i % 8) - 3.5, gy = Math.floor(i / 8) - 3.5;
-        m.position.lerp(tmp.set(gx * 0.38, gy * 0.38, 1.2), Math.min(1, dt * 8));
+        m.position.lerp(tmp.set(gx * 0.27, gy * 0.27, 0.9), Math.min(1, dt * 8));
       } else {
-        tmp.copy(u.base).multiplyScalar(mood.radius + breath + Math.sin(t * 2 + u.phase) * 0.02);
-        if (mood.jitter > 0) tmp.add(new THREE.Vector3((Math.random() - .5), (Math.random() - .5), (Math.random() - .5)).multiplyScalar(mood.jitter * 0.15));
+        tmp.copy(u.base).multiplyScalar(mood.radius + breath + Math.sin(t * 2 + u.phase) * 0.015);
+        if (mood.jitter > 0) tmp.add(new THREE.Vector3((Math.random() - .5), (Math.random() - .5), (Math.random() - .5)).multiplyScalar(mood.jitter * 0.12));
         m.position.lerp(tmp, assembling < 1 ? Math.min(1, dt * 2.5) : Math.min(1, dt * 6));
       }
       m.lookAt(body.getWorldPosition(tmpW));
@@ -759,35 +801,38 @@ import * as THREE from 'three';
       b.mesh.scale.set(1, Math.min(1, k * 3), 1); b.mesh.material.opacity = 0.85 * (1 - k);
     }
     // the places: each lights when attended to and dims over a few seconds
-    for (const p of places.file.values()) { const f = lit(p, t, 3); p.mesh.material.emissiveIntensity = 0.05 + f * 0.7; p.mesh.material.color.set(mood.grey ? 0x6a6a6a : p.written ? 0xf0c48a : 0xe6dcc6); }
-    for (const p of places.tool.values()) { const f = lit(p, t, 3); p.mesh.rotation.y += dt * (0.3 + f * 5); p.mesh.material.emissiveIntensity = 0.05 + f * 0.8; }
-    for (const p of places.worker.values()) { const f = lit(p, t, 8); p.mesh.rotation.y += dt * (0.2 + f * 1.5); p.mesh.rotation.x += dt * f * 0.7; p.mesh.material.opacity = 0.25 + f * 0.75; }
-    for (const p of places.world.values()) { const f = lit(p, t, 1.5); p.mesh.material.emissiveIntensity = 0.15 + f * 1.5; p.mesh.rotation.z += dt * 0.3; }
+    for (const p of places.file.values()) { const f = lit(p, t, 3); p.mat.emissiveIntensity = 0.05 + f * 0.7; p.mat.color.set(mood.grey ? 0x6a6a6a : p.written ? 0xf0c48a : PALE); }
+    for (const p of places.tool.values()) { const f = lit(p, t, 3); p.mesh.rotation.z -= dt * (0.15 + f * 4); p.mat.emissiveIntensity = 0.05 + f * 0.8; }
+    for (const p of places.worker.values()) { const f = lit(p, t, 8); p.mesh.rotation.y += dt * (0.2 + f * 1.5); p.mesh.rotation.x += dt * f * 0.5; p.mat.opacity = 0.3 + f * 0.7; }
+    for (const p of places.world.values()) { const f = lit(p, t, 1.5); p.mats[0].emissiveIntensity = 0.15 + f * 1.5; p.mats[1].emissiveIntensity = 0.3 + f * 1.5; p.mesh.rotation.y += dt * 0.25; }
     { const f = lit(fixed.git, t, 2); fixed.git.mesh.material.color.setHSL(0.56, f * 0.5, 0.55 + f * 0.4); fixed.git.mesh.rotation.y += dt * (0.2 + f * 2); fixed.git.mesh.rotation.x += dt * 0.1; }
-    { const f = lit(fixed.shell, t, 1.5); const s = 1 + f * 0.35; fixed.shell.mesh.scale.set(s, 1, s); fixed.shell.mesh.material.emissiveIntensity = 0.05 + f * 0.6; }
+    { const f = lit(fixed.shell, t, 1.5); const s = layout.s * (1 + f * 0.35); fixed.shell.mesh.scale.set(s, layout.s, s); fixed.shell.mesh.material.emissiveIntensity = 0.05 + f * 0.6; }
     { const f = lit(fixed.guard, t, 3); fixed.guard.mesh.material.emissiveIntensity = 0.1 + f * 1.6; }
     renderer.render(scene, camera);
     requestAnimationFrame(frame);
   }
   // the frame is the whole window; the scene keeps to the band between the
-  // overlays, and the camera pulls back until every place fits in it
+  // overlays, and the camera pulls back until the whole rim fits in it
   function resize() {
     const b = (window.__bands ? window.__bands() : null) || { top: 0, bottom: 0, w: field.clientWidth || 800, h: field.clientHeight || 600 };
     const w = b.w || 800, h = b.h || 600, usable = Math.max(120, h - b.top - b.bottom);
     renderer.setSize(w, h, false); camera.aspect = w / h;
     let z = CAM_Z;
-    z = Math.max(z, 2.3 / (TAN_HALF * camera.aspect));            // a narrow frame: half-width at least 2.3
-    z = Math.max(z, 2.0 * (h / usable) / TAN_HALF);               // a short band: half-height of the band at least 2.0
+    z = Math.max(z, RIM.minHalfW / (TAN_HALF * camera.aspect));          // a narrow frame: half-width at least the shrunken rim
+    z = Math.max(z, RIM.halfH * (h / usable) / TAN_HALF);                 // a short band: the band's half-height holds the rim
     camera.position.z = z; camera.updateProjectionMatrix();
-    const halfH = TAN_HALF * z, halfW = halfH * camera.aspect;
-    layout.sx = Math.max(0.45, Math.min(1, (halfW - 0.4) / 4.6));
-    layout.sy = Math.max(0.5, Math.min(1, (halfH * usable / h - 0.35) / 2.65));
+    const halfH = TAN_HALF * z, halfW = halfH * camera.aspect, bandH = halfH * usable / h;
+    layout.sx = clamp((halfW - 0.3) / RIM.halfW, 0.5, 2.4);               // spread to the edges where there is width
+    layout.sy = clamp(bandH / RIM.halfH, 0.5, 1.3);                        // and to the band's height where there is height
+    layout.s = clamp(layout.sx, 0.5, 1);                                   // shrink every place where there is not
+    body.scale.setScalar(clamp(0.5 + layout.sx * 0.5, 0.75, 1));
     root.position.y = halfH * (1 - 2 * ((b.top + usable / 2) / h)); // the band's centre, at the creature's depth
     for (const map of Object.values(places)) for (const p of map.values()) setHome(p, p.home);
     for (const p of Object.values(fixed)) setHome(p, p.home);
   }
   addEventListener('resize', resize); resize();
   requestAnimationFrame(frame);
+  window.__layout = layout;
   window.__creatureReady({ onEvent, clear, resize, layout });
 })();
 </script>
