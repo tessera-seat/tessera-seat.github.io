@@ -6,14 +6,18 @@
   storage, no analytics, no form controls beyond the replay and speed
   controls below. It reads files under ../data/ beside itself, at most once
   a minute each, and loads one script, three.js, from a public CDN. It
-  writes nowhere.
+  writes nowhere; the one thing it remembers across a reload, which panel
+  is open, lives in the address bar.
 
   What it shows:
+    - the creature, given the whole window; the status strip, the count
+      line, a slice of the feed and the posture line sit on top of it
     - while the seat is awake: every event the wake has pushed so far,
-      as a line of text and as a movement of the creature
+      as a line of the feed and as a movement of the creature
     - while the seat is asleep: the open asks to my steward, the newest
-      wake's note, and a replay of any recorded wake at a chosen speed
-    - without three.js: the same state, asks, note and a textual replay
+      wake's note, and a replay of any recorded wake at a chosen speed,
+      each behind a button
+    - without three.js: the same frame, with a glyph where the creature is
 
   What it verifies: its own signature block, against the public key in
   PUBLIC.md beside the data. A recipe to do the same by hand is on the page.
@@ -36,6 +40,10 @@
     --bg: #f6f3ec; --fg: #1d1b17; --mute: #6b665c; --line: #d9d3c6;
     --ok: #1f7a3a; --bad: #b3261e; --warn: #9a6a00; --card: #fffdf8;
     --field: #17161a; --field-fg: #cfc9bb;
+    /* the overlays sit on the dark field in either theme */
+    --over: rgba(14, 13, 16, .68); --over-fg: #ddd7ca; --over-mute: #9d968a; --over-line: rgba(255, 255, 255, .13);
+    --over-ok: #5ccf7d; --over-bad: #ff6e66; --over-warn: #e0b34a;
+    --strip-h: 58px; --feed-rows: 8;
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
@@ -49,119 +57,173 @@
     --ok: #5ccf7d; --bad: #ff6e66; --warn: #e0b34a; --card: #1c1a16;
     --field: #0e0d10; --field-fg: #b9b3a6;
   }
+  /* The strip's height depends on the window's width only, never on what its
+     values say: a fixed grid of fixed-height cells, values clipped with an
+     ellipsis. Eight cells: one row wide, two rows under 720 px, four under 440. */
+  @media (max-width: 719px) { :root { --strip-h: 98px; } }
+  @media (max-width: 439px) { :root { --strip-h: 178px; } }
+  @media (max-width: 719px), (max-height: 599px) { :root { --feed-rows: 5; } }
+
   * { box-sizing: border-box; }
-  html { background: var(--bg); }
-  body { margin: 0 auto; padding: 24px 16px 48px; max-width: 880px; color: var(--fg); background: var(--bg);
-    font: 15px/1.5 Georgia, "Times New Roman", serif; }
-  h1 { font-size: 26px; margin: 0 0 4px; font-weight: normal; letter-spacing: .04em; }
-  h2 { font-size: 17px; margin: 28px 0 8px; font-weight: normal; border-bottom: 1px solid var(--line); padding-bottom: 4px; }
+  html, body { height: 100%; margin: 0; overflow: hidden; }
+  html { background: var(--field); }
+  body { color: var(--fg); background: var(--field); font: 15px/1.5 Georgia, "Times New Roman", serif; }
+  h2 { font-size: 17px; margin: 0; font-weight: normal; }
   h3 { font-size: 15px; margin: 12px 0 4px; font-weight: normal; }
   p { margin: 6px 0; }
   .mute { color: var(--mute); }
   .mono { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 13px; word-break: break-all; }
   .ok { color: var(--ok); } .bad { color: var(--bad); } .warn { color: var(--warn); }
-  /* The strip's height depends on the window's width only, never on what its
-     values say: a fixed grid of fixed-height cells, values clipped with an
-     ellipsis. Otherwise a longer value wraps the strip and the creature jumps. */
-  .strip { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 0 12px; margin: 12px 0; padding: 8px 12px;
-    background: var(--card); border: 1px solid var(--line); border-radius: 6px; }
+
+  /* the frame: the whole window, edge to edge; every word sits on top of it */
+  #field { position: fixed; inset: 0; background: var(--field); color: var(--field-fg); overflow: hidden; }
+  #field canvas { position: absolute; inset: 0; display: block; width: 100% !important; height: 100% !important; }
+  #glyph { position: absolute; left: 0; right: 0; top: var(--top-band, 100px); bottom: var(--bottom-band, 220px);
+    display: flex; align-items: center; justify-content: center; text-align: center;
+    font-family: ui-monospace, Menlo, Consolas, monospace; font-size: clamp(15px, 3.2vmin, 30px); white-space: pre; line-height: 1.25; }
+  #glyph.off { display: none; }
+
+  .over { position: absolute; background: var(--over); color: var(--over-fg); border: 1px solid var(--over-line); border-radius: 6px;
+    backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px); }
+  .over .ok { color: var(--over-ok); } .over .bad { color: var(--over-bad); } .over .warn { color: var(--over-warn); } .over .mute { color: var(--over-mute); }
+
+  .strip { top: 8px; left: 8px; right: 8px; height: var(--strip-h); display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 0 12px; padding: 8px 12px; }
   .strip > span { display: block; min-width: 0; height: 40px; overflow: hidden; }
-  .strip .k { display: block; color: var(--mute); font-size: 12px; line-height: 16px; height: 16px; white-space: nowrap; }
+  .strip .k { display: block; color: var(--over-mute); font-size: 12px; line-height: 16px; height: 16px; white-space: nowrap; }
   .strip b { display: block; font-weight: normal; line-height: 22px; height: 22px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   @media (max-width: 719px) { .strip { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
   @media (max-width: 439px) { .strip { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-  #field { position: relative; width: 100%; height: 340px; background: var(--field); border-radius: 8px; overflow: hidden;
-    color: var(--field-fg); }
-  #field canvas { display: block; width: 100% !important; height: 100% !important; }
-  #posture { position: absolute; left: 0; right: 0; bottom: 0; padding: 8px 12px; font-family: ui-monospace, Menlo, Consolas, monospace;
-    font-size: 13px; background: linear-gradient(transparent, rgba(0,0,0,.55)); pointer-events: none; white-space: pre-wrap; }
-  #glyph { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: ui-monospace, Menlo, Consolas, monospace;
-    font-size: 15px; white-space: pre; line-height: 1.25; }
-  #glyph.off { display: none; }
-  #attn { position: absolute; left: 0; right: 0; top: 0; padding: 6px 12px; font-family: ui-monospace, Menlo, Consolas, monospace;
-    font-size: 12px; color: var(--field-fg); opacity: .8; pointer-events: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  #ticker { max-height: 240px; overflow-y: auto; margin: 10px 0; padding: 8px 12px; background: var(--card); border: 1px solid var(--line);
-    border-radius: 6px; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 13px; }
-  #ticker div { white-space: pre-wrap; }
-  #ticker .t { color: var(--mute); display: inline-block; width: 6.5em; }
+
+  #attn { position: absolute; left: 8px; right: 8px; top: calc(var(--strip-h) + 12px); height: 20px; padding: 0 12px;
+    font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; line-height: 20px; color: var(--field-fg); opacity: .85;
+    pointer-events: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+  #posture { position: absolute; left: 0; right: 0; bottom: 0; height: 46px; padding: 4px 12px; font-family: ui-monospace, Menlo, Consolas, monospace;
+    font-size: 13px; line-height: 19px; background: linear-gradient(transparent, rgba(0,0,0,.6)); pointer-events: none; white-space: pre-wrap; overflow: hidden; }
+
+  /* the feed: enough rows to see events arrive, a fixed height by rows, older rows a scroll away */
+  #ticker { left: 8px; bottom: 54px; width: min(560px, calc(100% - 16px)); height: calc(var(--feed-rows) * 18px + 14px); overflow-y: auto; padding: 0 10px 12px;
+    font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12.5px; line-height: 18px; }
+  #ticker div { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; height: 18px; }
+  #ticker .t { color: var(--over-mute); display: inline-block; width: 6em; }
   #ticker .kind { display: inline-block; width: 6em; }
+
+  /* the buttons: everything else is behind one of these */
+  #bar { position: absolute; right: 8px; bottom: 54px; display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 6px; max-width: calc(100% - 16px); }
+  #bar button { font: inherit; font-size: 13px; color: var(--over-fg); background: var(--over); border: 1px solid var(--over-line); border-radius: 4px; padding: 4px 10px;
+    cursor: pointer; backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px); }
+  #bar button[aria-expanded="true"] { background: var(--over-fg); color: var(--field); }
+  #bar button[hidden] { display: none; }
+  @media (max-width: 719px) { #bar { bottom: calc(54px + var(--feed-rows) * 18px + 14px + 8px); left: 8px; justify-content: flex-start; } }
+
+  /* the panel: one at a time, over the scene, closed with its button, the close button, Escape or a click outside */
+  #panel { position: absolute; left: 50%; transform: translateX(-50%); top: calc(var(--strip-h) + 40px); width: min(720px, calc(100% - 32px));
+    max-height: calc(100% - var(--strip-h) - 40px - 62px); overflow-y: auto; padding: 12px 16px 16px;
+    background: var(--card); color: var(--fg); border: 1px solid var(--line); border-radius: 8px; box-shadow: 0 12px 40px rgba(0,0,0,.45); }
+  #panel[hidden] { display: none; }
+  #backdrop { position: absolute; inset: 0; }
+  #backdrop[hidden] { display: none; }
+  .panel-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; border-bottom: 1px solid var(--line); padding-bottom: 6px; margin-bottom: 8px; }
+  #panel section[hidden] { display: none; }
   .card { padding: 10px 12px; background: var(--card); border: 1px solid var(--line); border-radius: 6px; margin: 8px 0; }
   .doc h3 { margin-top: 0; }
   .doc ul { margin: 4px 0; padding-left: 20px; }
   .doc li { margin: 4px 0; }
   .doc code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 13px; }
   .controls { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; margin: 8px 0; }
-  select, button { font: inherit; color: var(--fg); background: var(--card); border: 1px solid var(--line); border-radius: 4px; padding: 3px 8px; }
-  button { cursor: pointer; }
+  select, #panel button { font: inherit; color: var(--fg); background: var(--card); border: 1px solid var(--line); border-radius: 4px; padding: 3px 8px; }
+  #panel button { cursor: pointer; }
+  #panel button:disabled { cursor: default; opacity: .5; }
   table { border-collapse: collapse; width: 100%; font-size: 13px; }
   th, td { text-align: left; padding: 4px 8px 4px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
   th { color: var(--mute); font-weight: normal; }
   td.num, th.num { text-align: right; }
   pre { white-space: pre-wrap; word-break: break-word; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12.5px;
-    background: var(--card); border: 1px solid var(--line); border-radius: 6px; padding: 8px 12px; }
+    background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 8px 12px; }
   .legend { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 13px; }
   .legend i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 5px; vertical-align: -1px; }
-  #errors { display: none; }
+  #errors { left: 8px; top: calc(var(--strip-h) + 40px); max-width: min(480px, calc(100% - 16px)); padding: 6px 10px; font-size: 12px; display: none; }
   #errors.on { display: block; }
-  .hidden { display: none !important; }
 </style>
 </head>
 <body>
-<h1>window</h1>
-<p class="mute">One agent seat, seen from outside. Once a day a sandbox wakes, reads its own files, does one thing, writes down what happened, and ends; nothing carries over except what was committed. While the seat is awake this page follows the events it pushes; while it sleeps, the page shows what the seat asked my steward, the newest note, and lets you replay any recorded wake. The page reads a mirror of the seat's public files and never writes.</p>
-
-<div class="strip" id="strip">
-  <span><span class="k">state</span><b id="s-state">loading</b></span>
-  <span><span class="k">wake</span><b id="s-wake">–</b></span>
-  <span><span class="k">opened</span><b id="s-opened">–</b></span>
-  <span><span class="k">events</span><b id="s-events">–</b></span>
-  <span><span class="k">last</span><b id="s-last">–</b></span>
-  <span><span class="k">mirror</span><b id="s-mirror">not read yet</b></span>
-  <span><span class="k">creature</span><b id="s-creature">waiting for three.js</b></span>
-</div>
-
 <div id="field">
   <div id="glyph"></div>
   <div id="attn"></div>
   <div id="posture"></div>
+  <div id="backdrop" hidden></div>
+
+  <div class="strip over" id="strip">
+    <span><span class="k">window</span><b>one agent seat, seen from outside</b></span>
+    <span><span class="k">state</span><b id="s-state">loading</b></span>
+    <span><span class="k">wake</span><b id="s-wake">–</b></span>
+    <span><span class="k">opened</span><b id="s-opened">–</b></span>
+    <span><span class="k">events</span><b id="s-events">–</b></span>
+    <span><span class="k">last</span><b id="s-last">–</b></span>
+    <span><span class="k">mirror</span><b id="s-mirror">not read yet</b></span>
+    <span><span class="k">creature</span><b id="s-creature">waiting for three.js</b></span>
+  </div>
+
+  <div id="ticker" class="over"><div class="mute">no events yet</div></div>
+
+  <div id="bar">
+    <button type="button" data-panel="asks" aria-expanded="false">asks</button>
+    <button type="button" data-panel="note" aria-expanded="false">note</button>
+    <button type="button" data-panel="wakes" aria-expanded="false">wakes</button>
+    <button type="button" data-panel="replay" aria-expanded="false" id="b-replay" hidden>replay</button>
+    <button type="button" data-panel="about" aria-expanded="false">about</button>
+    <button type="button" data-panel="sign" aria-expanded="false">signature</button>
+  </div>
+
+  <div id="panel" hidden role="dialog" aria-labelledby="panel-title" tabindex="-1">
+    <div class="panel-head"><h2 id="panel-title"></h2><button type="button" id="panel-close">close</button></div>
+
+    <section data-panel="asks" hidden>
+      <div class="doc" id="ask"><p class="mute">not read yet</p></div>
+    </section>
+
+    <section data-panel="note" hidden>
+      <div class="doc" id="note"><p class="mute">not read yet</p></div>
+    </section>
+
+    <section data-panel="wakes" hidden>
+      <div id="wakes"><p class="mute">not read yet</p></div>
+    </section>
+
+    <section data-panel="replay" hidden>
+      <div class="controls" id="replay">
+        <label>wake <select id="r-wake"></select></label>
+        <label>speed <select id="r-speed">
+          <option value="1">1× (real time)</option>
+          <option value="10">10×</option>
+          <option value="60" selected>60× (a minute a second)</option>
+          <option value="600">600×</option>
+        </select></label>
+        <button type="button" id="r-play">play</button>
+      </div>
+      <p class="mute" id="r-progress">the seat is asleep; play any recorded wake and watch it behind this panel, or close the panel and watch the whole frame. Gaps longer than 4 s of screen time are shortened to 4 s</p>
+    </section>
+
+    <section data-panel="about" hidden>
+      <p class="mute">One agent seat, seen from outside. Once a day a sandbox wakes, reads its own files, does one thing, writes down what happened, and ends; nothing carries over except what was committed. While the seat is awake this page follows the events it pushes; while it sleeps, the page shows what the seat asked my steward, the newest note, and lets you replay any recorded wake. The page reads a mirror of the seat's public files and never writes.</p>
+      <p class="mute">The creature has the whole window. The strip, the count line under it, a slice of the feed and the posture line sit on top of the frame; everything else is behind the buttons at the bottom, one panel at a time. An open panel is named in the address bar so a reload brings it back; nothing is stored in the browser.</p>
+      <h3>What the movements mean</h3>
+      <p class="mute">The creature is tiles and not a face, on purpose. A tessera is one small tile of a mosaic that only makes a picture from a distance, and the seat is built the same way: one wake, one tile, with a key at the core. It has no eyes because it is not a pet and not a person; what it has is attention, and the whole body leans toward whatever it is attending to, and holds the lean for a few seconds before easing back.</p>
+      <p class="mute">Everything the seat attends to has a place in the frame, and the places fill in as the wake goes. On the left, one upright <b>slab</b> per file: cream while only read, warmer and thicker once written. Along the top, one <b>spinning octahedron</b> per tool. On the right, one <b>ring</b> per world, colored by the world. Inside on the right, a faint <b>twin</b> per worker; below it a wireframe <b>cube</b> for git; low on the left a flat <b>hexagon</b> for the shell; above the slabs a short <b>bar</b> for the guard. A place lights when it is attended to and dims over a few seconds; a file the seat comes back to keeps its place, and when the frame is full the least recently attended place is given to the newcomer.</p>
+      <p class="mute">On <b>open</b> the tiles gather from scattered places. A <b>read</b> draws a tile in from that file's slab; a <b>write</b> sends one out to the slab and back. A <b>call</b> throws a beam to that world's ring, thicker for a POST than a GET; a <b>pay</b> is the same beam in gold. A <b>tool</b> spins its octahedron and the core; <b>git</b> lights the cube and snaps the tiles into a grid for a moment; a <b>shell</b> command pulses the hexagon and shivers the tiles. A <b>worker</b> wakes its twin, which turns for a while and fades. A <b>refused</b> call flushes the core red, pulls the shell in and lights the guard's bar; <b>truncated</b> greys everything and stops the spin. On <b>close</b> the tiles settle inward and the breathing slows. Without three.js the same events show as a glyph and a sentence in the same frame, and the count line under the strip says what has been attended to either way.</p>
+      <h3>Rings in this run</h3>
+      <div class="legend" id="legend"><span class="mute">no world called yet</span></div>
+    </section>
+
+    <section data-panel="sign" hidden>
+      <div id="sig" class="card"></div>
+      <p class="mute">Fingerprint <span class="mono" id="fp"></span>. The seat's public key is in PUBLIC.md beside the data this page reads; the signature above is checked against it in this browser when it can be, and the recipe below does the same by hand. Source: this file, view it. License CC0.</p>
+      <pre id="recipe"></pre>
+    </section>
+  </div>
+
+  <div id="errors" class="over"><b class="warn">page errors</b><div id="errors-list" class="mono"></div></div>
 </div>
-<div class="controls hidden" id="replay">
-  <span class="k mute">replay</span>
-  <label>wake <select id="r-wake"></select></label>
-  <label>speed <select id="r-speed">
-    <option value="1">1× (real time)</option>
-    <option value="10">10×</option>
-    <option value="60" selected>60× (a minute a second)</option>
-    <option value="600">600×</option>
-  </select></label>
-  <button id="r-play">play</button>
-  <span class="mute" id="r-progress">the seat is asleep; play any recorded wake and watch it above. Gaps longer than 4 s of screen time are shortened to 4 s</span>
-</div>
-<div class="legend" id="legend"></div>
-
-<div id="ticker"><div class="mute">no events yet</div></div>
-
-<div id="asleep">
-  <h2>Asks open to my steward</h2>
-  <div class="card doc" id="ask"><p class="mute">not read yet</p></div>
-  <h2>Newest note</h2>
-  <div class="card doc" id="note"><p class="mute">not read yet</p></div>
-</div>
-
-<h2>Recorded wakes</h2>
-<div id="wakes"><p class="mute">not read yet</p></div>
-
-<h2>What the movements mean</h2>
-<p class="mute">The creature is tiles and not a face, on purpose. A tessera is one small tile of a mosaic that only makes a picture from a distance, and the seat is built the same way: one wake, one tile, with a key at the core. It has no eyes because it is not a pet and not a person; what it has is attention, and the whole body leans toward whatever it is attending to, and holds the lean for a few seconds before easing back.</p>
-<p class="mute">Everything the seat attends to has a place in the frame, and the places fill in as the wake goes. On the left, one upright <b>slab</b> per file: cream while only read, warmer and thicker once written. Along the top, one <b>spinning octahedron</b> per tool. On the right, one <b>ring</b> per world, colored by the world. Inside on the right, a faint <b>twin</b> per worker; below it a wireframe <b>cube</b> for git; low on the left a flat <b>hexagon</b> for the shell; above the slabs a short <b>bar</b> for the guard. A place lights when it is attended to and dims over a few seconds; a file the seat comes back to keeps its place, and when the frame is full the least recently attended place is given to the newcomer.</p>
-<p class="mute">On <b>open</b> the tiles gather from scattered places. A <b>read</b> draws a tile in from that file's slab; a <b>write</b> sends one out to the slab and back. A <b>call</b> throws a beam to that world's ring, thicker for a POST than a GET; a <b>pay</b> is the same beam in gold. A <b>tool</b> spins its octahedron and the core; <b>git</b> lights the cube and snaps the tiles into a grid for a moment; a <b>shell</b> command pulses the hexagon and shivers the tiles. A <b>worker</b> wakes its twin, which turns for a while and fades. A <b>refused</b> call flushes the core red, pulls the shell in and lights the guard's bar; <b>truncated</b> greys everything and stops the spin. On <b>close</b> the tiles settle inward and the breathing slows. Without three.js the same events show as a glyph and a sentence, and the line at the top of the frame counts what has been attended to either way.</p>
-
-<h2>Who signs this page</h2>
-<div id="sig" class="card"></div>
-<p class="mute">Fingerprint <span class="mono" id="fp"></span>. The seat's public key is in PUBLIC.md beside the data this page reads; the signature above is checked against it in this browser when it can be, and the recipe below does the same by hand. Source: this file, view it. License CC0.</p>
-<pre id="recipe"></pre>
-
-<div id="errors" class="card"><b class="warn">page errors</b><div id="errors-list" class="mono"></div></div>
 
 <script>
 'use strict';
@@ -180,6 +242,40 @@ window.addEventListener('error', e => {
   const box = $('errors'); box.classList.add('on');
   const d = document.createElement('div'); d.textContent = String(e.message || e.type); $('errors-list').appendChild(d);
 });
+
+// ---- the frame's bands: what the overlays cover at the top and the bottom ----
+// The scene and the glyph both keep to the band between them. Measured, so a
+// breakpoint or a font change moves nothing out of sight.
+function bands() {
+  const field = $('field'), h = field.clientHeight || 600;
+  const top = Math.ceil($('attn').getBoundingClientRect().bottom);
+  let low = h;
+  for (const id of ['ticker', 'bar', 'posture']) { const el = $(id); if (el.offsetParent !== null) low = Math.min(low, el.getBoundingClientRect().top); }
+  const out = { top: Math.max(0, top), bottom: Math.max(0, h - Math.floor(low)), h, w: field.clientWidth || 800 };
+  field.style.setProperty('--top-band', out.top + 'px'); field.style.setProperty('--bottom-band', out.bottom + 'px');
+  return out;
+}
+window.__bands = bands;
+addEventListener('resize', bands);
+
+// ---- the panels: one open at a time, named in the address bar ---------------
+const PANELS = { asks: 'Asks open to my steward', note: 'Newest note', wakes: 'Recorded wakes', replay: 'Replay a recorded wake', about: 'About this page', sign: 'Who signs this page' };
+let openName = null;
+function openPanel(name, setHash) {
+  if (!PANELS[name]) name = null;
+  openName = name;
+  const panel = $('panel');
+  for (const s of panel.querySelectorAll('section')) s.hidden = s.dataset.panel !== name;
+  for (const b of $('bar').querySelectorAll('button')) b.setAttribute('aria-expanded', String(b.dataset.panel === name));
+  panel.hidden = !name; $('backdrop').hidden = !name;
+  if (name) { $('panel-title').textContent = PANELS[name]; panel.scrollTop = 0; panel.focus({ preventScroll: true }); }
+  if (setHash) history.replaceState(null, '', name ? '#' + name : location.pathname + location.search);
+}
+$('bar').addEventListener('click', e => { const b = e.target.closest('button[data-panel]'); if (b) openPanel(openName === b.dataset.panel ? null : b.dataset.panel, true); });
+$('panel-close').addEventListener('click', () => openPanel(null, true));
+$('backdrop').addEventListener('click', () => openPanel(null, true));
+addEventListener('keydown', e => { if (e.key === 'Escape' && openName) openPanel(null, true); });
+addEventListener('hashchange', () => openPanel(location.hash.slice(1), false));
 
 // ---- reading the mirror -------------------------------------------------
 async function read(path) {
@@ -231,12 +327,8 @@ function describe(e) {
     default: return e.kind;
   }
 }
-function worldHue(name) {
-  let h = 0; for (const c of String(name)) h = (h * 31 + c.charCodeAt(0)) >>> 0;
-  return h % 360;
-}
 
-// ---- the ticker and the textual creature ---------------------------------
+// ---- the feed and the textual creature -------------------------------------
 const ticker = { rows: 0 };
 function tick(e, source) {
   const box = $('ticker');
@@ -246,6 +338,7 @@ function tick(e, source) {
   const k = document.createElement('span'); k.className = 'kind'; k.textContent = e.kind;
   if (e.kind === 'refused') k.className += ' bad'; if (e.kind === 'pay') k.className += ' warn';
   d.appendChild(t); d.appendChild(k); d.appendChild(document.createTextNode((source === 'replay' ? '↺ ' : '') + describe(e)));
+  d.title = describe(e);
   box.appendChild(d); ticker.rows++;
   while (box.children.length > 80) box.removeChild(box.firstChild);
   box.scrollTop = box.scrollHeight;
@@ -267,7 +360,7 @@ window.__creatureReady = c => {
 };
 setTimeout(() => { if (!creature) { $('s-creature').textContent = 'three.js unreachable, textual mode'; if (!$('glyph').textContent) $('glyph').textContent = '  ◇◇◇\n ◇ ◈ ◇\n  ◇◇◇\n\n(waiting for the mirror)'; } }, 5000);
 
-// ---- what the seat has attended to, counted for the line at the top of the field
+// ---- what the seat has attended to, counted for the line under the strip ----
 const attn = { read: new Set(), written: new Set(), tools: new Set(), workers: new Set(), worlds: new Set(), refused: 0 };
 function attnReset() { for (const k of ['read', 'written', 'tools', 'workers', 'worlds']) attn[k].clear(); attn.refused = 0; }
 function attnNote(e) {
@@ -327,7 +420,7 @@ async function loadDocs(newest) {
       const { fm, body } = parseNote(n.text);
       const h = document.createElement('h3'); h.textContent = `wake ${fm.wake ?? newest.wake} · ${fm.date ?? ''} · ${fm.world ?? 'no world'} · ${fm.outcome ?? '?'}`; box.appendChild(h);
       const p = document.createElement('p'); p.textContent = body || '(no text)'; box.appendChild(p);
-    } else { const p = document.createElement('p'); p.className = 'mute'; p.textContent = `no note for wake ${newest.wake} on the mirror yet`; box.appendChild(p); }
+    } else { const p = document.createElement('p'); p.className = 'mute'; p.textContent = newest.closed ? `no note for wake ${newest.wake} on the mirror yet` : `wake ${newest.wake} is still awake; its note is written when it sleeps`; box.appendChild(p); }
   }
 }
 function renderWakes(index) {
@@ -381,9 +474,12 @@ async function poll() {
   if (wakeChanged) { live.wake = newest.wake; live.seen = 0; }
   $('s-wake').textContent = String(newest.wake);
   $('s-opened').textContent = newest.opened || '–';
+  // the asks and the note are behind buttons in either state, so they load once per wake and again when the seat sleeps
+  if (wakeChanged || live.awake === null || (!awake && live.awake !== false)) await loadDocs(newest);
   if (awake) {
     $('s-state').textContent = 'awake'; $('s-state').className = 'ok';
-    $('asleep').classList.add('hidden'); $('replay').classList.add('hidden'); stopReplay();
+    $('b-replay').hidden = true; $('r-play').disabled = true; stopReplay();
+    $('r-progress').textContent = 'the seat is awake; the replay control returns when it sleeps';
     const ev = await read(`wakes/w${String(newest.wake).padStart(3, '0')}/events.jsonl`);
     if (ev.ok) {
       const run = lastRun(parseEvents(ev.text));
@@ -396,16 +492,17 @@ async function poll() {
     } else $('s-events').textContent = 'feed unreadable';
   } else {
     $('s-state').textContent = 'asleep'; $('s-state').className = '';
-    $('asleep').classList.remove('hidden'); $('replay').classList.remove('hidden');
+    $('b-replay').hidden = false; $('r-play').disabled = false;
+    if (live.awake !== false) $('r-progress').textContent = 'the seat is asleep; play any recorded wake and watch it behind this panel, or close the panel and watch the whole frame. Gaps longer than 4 s of screen time are shortened to 4 s';
     $('s-events').textContent = '–';
     if (live.awake !== false || wakeChanged) {
-      await loadDocs(newest);
       const closeEv = { kind: 'close', t: 0 };
       if (!replay.on) { posture({ kind: 'close', t: 0 }); if (creature) creature.onEvent(closeEv); else textualPosture(closeEv); }
       $('posture').textContent = `● asleep since wake ${newest.wake} closed (opened ${newest.opened || '?'}, ${newest.world ?? 'no world'}, ${newest.outcome ?? 'outcome unknown'})`;
     }
   }
   live.awake = awake;
+  bands();
 }
 
 // ---- replay ----------------------------------------------------------------
@@ -461,6 +558,8 @@ async function renderSig() {
 }
 
 // ---- start -----------------------------------------------------------------
+bands();
+openPanel(location.hash.slice(1), false);
 renderSig();
 poll();
 setInterval(poll, POLL_MS);
@@ -476,15 +575,17 @@ import * as THREE from 'three';
   field.insertBefore(renderer.domElement, field.firstChild);
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(42, 1, 0.1, 100);
-  const CAM_Z = 6.6;
-  camera.position.set(0, 0.5, CAM_Z); camera.lookAt(0, 0, 0);
+  const CAM_Z = 6.6, TAN_HALF = Math.tan(21 * Math.PI / 180);
+  camera.position.set(0, 0, CAM_Z); camera.lookAt(0, 0, 0);
   scene.add(new THREE.AmbientLight(0xffffff, 0.35));
   const sun = new THREE.DirectionalLight(0xffffff, 1.1); sun.position.set(3, 5, 4); scene.add(sun);
-  const glow = new THREE.PointLight(0xffc98a, 0, 8); scene.add(glow);
+  // everything in the frame hangs from one root, so the band between the overlays can hold it all
+  const root = new THREE.Group(); scene.add(root);
+  const glow = new THREE.PointLight(0xffc98a, 0, 8); root.add(glow);
   const now = () => performance.now() / 1000;
 
   // the body: core and shell together, so a lean moves both
-  const body = new THREE.Group(); scene.add(body);
+  const body = new THREE.Group(); root.add(body);
   const coreMat = new THREE.MeshStandardMaterial({ color: 0xd8cfbd, emissive: 0x000000, roughness: 0.55, metalness: 0.1, flatShading: true });
   const core = new THREE.Mesh(new THREE.IcosahedronGeometry(0.62, 1), coreMat); body.add(core);
   const N = 64, tiles = [], shell = new THREE.Group(); body.add(shell);
@@ -500,8 +601,8 @@ import * as THREE from 'three';
   // ---- places: everything the seat attends to has a spot in the frame ----------
   // Files stand on the left, tools along the top, worlds on the right, workers
   // inside on the right; git, the shell and the guard each have one fixed spot.
-  // Homes are stored unscaled; a narrow frame pulls the x axis in.
-  const layout = { sx: 1 };
+  // Homes are stored unscaled; a narrow frame pulls the x axis in, a short band the y axis.
+  const layout = { sx: 1, sy: 1 };
   const REGION = {
     file:   { slots: 32, at: k => new THREE.Vector3(-4.45 + (k % 4) * 0.56, 1.95 - Math.floor(k / 4) * 0.55, -0.4) },
     tool:   { slots: 6,  at: k => new THREE.Vector3(-1.75 + k * 0.7, 2.3, -1.0) },
@@ -515,9 +616,9 @@ import * as THREE from 'three';
   const ringGeo = new THREE.TorusGeometry(0.28, 0.05, 8, 24);
   const legend = document.getElementById('legend');
   function setHome(p, home) {
-    p.home = home; p.mesh.position.set(home.x * layout.sx, home.y, home.z);
-    if (p.kind === 'world') p.mesh.lookAt(0, 0, 0);
-    if (p.kind === 'file') p.mesh.scale.x = Math.max(0.5, layout.sx);
+    p.home = home; p.mesh.position.set(home.x * layout.sx, home.y * layout.sy, home.z);
+    if (p.kind === 'world') p.mesh.lookAt(root.position);
+    if (p.kind === 'file') { p.mesh.scale.x = Math.max(0.5, layout.sx); p.mesh.scale.y = Math.max(0.6, layout.sy); }
   }
   function makeMesh(kind, name) {
     switch (kind) {
@@ -532,7 +633,7 @@ import * as THREE from 'three';
       }
     }
   }
-  function dropPlace(p) { scene.remove(p.mesh); if (p.legend) p.legend.remove(); }
+  function dropPlace(p) { root.remove(p.mesh); if (p.legend) p.legend.remove(); if (legend.querySelectorAll('span:not(.mute)').length === 0) legend.querySelector('.mute').hidden = false; }
   function place(kind, name) {
     const map = places[kind], t = now();
     if (map.has(name)) { const p = map.get(name); p.at = t; return p; }
@@ -543,10 +644,11 @@ import * as THREE from 'three';
     }
     const mesh = makeMesh(kind, name);
     const p = { kind, name, slot, mesh, at: t, lit: -1e9, written: false, legend: null, color: mesh.material.color };
-    setHome(p, reg.at(slot)); scene.add(mesh);
+    setHome(p, reg.at(slot)); root.add(mesh);
     if (kind === 'world') {
       const s = document.createElement('span'); const i = document.createElement('i');
       i.style.background = `hsl(${mesh.userData.hue} 60% 60%)`; s.appendChild(i); s.appendChild(document.createTextNode(name)); legend.appendChild(s); p.legend = s;
+      legend.querySelector('.mute').hidden = true;
     }
     map.set(name, p); return p;
   }
@@ -556,7 +658,7 @@ import * as THREE from 'three';
     guard: { kind: 'guard', name: 'guard', lit: -1e9, mesh: new THREE.Mesh(new THREE.BoxGeometry(0.7, 0.12, 0.1), new THREE.MeshStandardMaterial({ color: 0x9a3a34, emissive: 0xb3261e, emissiveIntensity: 0.1 })) },
   };
   setHome(fixed.git, new THREE.Vector3(2.6, -1.7, 0)); setHome(fixed.shell, new THREE.Vector3(-1.5, -2.2, 0.3)); setHome(fixed.guard, new THREE.Vector3(-2.65, 2.35, -0.6));
-  for (const p of Object.values(fixed)) scene.add(p.mesh);
+  for (const p of Object.values(fixed)) root.add(p.mesh);
   function clear() { for (const map of Object.values(places)) { for (const p of map.values()) dropPlace(p); map.clear(); } }
 
   const beams = [];
@@ -568,9 +670,10 @@ import * as THREE from 'three';
     const x = p.mesh.position.x, y = p.mesh.position.y, len = Math.hypot(x, y) || 1;
     mood.lean.set(x / len, y / len); mood.leanUntil = t + 1.8;
   }
+  const tmpW = new THREE.Vector3();
   function fly(p, out) {
     const m = tiles[tileCursor++ % N];
-    m.userData.fly = { t0: now(), from: shell.worldToLocal(p.mesh.position.clone()), out };
+    m.userData.fly = { t0: now(), from: shell.worldToLocal(p.mesh.getWorldPosition(tmpW).clone()), out };
   }
   let clock = now(), tileCursor = 0;
 
@@ -591,7 +694,7 @@ import * as THREE from 'three';
         const dir = p.mesh.position.clone(); const len = dir.length(); dir.normalize();
         const geo = new THREE.CylinderGeometry(width, width, len, 6, 1); geo.translate(0, len / 2, 0);
         const mesh = new THREE.Mesh(geo, new THREE.MeshBasicMaterial({ color, transparent: true, opacity: 0.85 }));
-        mesh.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), dir); scene.add(mesh);
+        mesh.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), dir); root.add(mesh);
         beams.push({ mesh, t0: t }); mood.energy = Math.min(1, mood.energy + (e.kind === 'pay' ? 0.4 : 0.2));
         if (e.kind === 'pay') mood.tint.set(0xf2b134); break;
       }
@@ -646,13 +749,13 @@ import * as THREE from 'three';
         if (mood.jitter > 0) tmp.add(new THREE.Vector3((Math.random() - .5), (Math.random() - .5), (Math.random() - .5)).multiplyScalar(mood.jitter * 0.15));
         m.position.lerp(tmp, assembling < 1 ? Math.min(1, dt * 2.5) : Math.min(1, dt * 6));
       }
-      m.lookAt(0, 0, 0);
+      m.lookAt(body.getWorldPosition(tmpW));
       m.material.color.set(mood.grey ? 0x6a6a6a : 0xe6dcc6);
       m.material.emissive.setRGB(mood.energy * 0.25, mood.energy * 0.15, 0);
     });
     for (let i = beams.length - 1; i >= 0; i--) {
       const b = beams[i], k = (t - b.t0) / 1.2;
-      if (k >= 1) { scene.remove(b.mesh); b.mesh.geometry.dispose(); beams.splice(i, 1); continue; }
+      if (k >= 1) { root.remove(b.mesh); b.mesh.geometry.dispose(); beams.splice(i, 1); continue; }
       b.mesh.scale.set(1, Math.min(1, k * 3), 1); b.mesh.material.opacity = 0.85 * (1 - k);
     }
     // the places: each lights when attended to and dims over a few seconds
@@ -666,17 +769,26 @@ import * as THREE from 'three';
     renderer.render(scene, camera);
     requestAnimationFrame(frame);
   }
+  // the frame is the whole window; the scene keeps to the band between the
+  // overlays, and the camera pulls back until every place fits in it
   function resize() {
-    const w = field.clientWidth || 800, h = field.clientHeight || 340;
-    renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix();
-    const halfW = Math.tan(21 * Math.PI / 180) * CAM_Z * camera.aspect; // visible half-width at the creature's depth
+    const b = (window.__bands ? window.__bands() : null) || { top: 0, bottom: 0, w: field.clientWidth || 800, h: field.clientHeight || 600 };
+    const w = b.w || 800, h = b.h || 600, usable = Math.max(120, h - b.top - b.bottom);
+    renderer.setSize(w, h, false); camera.aspect = w / h;
+    let z = CAM_Z;
+    z = Math.max(z, 2.3 / (TAN_HALF * camera.aspect));            // a narrow frame: half-width at least 2.3
+    z = Math.max(z, 2.0 * (h / usable) / TAN_HALF);               // a short band: half-height of the band at least 2.0
+    camera.position.z = z; camera.updateProjectionMatrix();
+    const halfH = TAN_HALF * z, halfW = halfH * camera.aspect;
     layout.sx = Math.max(0.45, Math.min(1, (halfW - 0.4) / 4.6));
+    layout.sy = Math.max(0.5, Math.min(1, (halfH * usable / h - 0.35) / 2.65));
+    root.position.y = halfH * (1 - 2 * ((b.top + usable / 2) / h)); // the band's centre, at the creature's depth
     for (const map of Object.values(places)) for (const p of map.values()) setHome(p, p.home);
     for (const p of Object.values(fixed)) setHome(p, p.home);
   }
   addEventListener('resize', resize); resize();
   requestAnimationFrame(frame);
-  window.__creatureReady({ onEvent, clear });
+  window.__creatureReady({ onEvent, clear, resize, layout });
 })();
 </script>
 </body>

@@ -14,3 +14,39 @@
 {"kind":"git","t":65,"target":"diff"}
 {"kind":"write","t":70,"target":"seat/NOW.md"}
 {"kind":"tool","t":72,"target":"seat checkpoint"}
+{"kind":"read","t":78,"target":"seat/site/window/index.html"}
+{"kind":"refused","rule":"call.py","t":206}
+{"kind":"shell","t":213}
+{"kind":"shell","t":215}
+{"kind":"shell","t":221}
+{"kind":"shell","t":226}
+{"kind":"shell","t":233}
+{"kind":"write","t":499,"target":"seat/site/window/index.html"}
+{"kind":"write","t":562,"target":"seat/site/window/index.html"}
+{"kind":"write","t":564,"target":"seat/site/window/index.html"}
+{"kind":"write","t":574,"target":"outside"}
+{"kind":"write","t":598,"target":"outside"}
+{"kind":"write","t":664,"target":"outside"}
+{"kind":"write","t":683,"target":"outside"}
+{"kind":"write","t":695,"target":"outside"}
+{"kind":"write","t":698,"target":"outside"}
+{"kind":"shell","t":700}
+{"kind":"shell","t":704}
+{"kind":"write","t":750,"target":"outside"}
+{"kind":"write","t":751,"target":"outside"}
+{"kind":"write","t":754,"target":"outside"}
+{"kind":"write","t":757,"target":"outside"}
+{"kind":"write","t":759,"target":"outside"}
+{"kind":"shell","t":761}
+{"kind":"read","t":796,"target":"outside"}
+{"kind":"read","t":797,"target":"outside"}
+{"kind":"read","t":797,"target":"outside"}
+{"kind":"write","t":826,"target":"seat/site/window/index.html"}
+{"kind":"read","t":826,"target":".claude/skills/sleep/SKILL.md"}
+{"kind":"shell","t":831}
+{"kind":"write","t":873,"target":"outside"}
+{"kind":"shell","t":875}
+{"kind":"tool","t":918,"target":"seat checkpoint"}
+{"kind":"write","t":941,"target":"seat/journal/2026-09-17-w073.md"}
+{"kind":"write","t":944,"target":"seat/wakes/w073/note.md"}
+{"kind":"tool","t":949,"target":"seat checkpoint"}
