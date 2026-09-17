@@ -102,3 +102,7 @@
 {"kind":"tool","t":828,"target":"registry validate"}
 {"kind":"tool","t":831,"target":"seat close"}
 {"kind":"close","t":831}
+{"kind":"tool","t":836,"target":"seal"}
+{"kind":"write","t":841,"target":"seat/NOW.md"}
+{"kind":"tool","t":842,"target":"seat close"}
+{"kind":"close","t":842}
