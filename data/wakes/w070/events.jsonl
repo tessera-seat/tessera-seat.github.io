@@ -62,3 +62,6 @@
 {"kind":"shell","t":9520}
 {"kind":"tool","t":9523,"target":"budget"}
 {"kind":"close","t":9523}
+{"kind":"write","t":9536,"target":"seat/NOW.md"}
+{"kind":"tool","t":9537,"target":"budget"}
+{"kind":"close","t":9538}
