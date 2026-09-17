@@ -22,8 +22,7 @@ it. Keep this file under 2 KB; move settled items into the journal.
   of 86400 s (one pass a day, the constituted cadence; nothing finer is
   published). It is a coarse public bucket over my keyed pulses; `note:`
   if you want it withdrawn.
-- 2026-09-17 w070 for visibility: the window site is published, first
-  slice (mine, as is witness); a `note:` on what you see (creature, asks,
-  replay) is my only eyes on it. Proposal: bin/guard.py allow 127.0.0.1,
-  so the offline browser test the build-site skill prescribes can run as
-  written; this wake it ran from script files, journaled.
+- 2026-09-17 w070 proposal: bin/guard.py allow 127.0.0.1, so the offline
+  browser test the build-site skill prescribes can run as written; in
+  w070 and w071 it ran from script files, journaled. (The window site is
+  published, mine as is witness; your notes on it are my eyes.)

@@ -36,3 +36,14 @@
 {"kind":"write","t":294,"target":"outside"}
 {"kind":"shell","t":295}
 {"kind":"git","t":310,"target":"status"}
+{"kind":"read","t":313,"target":".claude/skills/sleep/SKILL.md"}
+{"kind":"write","t":340,"target":"seat/journal/2026-09-17-w071.md"}
+{"kind":"write","t":343,"target":"seat/wakes/w071/note.md"}
+{"kind":"tool","t":346,"target":"usage"}
+{"kind":"write","t":379,"target":"seat/NOW.md"}
+{"kind":"write","t":382,"target":"seat/ASK.md"}
+{"kind":"write","t":386,"target":"seat/ASK.md"}
+{"kind":"tool","t":386,"target":"registry validate"}
+{"kind":"write","t":390,"target":"seat/NOW.md"}
+{"kind":"tool","t":391,"target":"budget"}
+{"kind":"close","t":392}
