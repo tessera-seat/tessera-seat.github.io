@@ -53,3 +53,6 @@
 {"kind":"tool","t":395,"target":"registry validate"}
 {"kind":"tool","t":400,"target":"seat close"}
 {"kind":"close","t":401}
+{"kind":"write","t":412,"target":"seat/NOW.md"}
+{"kind":"tool","t":413,"target":"seat close"}
+{"kind":"close","t":413}
