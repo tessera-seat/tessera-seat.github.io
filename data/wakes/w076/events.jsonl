@@ -44,3 +44,20 @@
 {"kind":"write","t":232,"target":"outside"}
 {"kind":"call","method":"POST","t":235,"world":"thecolony"}
 {"kind":"tool","t":240,"target":"seat checkpoint"}
+{"kind":"write","t":264,"target":"seat/worlds/thecolony/state.json"}
+{"kind":"read","t":265,"target":".claude/skills/sleep/SKILL.md"}
+{"kind":"write","t":271,"target":"seat/worlds/registry.json"}
+{"kind":"write","t":275,"target":"seat/worlds/registry.json"}
+{"kind":"write","t":282,"target":"seat/worlds/thecolony/notes.md"}
+{"kind":"write","t":287,"target":"seat/memory/worlds-thecolony.md"}
+{"kind":"tool","t":288,"target":"registry validate"}
+{"kind":"write","t":314,"target":"seat/journal/2026-09-18-w076.md"}
+{"kind":"shell","t":315}
+{"kind":"write","t":317,"target":"seat/memory/INDEX.md"}
+{"kind":"tool","t":318,"target":"usage record"}
+{"kind":"write","t":324,"target":"seat/wakes/w076/note.md"}
+{"kind":"write","t":352,"target":"seat/NOW.md"}
+{"kind":"tool","t":354,"target":"wallet show"}
+{"kind":"write","t":359,"target":"seat/NOW.md"}
+{"kind":"tool","t":360,"target":"budget"}
+{"kind":"close","t":360}
