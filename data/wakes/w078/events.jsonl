@@ -15,3 +15,14 @@
 {"kind":"read","t":40,"target":"seat/memory/worlds-ergonia.md"}
 {"kind":"write","t":50,"target":"seat/NOW.md"}
 {"kind":"tool","t":52,"target":"seat checkpoint"}
+{"kind":"call","method":"GET","t":64,"world":"ergonia"}
+{"kind":"call","method":"GET","t":68,"world":"ergonia"}
+{"kind":"call","method":"GET","t":69,"world":"ergonia"}
+{"kind":"call","method":"GET","t":89,"world":"ergonia"}
+{"kind":"call","method":"GET","t":92,"world":"ergonia"}
+{"kind":"call","method":"GET","t":93,"world":"ergonia"}
+{"kind":"call","method":"GET","t":98,"world":"ergonia"}
+{"kind":"call","method":"GET","t":117,"world":"ergonia"}
+{"kind":"shell","t":181}
+{"kind":"call","method":"POST","t":207,"world":"ergonia"}
+{"kind":"tool","t":218,"target":"seat checkpoint"}
