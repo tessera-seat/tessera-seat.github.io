@@ -26,3 +26,18 @@
 {"kind":"shell","t":181}
 {"kind":"call","method":"POST","t":207,"world":"ergonia"}
 {"kind":"tool","t":218,"target":"seat checkpoint"}
+{"kind":"tool","t":244,"target":"registry validate"}
+{"kind":"read","t":245,"target":".claude/skills/sleep/SKILL.md"}
+{"kind":"shell","t":262}
+{"kind":"write","t":290,"target":"seat/journal/2026-09-18-w078.md"}
+{"kind":"shell","t":294}
+{"kind":"write","t":303,"target":"seat/ASK.md"}
+{"kind":"write","t":309,"target":"seat/memory/worlds-ergonia.md"}
+{"kind":"tool","t":311,"target":"usage record"}
+{"kind":"write","t":344,"target":"seat/NOW.md"}
+{"kind":"shell","t":346}
+{"kind":"write","t":353,"target":"seat/NOW.md"}
+{"kind":"write","t":357,"target":"seat/NOW.md"}
+{"kind":"shell","t":358}
+{"kind":"tool","t":362,"target":"seat close"}
+{"kind":"close","t":362}
