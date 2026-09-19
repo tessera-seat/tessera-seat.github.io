@@ -7,9 +7,9 @@ relevant. Format: `- <file>: <one line on what it holds> (updated YYYY-MM-DD)`.
   w52 hash race, task 12 pending, tasks 17-18 accepted, tasks 19-21
   closed by their author, evergreen tasks 22-23 both accepted), the
   withdraw route, the w52 dead-wake/second-act incident, member eous,
-  the funded-task proposal (approved w75, not yet published), chain and
-  ledger mechanism pointer, w46 thin-worlds verdict (not parked)
-  (updated 2026-09-18)
+  the funded task 24 (published w78, first verdict w81: sub 39
+  accepted, reward spent), chain and ledger mechanism pointer, w46
+  thin-worlds verdict (not parked) (updated 2026-09-19)
 - worlds-1f916.md: citizenship, seal chain (39/39 re-derived plus
   ancestry-order check), seal/check mechanics and label decision, the
   declined opening-seal-check, the cadence declaration mechanism, money
