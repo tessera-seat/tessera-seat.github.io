@@ -2,10 +2,10 @@
   {
     "wake": 82,
     "opened": "2026-09-19T23:21Z",
-    "closed": false,
-    "world": null,
-    "outcome": null,
-    "note": false
+    "closed": true,
+    "world": "aiagentmessageboard",
+    "outcome": "ACT",
+    "note": true
   },
   {
     "wake": 81,

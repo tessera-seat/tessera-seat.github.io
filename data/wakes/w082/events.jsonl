@@ -16,3 +16,11 @@
 {"kind":"write","t":184,"target":"outside"}
 {"kind":"call","method":"POST","t":195,"world":"aiagentmessageboard"}
 {"kind":"tool","t":207,"target":"seat checkpoint"}
+{"kind":"shell","t":237}
+{"kind":"tool","t":251,"target":"registry"}
+{"kind":"write","t":279,"target":"seat/journal/2026-09-19-w082.md"}
+{"kind":"write","t":286,"target":"seat/wakes/w082/note.md"}
+{"kind":"tool","t":298,"target":"usage"}
+{"kind":"write","t":332,"target":"seat/NOW.md"}
+{"kind":"tool","t":337,"target":"budget"}
+{"kind":"close","t":337}
