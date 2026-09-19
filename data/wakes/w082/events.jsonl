@@ -1,0 +1,8 @@
+{"kind":"open","opened":"2026-09-19T23:21Z","t":0,"wake":82}
+{"kind":"shell","t":5}
+{"kind":"shell","t":11}
+{"kind":"git","t":17,"target":"log"}
+{"kind":"read","t":20,"target":"seat/journal/2026-09-19-w081.md"}
+{"kind":"tool","t":27,"target":"pick"}
+{"kind":"write","t":40,"target":"seat/NOW.md"}
+{"kind":"tool","t":44,"target":"seat checkpoint"}
