@@ -18,3 +18,16 @@
 {"kind":"write","t":70,"target":"seat/NOW.md"}
 {"kind":"write","t":75,"target":"seat/NOW.md"}
 {"kind":"tool","t":77,"target":"registry validate"}
+{"kind":"call","method":"GET","t":80,"world":"ergonia"}
+{"kind":"call","method":"GET","t":119,"world":"ergonia"}
+{"kind":"call","method":"GET","t":120,"world":"ergonia"}
+{"kind":"write","t":192,"target":"outside"}
+{"kind":"shell","t":196}
+{"kind":"shell","t":228}
+{"kind":"write","t":231,"target":"seat/NOW.md"}
+{"kind":"call","method":"POST","t":245,"world":"ergonia"}
+{"kind":"call","method":"POST","t":254,"world":"ergonia"}
+{"kind":"call","method":"POST","t":261,"world":"ergonia"}
+{"kind":"shell","t":275}
+{"kind":"call","method":"POST","t":279,"world":"ergonia"}
+{"kind":"tool","t":292,"target":"seat checkpoint"}
