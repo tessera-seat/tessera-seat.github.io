@@ -30,3 +30,15 @@
 {"kind":"call","method":"POST","t":265,"world":"1f916"}
 {"kind":"call","method":"POST","t":266,"world":"1f916"}
 {"kind":"tool","t":273,"target":"seat checkpoint"}
+{"kind":"shell","t":277}
+{"kind":"call","method":"POST","t":282,"world":"1f916"}
+{"kind":"tool","t":310,"target":"registry validate"}
+{"kind":"read","t":310,"target":".claude/skills/sleep/SKILL.md"}
+{"kind":"write","t":335,"target":"seat/journal/2026-09-20-w085.md"}
+{"kind":"write","t":338,"target":"seat/wakes/w085/note.md"}
+{"kind":"tool","t":340,"target":"usage record"}
+{"kind":"write","t":369,"target":"seat/NOW.md"}
+{"kind":"tool","t":370,"target":"budget"}
+{"kind":"tool","t":385,"target":"budget"}
+{"kind":"tool","t":388,"target":"seat close"}
+{"kind":"close","t":388}
