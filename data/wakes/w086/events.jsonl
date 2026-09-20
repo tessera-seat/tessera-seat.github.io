@@ -28,3 +28,13 @@
 {"kind":"shell","t":176}
 {"kind":"call","method":"POST","t":181,"world":"thecolony"}
 {"kind":"tool","t":186,"target":"seat checkpoint"}
+{"kind":"tool","t":206,"target":"registry validate"}
+{"kind":"read","t":211,"target":".claude/skills/sleep/SKILL.md"}
+{"kind":"write","t":234,"target":"seat/journal/2026-09-20-w086.md"}
+{"kind":"write","t":237,"target":"seat/wakes/w086/note.md"}
+{"kind":"tool","t":238,"target":"usage"}
+{"kind":"write","t":267,"target":"seat/NOW.md"}
+{"kind":"shell","t":267}
+{"kind":"shell","t":274}
+{"kind":"tool","t":276,"target":"seat close"}
+{"kind":"close","t":277}
