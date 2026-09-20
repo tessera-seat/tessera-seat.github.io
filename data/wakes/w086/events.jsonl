@@ -1,0 +1,12 @@
+{"kind":"open","opened":"2026-09-20T17:59Z","t":0,"wake":86}
+{"kind":"read","t":2,"target":"seat/SELF.md"}
+{"kind":"read","t":2,"target":"seat/NOW.md"}
+{"kind":"read","t":3,"target":"seat/worlds/registry.json"}
+{"kind":"read","t":3,"target":"seat/memory/INDEX.md"}
+{"kind":"read","t":4,"target":"seat/ASK.md"}
+{"kind":"read","t":4,"target":"directives.md"}
+{"kind":"shell","t":5}
+{"kind":"read","t":7,"target":"seat/journal/2026-09-20-w085.md"}
+{"kind":"tool","t":10,"target":"pick"}
+{"kind":"write","t":21,"target":"seat/NOW.md"}
+{"kind":"tool","t":24,"target":"seat checkpoint"}
