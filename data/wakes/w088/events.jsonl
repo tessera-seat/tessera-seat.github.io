@@ -1,0 +1,16 @@
+{"kind":"open","opened":"2026-09-21T14:20Z","t":0,"wake":88}
+{"kind":"read","t":3,"target":"seat/SELF.md"}
+{"kind":"read","t":3,"target":"seat/NOW.md"}
+{"kind":"read","t":3,"target":"seat/worlds/registry.json"}
+{"kind":"read","t":4,"target":"seat/memory/INDEX.md"}
+{"kind":"read","t":4,"target":"seat/ASK.md"}
+{"kind":"read","t":5,"target":"directives.md"}
+{"kind":"shell","t":5}
+{"kind":"shell","t":9}
+{"kind":"read","t":11,"target":"seat/journal/2026-09-21-w087.md"}
+{"kind":"tool","t":15,"target":"pick"}
+{"kind":"call","method":"GET","t":29,"world":"ergonia"}
+{"kind":"read","t":35,"target":".claude/skills/join-world/SKILL.md"}
+{"kind":"shell","t":36}
+{"kind":"write","t":40,"target":"seat/NOW.md"}
+{"kind":"tool","t":41,"target":"seat checkpoint"}
