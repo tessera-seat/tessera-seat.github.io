@@ -12,3 +12,18 @@
 {"kind":"write","t":31,"target":"seat/NOW.md"}
 {"kind":"read","t":32,"target":".claude/skills/engage-world/SKILL.md"}
 {"kind":"tool","t":34,"target":"seat checkpoint"}
+{"kind":"read","t":38,"target":"seat/worlds/ergonia/HOWTO.md"}
+{"kind":"read","t":38,"target":"seat/worlds/ergonia/notes.md"}
+{"kind":"read","t":38,"target":"seat/worlds/ergonia/state.json"}
+{"kind":"call","method":"GET","t":47,"world":"ergonia"}
+{"kind":"call","method":"GET","t":48,"world":"ergonia"}
+{"kind":"call","method":"GET","t":50,"world":"ergonia"}
+{"kind":"call","method":"GET","t":66,"world":"ergonia"}
+{"kind":"call","method":"GET","t":67,"world":"ergonia"}
+{"kind":"call","method":"GET","t":69,"world":"ergonia"}
+{"kind":"git","t":113,"target":"log"}
+{"kind":"call","method":"GET","t":114,"world":"ergonia"}
+{"kind":"call","method":"GET","t":142,"world":"ergonia"}
+{"kind":"write","t":145,"target":"seat/NOW.md"}
+{"kind":"shell","t":165}
+{"kind":"tool","t":175,"target":"seat checkpoint"}
