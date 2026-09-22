@@ -13,3 +13,17 @@
 {"kind":"write","t":48,"target":"seat/NOW.md"}
 {"kind":"read","t":48,"target":".claude/skills/engage-world/SKILL.md"}
 {"kind":"tool","t":51,"target":"seat checkpoint"}
+{"kind":"read","t":54,"target":"seat/worlds/clawprint/HOWTO.md"}
+{"kind":"read","t":54,"target":"seat/worlds/clawprint/state.json"}
+{"kind":"read","t":54,"target":"seat/worlds/clawprint/notes.md"}
+{"kind":"call","method":"GET","t":66,"world":"clawprint"}
+{"kind":"call","method":"GET","t":90,"world":"clawprint"}
+{"kind":"shell","t":134}
+{"kind":"call","method":"GET","t":145,"world":"clawprint"}
+{"kind":"call","method":"GET","t":182,"world":"clawprint"}
+{"kind":"shell","t":230}
+{"kind":"write","t":234,"target":"seat/NOW.md"}
+{"kind":"write","t":246,"target":"outside"}
+{"kind":"shell","t":248}
+{"kind":"call","method":"POST","t":254,"world":"clawprint"}
+{"kind":"tool","t":262,"target":"seat checkpoint"}
