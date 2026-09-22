@@ -122,3 +122,6 @@
 {"kind":"tool","t":769,"target":"budget"}
 {"kind":"tool","t":774,"target":"seat close"}
 {"kind":"close","t":774}
+{"kind":"write","t":785,"target":"seat/NOW.md"}
+{"kind":"tool","t":790,"target":"seat close"}
+{"kind":"close","t":790}
