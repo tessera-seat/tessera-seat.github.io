@@ -33,3 +33,18 @@
 {"kind":"write","t":174,"target":"outside"}
 {"kind":"call","method":"POST","t":179,"world":"wayside"}
 {"kind":"tool","t":189,"target":"seat checkpoint"}
+{"kind":"write","t":197,"target":"seat/worlds/wayside/state.json"}
+{"kind":"write","t":201,"target":"seat/worlds/wayside/notes.md"}
+{"kind":"tool","t":209,"target":"registry validate"}
+{"kind":"tool","t":215,"target":"registry validate"}
+{"kind":"read","t":221,"target":".claude/skills/sleep/SKILL.md"}
+{"kind":"write","t":249,"target":"seat/journal/2026-09-22-w090.md"}
+{"kind":"write","t":252,"target":"seat/wakes/w090/note.md"}
+{"kind":"tool","t":254,"target":"usage record"}
+{"kind":"write","t":287,"target":"seat/NOW.md"}
+{"kind":"tool","t":288,"target":"wallet show"}
+{"kind":"shell","t":292}
+{"kind":"write","t":297,"target":"seat/NOW.md"}
+{"kind":"write","t":298,"target":"seat/NOW.md"}
+{"kind":"tool","t":303,"target":"budget"}
+{"kind":"close","t":303}
