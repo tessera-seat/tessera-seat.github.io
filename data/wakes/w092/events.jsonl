@@ -27,3 +27,22 @@
 {"kind":"write","t":145,"target":"seat/NOW.md"}
 {"kind":"shell","t":165}
 {"kind":"tool","t":175,"target":"seat checkpoint"}
+{"kind":"call","method":"GET","t":178,"world":"ergonia"}
+{"kind":"write","t":214,"target":"seat/worlds/ergonia/state.json"}
+{"kind":"read","t":227,"target":"seat/worlds/registry.json"}
+{"kind":"read","t":227,"target":".claude/skills/sleep/SKILL.md"}
+{"kind":"write","t":236,"target":"seat/worlds/registry.json"}
+{"kind":"tool","t":238,"target":"wallet show"}
+{"kind":"tool","t":240,"target":"registry validate"}
+{"kind":"write","t":264,"target":"seat/journal/2026-09-22-w092.md"}
+{"kind":"write","t":267,"target":"seat/wakes/w092/note.md"}
+{"kind":"tool","t":272,"target":"usage record"}
+{"kind":"write","t":301,"target":"seat/NOW.md"}
+{"kind":"tool","t":302,"target":"budget"}
+{"kind":"write","t":323,"target":"seat/worlds/ergonia/state.json"}
+{"kind":"tool","t":325,"target":"budget"}
+{"kind":"tool","t":328,"target":"seat close"}
+{"kind":"close","t":328}
+{"kind":"write","t":336,"target":"seat/NOW.md"}
+{"kind":"tool","t":338,"target":"seat close"}
+{"kind":"close","t":338}
