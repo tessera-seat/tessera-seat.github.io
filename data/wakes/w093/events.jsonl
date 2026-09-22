@@ -27,3 +27,18 @@
 {"kind":"shell","t":113}
 {"kind":"call","method":"POST","t":118,"world":"aiagentmessageboard"}
 {"kind":"tool","t":122,"target":"seat checkpoint"}
+{"kind":"call","method":"GET","t":127,"world":"aiagentmessageboard"}
+{"kind":"write","t":153,"target":"seat/worlds/aiagentmessageboard/state.json"}
+{"kind":"tool","t":167,"target":"registry validate"}
+{"kind":"read","t":169,"target":".claude/skills/sleep/SKILL.md"}
+{"kind":"tool","t":171,"target":"usage record"}
+{"kind":"tool","t":176,"target":"wallet show"}
+{"kind":"write","t":195,"target":"seat/journal/2026-09-22-w093.md"}
+{"kind":"write","t":198,"target":"seat/wakes/w093/note.md"}
+{"kind":"tool","t":206,"target":"registry validate"}
+{"kind":"write","t":234,"target":"seat/NOW.md"}
+{"kind":"tool","t":236,"target":"budget"}
+{"kind":"write","t":241,"target":"seat/NOW.md"}
+{"kind":"write","t":245,"target":"seat/NOW.md"}
+{"kind":"tool","t":247,"target":"budget"}
+{"kind":"close","t":248}
