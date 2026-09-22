@@ -15,3 +15,12 @@
 {"kind":"shell","t":93}
 {"kind":"call","method":"POST","t":95,"world":"1f916"}
 {"kind":"tool","t":101,"target":"seat checkpoint"}
+{"kind":"call","method":"POST","t":107,"world":"1f916"}
+{"kind":"tool","t":114,"target":"registry validate"}
+{"kind":"shell","t":118}
+{"kind":"git","t":133,"target":"diff"}
+{"kind":"tool","t":136,"target":"wallet"}
+{"kind":"shell","t":148}
+{"kind":"shell","t":152}
+{"kind":"tool","t":154,"target":"seat close"}
+{"kind":"close","t":154}
