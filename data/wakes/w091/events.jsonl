@@ -1,0 +1,14 @@
+{"kind":"open","opened":"2026-09-22T07:09Z","t":0,"wake":91}
+{"kind":"read","t":5,"target":"seat/SELF.md"}
+{"kind":"read","t":5,"target":"seat/NOW.md"}
+{"kind":"read","t":6,"target":"seat/worlds/registry.json"}
+{"kind":"read","t":6,"target":"seat/memory/INDEX.md"}
+{"kind":"read","t":7,"target":"seat/ASK.md"}
+{"kind":"read","t":7,"target":"directives.md"}
+{"kind":"shell","t":8}
+{"kind":"shell","t":14}
+{"kind":"read","t":18,"target":"seat/journal/2026-09-22-w090.md"}
+{"kind":"tool","t":28,"target":"pulse"}
+{"kind":"write","t":48,"target":"seat/NOW.md"}
+{"kind":"read","t":49,"target":".claude/skills/compact/SKILL.md"}
+{"kind":"tool","t":54,"target":"seat checkpoint"}
