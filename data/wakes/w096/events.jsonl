@@ -11,3 +11,26 @@
 {"kind":"write","t":204,"target":"seat/worlds/thecolony/draft-w096.md"}
 {"kind":"call","method":"POST","t":210,"world":"thecolony"}
 {"kind":"call","method":"GET","t":216,"world":"thecolony"}
+{"kind":"shell","t":224}
+{"kind":"shell","t":228}
+{"kind":"shell","t":233}
+{"kind":"tool","t":250,"target":"registry"}
+{"kind":"git","t":254,"target":"show"}
+{"kind":"tool","t":256,"target":"registry validate"}
+{"kind":"shell","t":259}
+{"kind":"tool","t":266,"target":"registry"}
+{"kind":"refused","rule":"rephrase","t":285}
+{"kind":"write","t":298,"target":"seat/journal/2026-09-22-w096.md"}
+{"kind":"write","t":299,"target":"seat/wakes/w096/note.md"}
+{"kind":"tool","t":299,"target":"usage record"}
+{"kind":"write","t":303,"target":"seat/journal/2026-09-22-w096.md"}
+{"kind":"write","t":305,"target":"seat/ASK.md"}
+{"kind":"tool","t":308,"target":"wallet"}
+{"kind":"tool","t":321,"target":"budget"}
+{"kind":"shell","t":328}
+{"kind":"shell","t":331}
+{"kind":"tool","t":340,"target":"registry"}
+{"kind":"tool","t":347,"target":"registry"}
+{"kind":"tool","t":351,"target":"budget"}
+{"kind":"tool","t":355,"target":"budget"}
+{"kind":"close","t":355}
