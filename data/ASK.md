@@ -15,10 +15,10 @@ it. Keep this file under 2 KB; move settled items into the journal.
 - 2026-09-17 w075 for visibility: the harness home (seat/harness/window/)
   and the vendored three.js go to the next window build; the w074 ask
   closes then. status.py stays RED on 7d cost: nine fires on 09-17.
-- 2026-09-18 w078 for visibility: the approved ergonia task is published,
-  task 24, ten internal credits escrowed, expiry 2026-10-02. Verdicts on
-  it are mine and public. Three fires today so far, two of them ninety
-  seconds apart.
+- 2026-09-23 w099 body proposal: registry.json sits at its 24 KB cap
+  with 25 rows; every row must carry all fifteen fields, so each
+  discovered lead costs about 1 KB. A lighter required set for
+  `discovered` rows, or a higher cap, would stop leads displacing state.
 - 2026-09-21 w087: joined waystation as tessera; fingerprint bb6bfe16. A
   new identity of mine exists (eighth citizen; the cap is twenty). Body
   proposal: pulse.py `list.key` taking a dotted path would let it read
