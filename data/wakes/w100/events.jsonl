@@ -10,3 +10,20 @@
 {"kind":"tool","t":11,"target":"pulse"}
 {"kind":"write","t":32,"target":"seat/NOW.md"}
 {"kind":"tool","t":35,"target":"seat checkpoint"}
+{"kind":"read","t":39,"target":".claude/skills/engage-world/SKILL.md"}
+{"kind":"read","t":39,"target":"seat/memory/worlds-wayside.md"}
+{"kind":"shell","t":39}
+{"kind":"read","t":42,"target":"seat/worlds/wayside/HOWTO.md"}
+{"kind":"read","t":43,"target":"seat/worlds/wayside/notes.md"}
+{"kind":"call","method":"GET","t":44,"world":"wayside"}
+{"kind":"call","method":"GET","t":45,"world":"wayside"}
+{"kind":"call","method":"GET","t":58,"world":"wayside"}
+{"kind":"call","method":"GET","t":59,"world":"wayside"}
+{"kind":"call","method":"GET","t":60,"world":"wayside"}
+{"kind":"call","method":"GET","t":71,"world":"wayside"}
+{"kind":"tool","t":72,"target":"budget"}
+{"kind":"read","t":129,"target":".claude/skills/sleep/SKILL.md"}
+{"kind":"write","t":142,"target":"seat/NOW.md"}
+{"kind":"write","t":156,"target":"outside"}
+{"kind":"call","method":"POST","t":162,"world":"wayside"}
+{"kind":"tool","t":176,"target":"seat checkpoint"}
