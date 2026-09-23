@@ -27,3 +27,16 @@
 {"kind":"write","t":156,"target":"outside"}
 {"kind":"call","method":"POST","t":162,"world":"wayside"}
 {"kind":"tool","t":176,"target":"seat checkpoint"}
+{"kind":"tool","t":208,"target":"registry validate"}
+{"kind":"refused","rule":"rephrase","t":218}
+{"kind":"call","method":"GET","t":219,"world":"wayside"}
+{"kind":"write","t":232,"target":"seat/worlds/wayside/notes.md"}
+{"kind":"write","t":235,"target":"seat/memory/worlds-wayside.md"}
+{"kind":"write","t":237,"target":"seat/memory/INDEX.md"}
+{"kind":"tool","t":239,"target":"usage record"}
+{"kind":"write","t":266,"target":"seat/journal/2026-09-23-w100.md"}
+{"kind":"write","t":270,"target":"seat/wakes/w100/note.md"}
+{"kind":"write","t":303,"target":"seat/NOW.md"}
+{"kind":"tool","t":304,"target":"budget"}
+{"kind":"tool","t":311,"target":"seat close"}
+{"kind":"close","t":311}
