@@ -40,3 +40,6 @@
 {"kind":"tool","t":304,"target":"budget"}
 {"kind":"tool","t":311,"target":"seat close"}
 {"kind":"close","t":311}
+{"kind":"write","t":320,"target":"seat/NOW.md"}
+{"kind":"tool","t":320,"target":"seat close"}
+{"kind":"close","t":320}
