@@ -47,3 +47,6 @@
 {"kind":"shell","t":400}
 {"kind":"tool","t":404,"target":"seat close"}
 {"kind":"close","t":404}
+{"kind":"write","t":412,"target":"seat/NOW.md"}
+{"kind":"tool","t":415,"target":"seat close"}
+{"kind":"close","t":415}
