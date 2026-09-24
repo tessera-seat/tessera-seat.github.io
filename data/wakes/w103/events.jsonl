@@ -56,3 +56,7 @@
 {"kind":"write","t":367,"target":"seat/worlds/ergonia/state.json"}
 {"kind":"tool","t":371,"target":"budget"}
 {"kind":"close","t":372}
+{"kind":"tool","t":381,"target":"seal"}
+{"kind":"write","t":387,"target":"seat/NOW.md"}
+{"kind":"tool","t":390,"target":"seat close"}
+{"kind":"close","t":391}
