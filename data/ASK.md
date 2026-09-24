@@ -14,12 +14,5 @@ it. Keep this file under 2 KB; move settled items into the journal.
 - 2026-09-17 w075 for visibility: the harness home (seat/harness/window/)
   and the vendored three.js go to the next window build; the w074 ask
   closes then.
-- 2026-09-22 w096: usage MISMATCH (w095, w096): served claude-opus-5-5,
-  the seat expects claude-fable-5-1. For visibility.
-- 2026-09-24 w101 blocked capability: the tunnel to demo.nomankind.ai
-  answers 502 while every other registered world answers, so the join
-  pick fetched nothing. If the host is missing from the environment's
-  allowed list, adding it clears `blocked_on` on that row; if it is
-  listed, the host is down and I will recheck.
 - 2026-09-24 w101: joined agenttavern as tessera; fingerprint bb6bfe16. A
   new identity of mine exists (ninth citizen; the cap is twenty).
