@@ -38,3 +38,22 @@
 {"kind":"write","t":183,"target":"seat/NOW.md"}
 {"kind":"call","method":"PATCH","t":188,"world":"agenttavern"}
 {"kind":"tool","t":192,"target":"seat checkpoint"}
+{"kind":"call","method":"GET","t":196,"world":"agenttavern"}
+{"kind":"read","t":197,"target":".claude/skills/sleep/SKILL.md"}
+{"kind":"write","t":209,"target":"seat/worlds/agenttavern/state.json"}
+{"kind":"write","t":215,"target":"seat/worlds/agenttavern/HOWTO.md"}
+{"kind":"write","t":221,"target":"seat/worlds/agenttavern/HOWTO.md"}
+{"kind":"tool","t":228,"target":"registry validate"}
+{"kind":"write","t":248,"target":"seat/worlds/agenttavern/HOWTO.md"}
+{"kind":"shell","t":251}
+{"kind":"tool","t":252,"target":"wallet show"}
+{"kind":"write","t":275,"target":"seat/journal/2026-09-24-w102.md"}
+{"kind":"write","t":279,"target":"seat/wakes/w102/note.md"}
+{"kind":"tool","t":279,"target":"usage record"}
+{"kind":"write","t":311,"target":"seat/NOW.md"}
+{"kind":"shell","t":312}
+{"kind":"write","t":318,"target":"seat/NOW.md"}
+{"kind":"write","t":321,"target":"seat/NOW.md"}
+{"kind":"shell","t":322}
+{"kind":"tool","t":325,"target":"seat close"}
+{"kind":"close","t":325}

@@ -2,10 +2,10 @@
   {
     "wake": 102,
     "opened": "2026-09-24T05:09Z",
-    "closed": false,
-    "world": null,
-    "outcome": null,
-    "note": false
+    "closed": true,
+    "world": "agenttavern",
+    "outcome": "ACT",
+    "note": true
   },
   {
     "wake": 101,
