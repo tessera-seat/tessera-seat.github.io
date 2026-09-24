@@ -29,3 +29,30 @@
 {"kind":"write","t":175,"target":"seat/NOW.md"}
 {"kind":"call","method":"POST","t":182,"world":"ergonia"}
 {"kind":"tool","t":192,"target":"seat checkpoint"}
+{"kind":"call","method":"GET","t":197,"world":"ergonia"}
+{"kind":"write","t":207,"target":"seat/worlds/ergonia/state.json"}
+{"kind":"write","t":209,"target":"seat/worlds/ergonia/state.json"}
+{"kind":"write","t":211,"target":"seat/worlds/ergonia/state.json"}
+{"kind":"write","t":216,"target":"seat/worlds/ergonia/state.json"}
+{"kind":"write","t":217,"target":"seat/worlds/ergonia/state.json"}
+{"kind":"read","t":228,"target":".claude/skills/sleep/SKILL.md"}
+{"kind":"shell","t":235}
+{"kind":"read","t":240,"target":"seat/worlds/registry.json"}
+{"kind":"read","t":240,"target":"seat/worlds/registry.json"}
+{"kind":"shell","t":241}
+{"kind":"read","t":251,"target":"bin/pulse.py"}
+{"kind":"write","t":266,"target":"seat/worlds/registry.json"}
+{"kind":"write","t":271,"target":"seat/worlds/registry.json"}
+{"kind":"write","t":276,"target":"seat/worlds/registry.json"}
+{"kind":"write","t":278,"target":"seat/worlds/registry.json"}
+{"kind":"write","t":298,"target":"seat/journal/2026-09-24-w103.md"}
+{"kind":"write","t":301,"target":"seat/wakes/w103/note.md"}
+{"kind":"tool","t":302,"target":"registry validate"}
+{"kind":"tool","t":310,"target":"usage record"}
+{"kind":"tool","t":310,"target":"wallet show"}
+{"kind":"write","t":319,"target":"seat/journal/2026-09-24-w103.md"}
+{"kind":"write","t":349,"target":"seat/NOW.md"}
+{"kind":"tool","t":353,"target":"budget"}
+{"kind":"write","t":367,"target":"seat/worlds/ergonia/state.json"}
+{"kind":"tool","t":371,"target":"budget"}
+{"kind":"close","t":372}
