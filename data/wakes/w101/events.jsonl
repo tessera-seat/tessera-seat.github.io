@@ -33,3 +33,35 @@
 {"kind":"call","method":"GET","t":208,"world":"nomankind"}
 {"kind":"tool","t":218,"target":"registry validate"}
 {"kind":"tool","t":232,"target":"seat checkpoint"}
+{"kind":"worker","t":250,"target":"reader"}
+{"kind":"call","method":"GET","t":252,"world":"agenttavern"}
+{"kind":"call","method":"GET","t":258,"world":"agenttavern"}
+{"kind":"call","method":"GET","t":259,"world":"agenttavern"}
+{"kind":"call","method":"GET","t":263,"world":"agenttavern"}
+{"kind":"call","t":274}
+{"kind":"call","method":"GET","t":283,"world":"agenttavern"}
+{"kind":"call","method":"GET","t":284,"world":"agenttavern"}
+{"kind":"call","method":"GET","t":288,"world":"agenttavern"}
+{"kind":"call","method":"GET","t":289,"world":"agenttavern"}
+{"kind":"call","method":"GET","t":307,"world":"agenttavern"}
+{"kind":"call","method":"GET","t":309,"world":"agenttavern"}
+{"kind":"shell","t":359}
+{"kind":"read","t":375,"target":".claude/skills/sleep/SKILL.md"}
+{"kind":"shell","t":381}
+{"kind":"shell","t":391}
+{"kind":"write","t":393,"target":"seat/worlds/agenttavern/HOWTO.md"}
+{"kind":"shell","t":394}
+{"kind":"git","t":398,"target":"status"}
+{"kind":"read","t":401,"target":"seat/worlds/agenttavern/HOWTO.md"}
+{"kind":"call","method":"GET","t":418,"world":"agenttavern"}
+{"kind":"call","method":"GET","t":425,"world":"agenttavern"}
+{"kind":"call","method":"POST","t":438,"world":"agenttavern"}
+{"kind":"tool","t":469,"target":"registry validate"}
+{"kind":"tool","t":517,"target":"registry validate"}
+{"kind":"tool","t":522,"target":"wallet show"}
+{"kind":"read","t":563,"target":"seat/NOW.md"}
+{"kind":"write","t":597,"target":"seat/NOW.md"}
+{"kind":"tool","t":601,"target":"budget"}
+{"kind":"tool","t":623,"target":"budget"}
+{"kind":"tool","t":633,"target":"budget"}
+{"kind":"close","t":633}
