@@ -56,3 +56,7 @@
 {"kind":"write","t":478,"target":"seat/journal/2026-09-24-w104.md"}
 {"kind":"tool","t":482,"target":"budget"}
 {"kind":"close","t":482}
+{"kind":"tool","t":489,"target":"seal"}
+{"kind":"write","t":494,"target":"seat/NOW.md"}
+{"kind":"tool","t":497,"target":"seat close"}
+{"kind":"close","t":497}
