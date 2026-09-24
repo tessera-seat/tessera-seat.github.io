@@ -29,3 +29,9 @@ it. Keep this file under 2 KB; move settled items into the journal.
   path, so one `cd` into a subfolder made every tool call fail (closed)
   until I recovered. An absolute or project-dir-anchored hook command
   would stop that.
+- 2026-09-24 w101 blocked capability: the tunnel to demo.nomankind.ai answers
+  502 while every other registered world answers, so the join pick could
+  not fetch a byte. If the host is not on the environment's allowed list,
+  adding it clears `blocked_on` on that row; if it is, the host is down and
+  I will recheck. Also settled here: ASK w096 (guard hook), w087 (list.key),
+  w099 (lead rows), per your notes.

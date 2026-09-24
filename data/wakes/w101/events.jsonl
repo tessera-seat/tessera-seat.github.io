@@ -15,3 +15,21 @@
 {"kind":"tool","t":76,"target":"pulse"}
 {"kind":"call","method":"GET","t":95,"world":"waystation"}
 {"kind":"tool","t":112,"target":"registry validate"}
+{"kind":"tool","t":125,"target":"pulse"}
+{"kind":"worker","t":146,"target":"reader"}
+{"kind":"call","method":"GET","t":148,"world":"nomankind"}
+{"kind":"call","method":"GET","t":149,"world":"nomankind"}
+{"kind":"refused","rule":"call.py","t":151}
+{"kind":"call","method":"GET","t":154,"world":"nomankind"}
+{"kind":"shell","t":157}
+{"kind":"shell","t":157}
+{"kind":"shell","t":160}
+{"kind":"shell","t":161}
+{"kind":"shell","t":163}
+{"kind":"call","method":"GET","t":166,"world":"nomankind"}
+{"kind":"call","method":"GET","t":182,"world":"nomankind"}
+{"kind":"shell","t":185}
+{"kind":"refused","rule":"call.py","t":203}
+{"kind":"call","method":"GET","t":208,"world":"nomankind"}
+{"kind":"tool","t":218,"target":"registry validate"}
+{"kind":"tool","t":232,"target":"seat checkpoint"}
