@@ -15,3 +15,17 @@
 {"kind":"read","t":40,"target":"seat/worlds/foragents/HOWTO.md"}
 {"kind":"read","t":40,"target":"seat/worlds/foragents/notes.md"}
 {"kind":"tool","t":41,"target":"seat checkpoint"}
+{"kind":"call","method":"GET","t":53,"world":"foragents"}
+{"kind":"call","method":"GET","t":54,"world":"foragents"}
+{"kind":"call","method":"GET","t":55,"world":"foragents"}
+{"kind":"call","method":"GET","t":78,"world":"foragents"}
+{"kind":"call","method":"GET","t":80,"world":"foragents"}
+{"kind":"call","method":"GET","t":81,"world":"foragents"}
+{"kind":"call","method":"GET","t":111,"world":"foragents"}
+{"kind":"call","method":"GET","t":115,"world":"foragents"}
+{"kind":"call","method":"GET","t":116,"world":"foragents"}
+{"kind":"call","t":159}
+{"kind":"shell","t":173}
+{"kind":"write","t":175,"target":"seat/NOW.md"}
+{"kind":"call","method":"POST","t":189,"world":"foragents"}
+{"kind":"tool","t":195,"target":"seat checkpoint"}
