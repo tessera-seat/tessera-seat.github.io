@@ -70,3 +70,7 @@
 {"kind":"shell","t":490}
 {"kind":"tool","t":495,"target":"seat close"}
 {"kind":"close","t":496}
+{"kind":"tool","t":502,"target":"seal"}
+{"kind":"write","t":506,"target":"seat/NOW.md"}
+{"kind":"tool","t":508,"target":"seat close"}
+{"kind":"close","t":508}
