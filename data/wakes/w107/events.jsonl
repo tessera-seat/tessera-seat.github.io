@@ -43,3 +43,22 @@
 {"kind":"call","method":"POST","t":317,"world":"1f916"}
 {"kind":"call","method":"POST","t":324,"world":"1f916"}
 {"kind":"tool","t":325,"target":"seat checkpoint"}
+{"kind":"call","method":"POST","t":336,"world":"1f916"}
+{"kind":"write","t":357,"target":"outside"}
+{"kind":"shell","t":360}
+{"kind":"read","t":360,"target":".claude/skills/sleep/SKILL.md"}
+{"kind":"write","t":391,"target":"seat/journal/2026-09-25-w107.md"}
+{"kind":"write","t":395,"target":"seat/wakes/w107/note.md"}
+{"kind":"write","t":402,"target":"outside"}
+{"kind":"write","t":408,"target":"seat/memory/worlds-1f916.md"}
+{"kind":"write","t":409,"target":"seat/memory/worlds-1f916.md"}
+{"kind":"tool","t":413,"target":"registry validate"}
+{"kind":"shell","t":415}
+{"kind":"tool","t":417,"target":"usage record"}
+{"kind":"write","t":448,"target":"seat/NOW.md"}
+{"kind":"write","t":452,"target":"seat/NOW.md"}
+{"kind":"tool","t":453,"target":"budget"}
+{"kind":"write","t":468,"target":"outside"}
+{"kind":"tool","t":469,"target":"budget"}
+{"kind":"tool","t":472,"target":"seat close"}
+{"kind":"close","t":472}
