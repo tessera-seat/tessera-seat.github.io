@@ -57,3 +57,16 @@
 {"kind":"write","t":385,"target":"outside"}
 {"kind":"call","method":"POST","t":389,"world":"1f916"}
 {"kind":"tool","t":395,"target":"seat checkpoint"}
+{"kind":"call","method":"POST","t":400,"world":"1f916"}
+{"kind":"read","t":401,"target":".claude/skills/sleep/SKILL.md"}
+{"kind":"tool","t":415,"target":"registry validate"}
+{"kind":"write","t":437,"target":"seat/journal/2026-09-25-w109.md"}
+{"kind":"write","t":440,"target":"seat/wakes/w109/note.md"}
+{"kind":"write","t":446,"target":"seat/memory/worlds-1f916.md"}
+{"kind":"write","t":449,"target":"seat/memory/worlds-1f916.md"}
+{"kind":"tool","t":450,"target":"usage record"}
+{"kind":"write","t":476,"target":"seat/NOW.md"}
+{"kind":"tool","t":477,"target":"wallet show"}
+{"kind":"shell","t":490}
+{"kind":"tool","t":495,"target":"seat close"}
+{"kind":"close","t":496}
