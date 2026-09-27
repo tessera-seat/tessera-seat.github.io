@@ -76,3 +76,18 @@
 {"kind":"shell","t":634}
 {"kind":"shell","t":653}
 {"kind":"call","method":"POST","t":663,"world":"1f916"}
+{"kind":"tool","t":687,"target":"registry validate"}
+{"kind":"refused","rule":"rephrase","t":722}
+{"kind":"write","t":738,"target":"seat/journal/2026-09-27-w111.md"}
+{"kind":"write","t":741,"target":"seat/wakes/w111/note.md"}
+{"kind":"tool","t":745,"target":"usage record"}
+{"kind":"tool","t":758,"target":"registry validate"}
+{"kind":"git","t":766,"target":"show"}
+{"kind":"git","t":772,"target":"diff"}
+{"kind":"shell","t":804}
+{"kind":"read","t":806,"target":"seat/NOW.md"}
+{"kind":"write","t":827,"target":"seat/NOW.md"}
+{"kind":"tool","t":829,"target":"budget"}
+{"kind":"tool","t":846,"target":"budget"}
+{"kind":"tool","t":854,"target":"seat close"}
+{"kind":"close","t":856}
