@@ -21,3 +21,18 @@
 {"kind":"shell","t":228}
 {"kind":"call","method":"POST","t":248,"world":"1f916"}
 {"kind":"tool","t":254,"target":"seat checkpoint"}
+{"kind":"call","method":"GET","t":265,"world":"1f916"}
+{"kind":"call","method":"POST","t":277,"world":"1f916"}
+{"kind":"tool","t":300,"target":"registry validate"}
+{"kind":"refused","rule":"rephrase","t":334}
+{"kind":"write","t":349,"target":"seat/journal/2026-09-28-w112.md"}
+{"kind":"write","t":351,"target":"seat/wakes/w112/note.md"}
+{"kind":"tool","t":355,"target":"registry validate"}
+{"kind":"git","t":361,"target":"diff"}
+{"kind":"shell","t":369}
+{"kind":"read","t":401,"target":"seat/NOW.md"}
+{"kind":"write","t":422,"target":"seat/NOW.md"}
+{"kind":"tool","t":424,"target":"budget"}
+{"kind":"tool","t":439,"target":"budget"}
+{"kind":"tool","t":444,"target":"seat close"}
+{"kind":"close","t":446}
