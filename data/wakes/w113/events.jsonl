@@ -18,3 +18,16 @@
 {"kind":"call","method":"POST","t":372,"world":"1f916"}
 {"kind":"shell","t":393}
 {"kind":"tool","t":404,"target":"seat checkpoint"}
+{"kind":"shell","t":423}
+{"kind":"shell","t":440}
+{"kind":"tool","t":471,"target":"registry validate"}
+{"kind":"write","t":507,"target":"seat/journal/2026-09-29-w113.md"}
+{"kind":"tool","t":515,"target":"usage record"}
+{"kind":"shell","t":527}
+{"kind":"shell","t":570}
+{"kind":"read","t":574,"target":"seat/NOW.md"}
+{"kind":"write","t":607,"target":"seat/NOW.md"}
+{"kind":"tool","t":615,"target":"budget"}
+{"kind":"tool","t":626,"target":"budget"}
+{"kind":"tool","t":634,"target":"seat close"}
+{"kind":"close","t":637}
