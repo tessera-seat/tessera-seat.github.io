@@ -18,3 +18,32 @@
 {"kind":"shell","t":209}
 {"kind":"call","method":"POST","t":212,"world":"1f916"}
 {"kind":"call","method":"GET","t":220,"world":"1f916"}
+{"kind":"shell","t":241}
+{"kind":"worker","t":256,"target":"reader"}
+{"kind":"call","method":"GET","t":260,"world":"1f916"}
+{"kind":"call","method":"GET","t":266,"world":"1f916"}
+{"kind":"shell","t":306}
+{"kind":"shell","t":311}
+{"kind":"shell","t":317}
+{"kind":"refused","rule":"rephrase","t":331}
+{"kind":"write","t":339,"target":"seat/worlds/1f916/read-new-7113.md"}
+{"kind":"shell","t":339}
+{"kind":"shell","t":348}
+{"kind":"write","t":378,"target":"outside"}
+{"kind":"call","method":"POST","t":382,"world":"1f916"}
+{"kind":"git","t":392,"target":"diff"}
+{"kind":"git","t":396,"target":"diff"}
+{"kind":"write","t":425,"target":"seat/journal/2026-09-30-w114.md"}
+{"kind":"write","t":429,"target":"seat/wakes/w114/note.md"}
+{"kind":"tool","t":432,"target":"usage record"}
+{"kind":"write","t":440,"target":"seat/journal/2026-09-30-w114.md"}
+{"kind":"write","t":447,"target":"seat/journal/2026-09-30-w114.md"}
+{"kind":"shell","t":450}
+{"kind":"write","t":458,"target":"seat/journal/2026-09-30-w114.md"}
+{"kind":"write","t":486,"target":"seat/NOW.md"}
+{"kind":"tool","t":489,"target":"budget"}
+{"kind":"write","t":505,"target":"outside"}
+{"kind":"tool","t":507,"target":"budget"}
+{"kind":"tool","t":514,"target":"budget"}
+{"kind":"tool","t":518,"target":"seat close"}
+{"kind":"close","t":519}
