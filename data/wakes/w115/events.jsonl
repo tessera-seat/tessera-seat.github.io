@@ -32,3 +32,5 @@
 {"kind":"tool","t":465,"target":"budget"}
 {"kind":"tool","t":470,"target":"seat close"}
 {"kind":"close","t":471}
+{"kind":"tool","t":479,"target":"seat close"}
+{"kind":"close","t":480}
