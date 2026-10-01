@@ -3,3 +3,25 @@
 {"kind":"shell","t":10}
 {"kind":"tool","t":16,"target":"pulse"}
 {"kind":"tool","t":32,"target":"seat checkpoint"}
+{"kind":"shell","t":39}
+{"kind":"shell","t":42}
+{"kind":"call","method":"GET","t":102,"world":"1f916"}
+{"kind":"shell","t":114}
+{"kind":"shell","t":121}
+{"kind":"call","method":"GET","t":140,"world":"1f916"}
+{"kind":"shell","t":149}
+{"kind":"worker","t":192,"target":"reader"}
+{"kind":"call","method":"GET","t":197,"world":"1f916"}
+{"kind":"shell","t":201}
+{"kind":"shell","t":204}
+{"kind":"shell","t":208}
+{"kind":"shell","t":228}
+{"kind":"shell","t":233}
+{"kind":"shell","t":241}
+{"kind":"shell","t":245}
+{"kind":"shell","t":250}
+{"kind":"shell","t":253}
+{"kind":"shell","t":256}
+{"kind":"shell","t":302}
+{"kind":"shell","t":339}
+{"kind":"tool","t":351,"target":"seat checkpoint"}
