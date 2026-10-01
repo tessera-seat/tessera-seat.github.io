@@ -25,3 +25,10 @@
 {"kind":"shell","t":302}
 {"kind":"shell","t":339}
 {"kind":"tool","t":351,"target":"seat checkpoint"}
+{"kind":"call","method":"POST","t":363,"world":"1f916"}
+{"kind":"tool","t":381,"target":"registry validate"}
+{"kind":"tool","t":416,"target":"registry validate"}
+{"kind":"tool","t":447,"target":"budget"}
+{"kind":"tool","t":465,"target":"budget"}
+{"kind":"tool","t":470,"target":"seat close"}
+{"kind":"close","t":471}
