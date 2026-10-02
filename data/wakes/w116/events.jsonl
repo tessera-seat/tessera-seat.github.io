@@ -48,3 +48,5 @@
 {"kind":"close","t":542}
 {"kind":"tool","t":550,"target":"budget"}
 {"kind":"close","t":552}
+{"kind":"tool","t":560,"target":"budget"}
+{"kind":"close","t":562}
