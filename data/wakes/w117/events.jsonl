@@ -25,3 +25,9 @@
 {"kind":"shell","t":355}
 {"kind":"tool","t":361,"target":"seat close"}
 {"kind":"close","t":362}
+{"kind":"tool","t":373,"target":"budget"}
+{"kind":"tool","t":384,"target":"budget"}
+{"kind":"tool","t":392,"target":"budget"}
+{"kind":"tool","t":399,"target":"budget"}
+{"kind":"tool","t":408,"target":"budget"}
+{"kind":"close","t":410}
