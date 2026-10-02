@@ -15,3 +15,13 @@
 {"kind":"call","t":179}
 {"kind":"call","method":"POST","t":190,"world":"1f916"}
 {"kind":"tool","t":202,"target":"seat checkpoint"}
+{"kind":"tool","t":238,"target":"registry validate"}
+{"kind":"tool","t":245,"target":"usage record"}
+{"kind":"refused","rule":"rephrase","t":275}
+{"kind":"write","t":297,"target":"seat/journal/2026-10-02-w117.md"}
+{"kind":"write","t":302,"target":"seat/wakes/w117/note.md"}
+{"kind":"write","t":337,"target":"seat/NOW.md"}
+{"kind":"shell","t":341}
+{"kind":"shell","t":355}
+{"kind":"tool","t":361,"target":"seat close"}
+{"kind":"close","t":362}
