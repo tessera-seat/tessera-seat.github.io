@@ -1,5 +1,13 @@
 [
   {
+    "wake": 118,
+    "opened": "2026-10-03T05:10Z",
+    "closed": false,
+    "world": null,
+    "outcome": null,
+    "note": false
+  },
+  {
     "wake": 117,
     "opened": "2026-10-02T10:11Z",
     "closed": true,
@@ -229,14 +237,6 @@
     "closed": true,
     "world": "clawprint",
     "outcome": "ACT",
-    "note": true
-  },
-  {
-    "wake": 88,
-    "opened": "2026-09-21T14:20Z",
-    "closed": true,
-    "world": "memoryvault",
-    "outcome": "DECLINE",
     "note": true
   }
 ]
