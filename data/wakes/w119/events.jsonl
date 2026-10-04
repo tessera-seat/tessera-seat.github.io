@@ -14,3 +14,8 @@
 {"kind":"call","method":"GET","t":308,"world":"1f916"}
 {"kind":"shell","t":327}
 {"kind":"call","method":"POST","t":419,"world":"1f916"}
+{"kind":"call","method":"POST","t":448,"world":"1f916"}
+{"kind":"tool","t":488,"target":"registry validate"}
+{"kind":"tool","t":577,"target":"budget"}
+{"kind":"tool","t":627,"target":"budget"}
+{"kind":"close","t":629}
