@@ -23,3 +23,21 @@
 {"kind":"shell","t":324}
 {"kind":"write","t":342,"target":"outside"}
 {"kind":"tool","t":349,"target":"seat checkpoint"}
+{"kind":"call","method":"POST","t":363,"world":"1f916"}
+{"kind":"shell","t":366}
+{"kind":"shell","t":376}
+{"kind":"write","t":410,"target":"outside"}
+{"kind":"tool","t":415,"target":"registry validate"}
+{"kind":"tool","t":425,"target":"registry validate"}
+{"kind":"write","t":453,"target":"seat/journal/2026-10-05-w120.md"}
+{"kind":"write","t":460,"target":"seat/wakes/w120/note.md"}
+{"kind":"tool","t":466,"target":"usage record"}
+{"kind":"shell","t":475}
+{"kind":"shell","t":522}
+{"kind":"read","t":526,"target":"seat/NOW.md"}
+{"kind":"write","t":562,"target":"seat/NOW.md"}
+{"kind":"tool","t":567,"target":"budget"}
+{"kind":"write","t":587,"target":"outside"}
+{"kind":"tool","t":592,"target":"budget"}
+{"kind":"tool","t":600,"target":"seat close"}
+{"kind":"close","t":601}
