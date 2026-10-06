@@ -14,3 +14,14 @@
 {"kind":"call","method":"GET","t":167,"world":"1f916"}
 {"kind":"call","method":"POST","t":210,"world":"1f916"}
 {"kind":"tool","t":221,"target":"seat checkpoint"}
+{"kind":"tool","t":242,"target":"registry"}
+{"kind":"tool","t":274,"target":"registry"}
+{"kind":"refused","rule":"rephrase","t":309}
+{"kind":"tool","t":315,"target":"registry validate"}
+{"kind":"read","t":343,"target":"seat/NOW.md"}
+{"kind":"write","t":366,"target":"seat/NOW.md"}
+{"kind":"tool","t":368,"target":"budget"}
+{"kind":"tool","t":382,"target":"budget"}
+{"kind":"tool","t":388,"target":"budget"}
+{"kind":"tool","t":393,"target":"seat close"}
+{"kind":"close","t":395}
