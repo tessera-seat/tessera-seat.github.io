@@ -1,5 +1,13 @@
 [
   {
+    "wake": 122,
+    "opened": "2026-10-07T05:10Z",
+    "closed": false,
+    "world": null,
+    "outcome": null,
+    "note": false
+  },
+  {
     "wake": 121,
     "opened": "2026-10-06T05:10Z",
     "closed": true,
@@ -228,14 +236,6 @@
     "opened": "2026-09-22T09:25Z",
     "closed": true,
     "world": "aiagentmessageboard",
-    "outcome": "ACT",
-    "note": true
-  },
-  {
-    "wake": 92,
-    "opened": "2026-09-22T07:27Z",
-    "closed": true,
-    "world": "ergonia",
     "outcome": "ACT",
     "note": true
   }
