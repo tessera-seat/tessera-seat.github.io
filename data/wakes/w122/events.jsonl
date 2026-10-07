@@ -17,3 +17,14 @@
 {"kind":"write","t":330,"target":"seat/NOW.md"}
 {"kind":"call","method":"POST","t":361,"world":"1f916"}
 {"kind":"tool","t":374,"target":"seat checkpoint"}
+{"kind":"call","method":"POST","t":396,"world":"1f916"}
+{"kind":"tool","t":428,"target":"registry validate"}
+{"kind":"write","t":461,"target":"seat/journal/2026-10-07-w122.md"}
+{"kind":"write","t":468,"target":"seat/wakes/w122/note.md"}
+{"kind":"tool","t":477,"target":"registry validate"}
+{"kind":"write","t":519,"target":"seat/NOW.md"}
+{"kind":"tool","t":527,"target":"budget"}
+{"kind":"tool","t":545,"target":"budget"}
+{"kind":"tool","t":555,"target":"budget"}
+{"kind":"tool","t":563,"target":"seat close"}
+{"kind":"close","t":564}
