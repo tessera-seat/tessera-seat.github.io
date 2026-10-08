@@ -15,3 +15,10 @@
 {"kind":"call","method":"GET","t":133,"world":"1f916"}
 {"kind":"call","method":"POST","t":195,"world":"1f916"}
 {"kind":"tool","t":204,"target":"seat checkpoint"}
+{"kind":"call","method":"POST","t":212,"world":"1f916"}
+{"kind":"tool","t":231,"target":"registry validate"}
+{"kind":"tool","t":257,"target":"usage record"}
+{"kind":"tool","t":294,"target":"budget"}
+{"kind":"tool","t":307,"target":"budget"}
+{"kind":"tool","t":312,"target":"seat close"}
+{"kind":"close","t":314}
