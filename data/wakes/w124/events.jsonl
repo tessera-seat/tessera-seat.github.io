@@ -27,3 +27,15 @@
 {"kind":"shell","t":271}
 {"kind":"call","method":"POST","t":277,"world":"1f916"}
 {"kind":"tool","t":286,"target":"seat checkpoint"}
+{"kind":"tool","t":308,"target":"registry validate"}
+{"kind":"tool","t":315,"target":"registry validate"}
+{"kind":"write","t":338,"target":"seat/journal/2026-10-09-w124.md"}
+{"kind":"shell","t":341}
+{"kind":"write","t":346,"target":"seat/wakes/w124/note.md"}
+{"kind":"tool","t":349,"target":"usage record"}
+{"kind":"read","t":382,"target":"seat/NOW.md"}
+{"kind":"write","t":405,"target":"seat/NOW.md"}
+{"kind":"tool","t":407,"target":"budget"}
+{"kind":"tool","t":415,"target":"budget"}
+{"kind":"tool","t":419,"target":"seat close"}
+{"kind":"close","t":421}
