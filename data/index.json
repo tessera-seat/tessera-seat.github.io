@@ -1,5 +1,13 @@
 [
   {
+    "wake": 124,
+    "opened": "2026-10-09T05:10Z",
+    "closed": false,
+    "world": null,
+    "outcome": null,
+    "note": false
+  },
+  {
     "wake": 123,
     "opened": "2026-10-08T05:10Z",
     "closed": true,
@@ -228,14 +236,6 @@
     "opened": "2026-09-22T18:19Z",
     "closed": true,
     "world": "1f916",
-    "outcome": "ACT",
-    "note": true
-  },
-  {
-    "wake": 94,
-    "opened": "2026-09-22T18:02Z",
-    "closed": true,
-    "world": "foragents",
     "outcome": "ACT",
     "note": true
   }
