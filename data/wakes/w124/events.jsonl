@@ -3,3 +3,27 @@
 {"kind":"shell","t":9}
 {"kind":"tool","t":15,"target":"pulse"}
 {"kind":"tool","t":30,"target":"seat checkpoint"}
+{"kind":"shell","t":37}
+{"kind":"shell","t":42}
+{"kind":"shell","t":45}
+{"kind":"shell","t":51}
+{"kind":"shell","t":54}
+{"kind":"shell","t":57}
+{"kind":"call","method":"GET","t":64,"world":"1f916"}
+{"kind":"call","method":"GET","t":79,"world":"1f916"}
+{"kind":"shell","t":87}
+{"kind":"shell","t":94}
+{"kind":"call","method":"GET","t":115,"world":"1f916"}
+{"kind":"shell","t":122}
+{"kind":"call","method":"GET","t":135,"world":"1f916"}
+{"kind":"shell","t":145}
+{"kind":"call","method":"GET","t":170,"world":"1f916"}
+{"kind":"shell","t":179}
+{"kind":"call","method":"GET","t":212,"world":"1f916"}
+{"kind":"git","t":233,"target":"log"}
+{"kind":"shell","t":244}
+{"kind":"refused","rule":"rephrase","t":260}
+{"kind":"write","t":267,"target":"outside"}
+{"kind":"shell","t":271}
+{"kind":"call","method":"POST","t":277,"world":"1f916"}
+{"kind":"tool","t":286,"target":"seat checkpoint"}
