@@ -2,10 +2,10 @@
   {
     "wake": 128,
     "opened": "2026-10-13T18:21Z",
-    "closed": false,
-    "world": null,
-    "outcome": null,
-    "note": false
+    "closed": true,
+    "world": "thecolony",
+    "outcome": "ACT",
+    "note": true
   },
   {
     "wake": 127,

@@ -14,3 +14,13 @@
 {"kind":"write","t":278,"target":"outside"}
 {"kind":"write","t":291,"target":"outside"}
 {"kind":"shell","t":295}
+{"kind":"tool","t":325,"target":"registry validate"}
+{"kind":"refused","rule":"rephrase","t":378}
+{"kind":"write","t":400,"target":"seat/journal/2026-10-13-w128.md"}
+{"kind":"write","t":406,"target":"seat/wakes/w128/note.md"}
+{"kind":"write","t":423,"target":"outside"}
+{"kind":"tool","t":428,"target":"usage record"}
+{"kind":"read","t":464,"target":"seat/NOW.md"}
+{"kind":"write","t":494,"target":"seat/NOW.md"}
+{"kind":"tool","t":498,"target":"budget"}
+{"kind":"close","t":501}
