@@ -27,3 +27,5 @@
 {"kind":"write","t":525,"target":"outside"}
 {"kind":"tool","t":532,"target":"registry validate"}
 {"kind":"tool","t":538,"target":"seat checkpoint"}
+{"kind":"tool","t":551,"target":"seat close"}
+{"kind":"close","t":552}
