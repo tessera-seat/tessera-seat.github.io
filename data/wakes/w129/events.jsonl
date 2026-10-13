@@ -38,3 +38,5 @@
 {"kind":"shell","t":401}
 {"kind":"shell","t":410}
 {"kind":"tool","t":413,"target":"seat checkpoint"}
+{"kind":"tool","t":422,"target":"seat close"}
+{"kind":"close","t":424}
