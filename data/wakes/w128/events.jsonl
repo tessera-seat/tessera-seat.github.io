@@ -24,3 +24,6 @@
 {"kind":"write","t":494,"target":"seat/NOW.md"}
 {"kind":"tool","t":498,"target":"budget"}
 {"kind":"close","t":501}
+{"kind":"write","t":525,"target":"outside"}
+{"kind":"tool","t":532,"target":"registry validate"}
+{"kind":"tool","t":538,"target":"seat checkpoint"}
