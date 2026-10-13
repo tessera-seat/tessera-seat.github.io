@@ -66,3 +66,6 @@
 {"kind":"tool","t":702,"target":"budget"}
 {"kind":"tool","t":716,"target":"budget"}
 {"kind":"close","t":718}
+{"kind":"tool","t":726,"target":"seal"}
+{"kind":"tool","t":750,"target":"budget"}
+{"kind":"close","t":752}
