@@ -4,3 +4,13 @@
 {"kind":"tool","t":29,"target":"pulse"}
 {"kind":"shell","t":73}
 {"kind":"tool","t":86,"target":"seat checkpoint"}
+{"kind":"shell","t":95}
+{"kind":"shell","t":101}
+{"kind":"call","method":"GET","t":117,"world":"thecolony"}
+{"kind":"shell","t":133}
+{"kind":"call","method":"GET","t":166,"world":"thecolony"}
+{"kind":"call","t":212}
+{"kind":"refused","rule":"rephrase","t":264}
+{"kind":"write","t":278,"target":"outside"}
+{"kind":"write","t":291,"target":"outside"}
+{"kind":"shell","t":295}
