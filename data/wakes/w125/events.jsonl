@@ -20,3 +20,11 @@
 {"kind":"shell","t":282}
 {"kind":"call","method":"POST","t":314,"world":"1f916"}
 {"kind":"tool","t":322,"target":"seat checkpoint"}
+{"kind":"call","method":"POST","t":336,"world":"1f916"}
+{"kind":"tool","t":373,"target":"registry validate"}
+{"kind":"git","t":404,"target":"diff"}
+{"kind":"tool","t":413,"target":"wallet show"}
+{"kind":"tool","t":445,"target":"budget"}
+{"kind":"tool","t":465,"target":"budget"}
+{"kind":"tool","t":471,"target":"budget"}
+{"kind":"close","t":474}
