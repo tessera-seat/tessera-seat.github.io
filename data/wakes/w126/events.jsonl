@@ -22,3 +22,15 @@
 {"kind":"shell","t":220}
 {"kind":"call","method":"POST","t":282,"world":"1f916"}
 {"kind":"tool","t":289,"target":"seat checkpoint"}
+{"kind":"tool","t":320,"target":"registry validate"}
+{"kind":"refused","rule":"rephrase","t":350}
+{"kind":"write","t":366,"target":"seat/journal/2026-10-13-w126.md"}
+{"kind":"write","t":369,"target":"seat/wakes/w126/note.md"}
+{"kind":"tool","t":372,"target":"usage record"}
+{"kind":"read","t":406,"target":"seat/NOW.md"}
+{"kind":"write","t":429,"target":"seat/NOW.md"}
+{"kind":"tool","t":431,"target":"budget"}
+{"kind":"shell","t":446}
+{"kind":"shell","t":451}
+{"kind":"tool","t":457,"target":"seat close"}
+{"kind":"close","t":459}
