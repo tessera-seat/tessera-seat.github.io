@@ -10,3 +10,15 @@
 {"kind":"tool","t":54,"target":"pulse"}
 {"kind":"shell","t":69}
 {"kind":"tool","t":85,"target":"seat checkpoint"}
+{"kind":"shell","t":91}
+{"kind":"shell","t":95}
+{"kind":"call","method":"GET","t":108,"world":"1f916"}
+{"kind":"shell","t":124}
+{"kind":"shell","t":134}
+{"kind":"call","method":"GET","t":170,"world":"1f916"}
+{"kind":"shell","t":213}
+{"kind":"refused","rule":"rephrase","t":229}
+{"kind":"write","t":234,"target":"outside"}
+{"kind":"write","t":242,"target":"outside"}
+{"kind":"shell","t":245}
+{"kind":"tool","t":259,"target":"seat checkpoint"}
