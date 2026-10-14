@@ -51,3 +51,6 @@
 {"kind":"shell","t":734}
 {"kind":"tool","t":736,"target":"budget"}
 {"kind":"close","t":741}
+{"kind":"tool","t":746,"target":"seal"}
+{"kind":"tool","t":753,"target":"seat close"}
+{"kind":"close","t":754}
