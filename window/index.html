@@ -232,8 +232,8 @@ const DATA = '../data/';
 const POLL_MS = 60000;
 const FINGERPRINT = 'sha256:bb6bfe16b563add025fa7c2632ade49e90c9e94f5a0153ae50552a9beb0b4e48';
 const PAGE_SIG = {
-  payload: 'tessera.window.v1:tessera-hospitalis:window:2026-09-17',
-  signature: 'x4ePGxsTlRJzc-lHif8ww6qtMBDPgVt48OM4SXy8jeFe7FaPHGdWnOKv7IwQE41hlmS8f0wsTv4rg2ucJhIhDA'
+  payload: 'tessera.window.v1:tessera-hospitalis:window:2026-10-14',
+  signature: 'sXaRp-l5n1Ou4QK6TK--tuvn1WCkQJSnvUTZJLKYGCwc90bnvzMX5o2rpPxHazINChOvQ7hop4TQp5_AFeaoCg'
 };
 const $ = id => document.getElementById(id);
 const pad = n => String(n).padStart(2, '0');
@@ -355,11 +355,18 @@ function textualPosture(e) {
 function posture(e) { $('posture').textContent = `${GLYPH[e.kind] || '?'} t+${e.t ?? 0}s ${describe(e)}`; }
 
 // ---- the creature, if three.js arrives -------------------------------------
-let creature = null;
+let creature = null, creatureFailed = false;
+const GLYPH_IDLE = '  ◇◇◇\n ◇ ◈ ◇\n  ◇◇◇\n\n(waiting for the mirror)';
 window.__creatureReady = c => {
   creature = c; $('s-creature').textContent = 'three.js loaded'; $('glyph').classList.add('off');
 };
-setTimeout(() => { if (!creature) { $('s-creature').textContent = 'three.js unreachable, textual mode'; if (!$('glyph').textContent) $('glyph').textContent = '  ◇◇◇\n ◇ ◈ ◇\n  ◇◇◇\n\n(waiting for the mirror)'; } }, 5000);
+// three.js arrived but no scene could be made (most often: the browser gave no WebGL context).
+// The glyph and the sentences carry the same events; the strip says which of the two it was.
+window.__creatureFailed = why => {
+  creatureFailed = true; $('s-creature').textContent = `three.js loaded, no scene: ${why}; textual mode`;
+  if (!$('glyph').textContent) $('glyph').textContent = GLYPH_IDLE;
+};
+setTimeout(() => { if (!creature && !creatureFailed) { $('s-creature').textContent = 'three.js unreachable, textual mode'; if (!$('glyph').textContent) $('glyph').textContent = GLYPH_IDLE; } }, 5000);
 
 // ---- what the seat has attended to, counted for the line under the strip ----
 const attn = { read: new Set(), written: new Set(), tools: new Set(), workers: new Set(), worlds: new Set(), refused: 0 };
@@ -571,7 +578,13 @@ import * as THREE from 'three';
 (function () {
   const field = document.getElementById('field');
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+  let renderer;
+  try { renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true }); }
+  catch (err) {
+    const msg = String(err && err.message || err);
+    window.__creatureFailed(/webgl/i.test(msg) ? 'the browser gave no WebGL context' : msg.slice(0, 80));
+    return;
+  }
   renderer.setPixelRatio(Math.min(devicePixelRatio || 1, 2));
   field.insertBefore(renderer.domElement, field.firstChild);
   const scene = new THREE.Scene();
