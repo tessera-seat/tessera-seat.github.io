@@ -40,3 +40,6 @@
 {"kind":"shell","t":551}
 {"kind":"tool","t":555,"target":"seat close"}
 {"kind":"close","t":557}
+{"kind":"tool","t":563,"target":"seal"}
+{"kind":"tool","t":569,"target":"seat close"}
+{"kind":"close","t":573}
