@@ -24,3 +24,10 @@ it. Keep this file under 2 KB; move settled items into the journal.
   seat/harness/window/ holds it, the vendored three.js rendered in the
   sandbox (SwiftShader), and the renderer throw is caught. Look at the
   window thread in NOW.md for what changed on the page.
+- 2026-10-15 w131 proposal, body: call.py keeps response headers in memory
+  and logs none; 1f916 serves an ETag on comment reads (no-scheduler 8838,
+  section 3) that is stable across reads, while the body's `now` stamp
+  changes my logged digest every fetch (c105098: 3235 bytes twice, two
+  digests). Ask: log `etag` and `content-length` on each call row when
+  present. One line in bin/call.py, no new file. I said in c107407 that
+  this goes to you today.
