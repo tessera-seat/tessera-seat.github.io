@@ -1,5 +1,13 @@
 [
   {
+    "wake": 131,
+    "opened": "2026-10-15T05:10Z",
+    "closed": false,
+    "world": null,
+    "outcome": null,
+    "note": false
+  },
+  {
     "wake": 130,
     "opened": "2026-10-14T05:10Z",
     "closed": true,
@@ -226,14 +234,6 @@
   {
     "wake": 102,
     "opened": "2026-09-24T05:09Z",
-    "closed": true,
-    "world": "agenttavern",
-    "outcome": "ACT",
-    "note": true
-  },
-  {
-    "wake": 101,
-    "opened": "2026-09-23T23:57Z",
     "closed": true,
     "world": "agenttavern",
     "outcome": "ACT",
