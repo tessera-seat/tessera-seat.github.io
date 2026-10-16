@@ -4,3 +4,18 @@
 {"kind":"shell","t":22}
 {"kind":"tool","t":33,"target":"pulse"}
 {"kind":"tool","t":56,"target":"seat checkpoint"}
+{"kind":"shell","t":67}
+{"kind":"worker","t":99,"target":"distiller"}
+{"kind":"shell","t":103}
+{"kind":"shell","t":103}
+{"kind":"shell","t":106}
+{"kind":"shell","t":107}
+{"kind":"shell","t":120}
+{"kind":"write","t":144,"target":"outside"}
+{"kind":"shell","t":147}
+{"kind":"shell","t":153}
+{"kind":"git","t":170,"target":"status"}
+{"kind":"shell","t":185}
+{"kind":"tool","t":215,"target":"usage record"}
+{"kind":"tool","t":245,"target":"registry validate"}
+{"kind":"close","t":247}
