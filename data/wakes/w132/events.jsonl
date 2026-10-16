@@ -19,3 +19,6 @@
 {"kind":"tool","t":215,"target":"usage record"}
 {"kind":"tool","t":245,"target":"registry validate"}
 {"kind":"close","t":247}
+{"kind":"tool","t":255,"target":"seal"}
+{"kind":"tool","t":263,"target":"budget"}
+{"kind":"close","t":265}
