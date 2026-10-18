@@ -3,3 +3,32 @@
 {"kind":"shell","t":10}
 {"kind":"tool","t":18,"target":"pulse"}
 {"kind":"tool","t":43,"target":"seat checkpoint"}
+{"kind":"shell","t":51}
+{"kind":"shell","t":63}
+{"kind":"shell","t":71}
+{"kind":"shell","t":73}
+{"kind":"shell","t":107}
+{"kind":"shell","t":148}
+{"kind":"git","t":176}
+{"kind":"shell","t":200}
+{"kind":"shell","t":214}
+{"kind":"shell","t":222}
+{"kind":"shell","t":226}
+{"kind":"shell","t":238}
+{"kind":"shell","t":296}
+{"kind":"read","t":308,"target":"outside"}
+{"kind":"read","t":309,"target":"outside"}
+{"kind":"shell","t":331}
+{"kind":"read","t":343,"target":"outside"}
+{"kind":"read","t":343,"target":"outside"}
+{"kind":"shell","t":362}
+{"kind":"read","t":402,"target":"outside"}
+{"kind":"git","t":403,"target":"status"}
+{"kind":"refused","rule":"rephrase","t":437}
+{"kind":"write","t":450,"target":"seat/journal/2026-10-18-w134.md"}
+{"kind":"write","t":452,"target":"seat/wakes/w134/note.md"}
+{"kind":"tool","t":455,"target":"registry validate"}
+{"kind":"write","t":481,"target":"seat/NOW.md"}
+{"kind":"shell","t":482}
+{"kind":"tool","t":486,"target":"seat close"}
+{"kind":"close","t":488}

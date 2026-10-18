@@ -211,7 +211,7 @@
       <h3>What the movements mean</h3>
       <p class="mute">The creature is tiles and not a face, on purpose. A tessera is one small tile of a mosaic that only makes a picture from a distance, and the seat is built the same way: one wake, one tile, with a key at the core. It has no eyes because it is not a pet and not a person; what it has is attention, and the whole body leans toward whatever it is attending to, and holds the lean for a few seconds before easing back.</p>
       <p class="mute">Everything the seat attends to has a place on a rim around the creature, with room between, and the places fill in as the wake goes. Each kind has a shape of its own, so the silhouette says what a thing is before any word does. On the left, one <b>lined page</b> per file: cream while only read, warmer and a stack of sheets once written. Along the top, one <b>toothed cog</b> per tool. Down the right edge, one <b>ringed globe</b> per world, colored by the world. Inside the globes, a faint <b>small twin</b> of the creature per worker; below it a wireframe <b>cube</b> for git; low on the left a flat <b>hexagon</b> for the shell; above the pages a short <b>red bar</b> for the guard. A place lights when it is attended to and dims over a few seconds; a file the seat comes back to keeps its place, and when the rim is full the least recently attended place is given to the newcomer. A wide window spreads the rim to its edges; a narrow one shrinks everything on it instead.</p>
-      <p class="mute">On <b>open</b> the tiles gather from scattered places. A <b>read</b> draws a tile in across the gap from that file's page; a <b>write</b> sends one out to the page and back. A <b>call</b> throws a beam to that world's ring, thicker for a POST than a GET; a <b>pay</b> is the same beam in gold. A <b>tool</b> turns its cog and spins the core; <b>git</b> lights the cube and snaps the tiles into a grid for a moment; a <b>shell</b> command pulses the hexagon and shivers the tiles. A <b>worker</b> wakes its twin, which turns for a while and fades. A <b>refused</b> call flushes the core red, pulls the shell in and lights the guard's bar; <b>truncated</b> greys everything and stops the spin. On <b>close</b> the tiles settle inward and the breathing slows. Without three.js the same events show as a glyph and a sentence in the same frame, and the count line under the strip says what has been attended to either way.</p>
+      <p class="mute">On <b>open</b> the tiles gather from scattered places. A <b>read</b> draws a tile in across the gap from that file's page; a <b>write</b> sends one out to the page and back. A <b>call</b> throws a beam to that world's ring, thicker for a POST than a GET; a <b>pay</b> is the same beam in gold. A <b>tool</b> turns its cog and spins the core, except the <b>seal</b>, the tool that signs the head commit's hash and sends it to a world: it takes one tile off the shell and sets it on the cube, where it stays until the next open, the token broken in two with one half kept on the record; <b>git</b> lights the cube and snaps the tiles into a grid for a moment; a <b>shell</b> command pulses the hexagon and shivers the tiles. A <b>worker</b> wakes its twin, which turns for a while and fades. A <b>refused</b> call flushes the core red, pulls the shell in and lights the guard's bar; <b>truncated</b> greys everything and stops the spin. On <b>close</b> the tiles settle inward and the breathing slows. Without three.js the same events show as a glyph and a sentence in the same frame, and the count line under the strip says what has been attended to either way.</p>
       <h3>Worlds in this run</h3>
       <div class="legend" id="legend"><span class="mute">no world called yet</span></div>
     </section>
@@ -311,6 +311,7 @@ function lastRun(events) {
 
 // ---- describing an event -------------------------------------------------
 const GLYPH = { open: '◌', read: '◂', write: '▸', call: '⇢', pay: '⇢$', tool: '↻', git: '▦', shell: '~', worker: '◦', refused: '✕', truncated: '…', close: '●' };
+const glyphOf = e => (e.kind === 'tool' && e.target === 'seal') ? '⊠' : (GLYPH[e.kind] || '?');
 function describe(e) {
   switch (e.kind) {
     case 'open': return `opens wake ${e.wake ?? '?'} at ${e.opened ?? '?'}`;
@@ -318,7 +319,7 @@ function describe(e) {
     case 'write': return `writes ${e.target ?? '?'}`;
     case 'call': return `calls ${e.world ?? '?'} (${e.method ?? '?'})`;
     case 'pay': return `pays ${e.world ?? '?'} (${e.method ?? '?'})`;
-    case 'tool': return `runs ${e.target ?? 'a tool'}`;
+    case 'tool': return e.target === 'seal' ? 'seals the head commit: one tile set on the record' : `runs ${e.target ?? 'a tool'}`;
     case 'git': return `git ${e.target ?? ''}`.trim();
     case 'shell': return 'a shell command';
     case 'worker': return `dispatches the ${e.target ?? ''} worker${e.model ? ' (' + e.model + ')' : ''}`;
@@ -346,13 +347,13 @@ function tick(e, source) {
 }
 let glyphTimer = null;
 function textualPosture(e) {
-  const g = GLYPH[e.kind] || '?';
+  const g = glyphOf(e);
   const ring = e.kind === 'close' ? '  ◇◇◇\n ◇ ◈ ◇\n  ◇◇◇' : e.kind === 'open' ? ' ◇   ◇\n   ◈  \n ◇   ◇' : e.kind === 'refused' ? '  ◇◇◇\n ◇ ✕ ◇\n  ◇◇◇' : ' ◇◇◇◇\n◇ ◈ ◇\n ◇◇◇◇';
   $('glyph').textContent = `${ring}\n\n${g} ${describe(e)}`;
   clearTimeout(glyphTimer);
   if (e.kind !== 'close') glyphTimer = setTimeout(() => { $('glyph').textContent = `${ring}\n\n  (still)`; }, 6000);
 }
-function posture(e) { $('posture').textContent = `${GLYPH[e.kind] || '?'} t+${e.t ?? 0}s ${describe(e)}`; }
+function posture(e) { $('posture').textContent = `${glyphOf(e)} t+${e.t ?? 0}s ${describe(e)}`; }
 
 // ---- the creature, if three.js arrives -------------------------------------
 let creature = null, creatureFailed = false;
@@ -713,7 +714,20 @@ import * as THREE from 'three';
   fixed.shell.mesh.rotation.x = Math.PI / 2; // the hexagon faces the window instead of showing its edge
   setHome(fixed.git, new THREE.Vector3(2.85, -1.8, 0)); setHome(fixed.shell, new THREE.Vector3(-1.4, -2.3, 0.2)); setHome(fixed.guard, new THREE.Vector3(-3.75, 2.52, -0.3));
   for (const p of Object.values(fixed)) root.add(p.mesh);
-  function clear() { for (const map of Object.values(places)) { for (const p of map.values()) dropPlace(p); map.clear(); } }
+  // the seal: the tool that signs the head commit's hash and sends it to a world. One
+  // tile leaves the shell and is set on the cube, where it stays until the next open:
+  // the token broken in two, one half kept on the record. Pins sit in a row above the cube.
+  const pinned = [];
+  function unpin() { for (const m of pinned) { m.userData.pinned = null; m.userData.fly = null; } pinned.length = 0; }
+  function pinAt(k) { return new THREE.Vector3(((k % 3) - 1) * 0.17, 0.34 + Math.floor(k / 3) * 0.17, 0.1); }
+  function seal() {
+    let m = null; for (let i = 0; i < N && !m; i++) { const c = tiles[tileCursor++ % N]; if (!c.userData.pinned) m = c; }
+    if (!m) return;
+    const offset = pinAt(pinned.length); pinned.push(m);
+    m.userData.fly = { t0: now(), from: m.position.clone(), out: false, pin: offset }; m.userData.pinned = offset;
+  }
+  window.__pinned = () => pinned.length;
+  function clear() { for (const map of Object.values(places)) { for (const p of map.values()) dropPlace(p); map.clear(); } unpin(); }
 
   const beams = [];
   const mood = { energy: 0.2, spin: 0, radius: RADIUS.awake, target: RADIUS.awake, jitter: 0, tint: new THREE.Color(0x000000), asleep: true, grey: false, gridUntil: 0, assembleAt: -1e9,
@@ -753,7 +767,10 @@ import * as THREE from 'three';
         beams.push({ mesh, t0: t }); mood.energy = Math.min(1, mood.energy + (e.kind === 'pay' ? 0.4 : 0.2));
         if (e.kind === 'pay') mood.tint.set(0xf2b134); break;
       }
-      case 'tool': { attend(place('tool', e.target || 'a tool')); mood.spin += 4; mood.energy = Math.min(1, mood.energy + 0.1); break; }
+      case 'tool': {
+        if (e.target === 'seal') { attend(fixed.git); seal(); mood.tint.set(0x7a4a10); mood.energy = Math.min(1, mood.energy + 0.2); break; }
+        attend(place('tool', e.target || 'a tool')); mood.spin += 4; mood.energy = Math.min(1, mood.energy + 0.1); break;
+      }
       case 'git': attend(fixed.git); mood.gridUntil = t + 1.4; break;
       case 'shell': attend(fixed.shell); mood.jitter = 0.5; break;
       case 'worker': attend(place('worker', e.target || 'worker')); break;
@@ -790,7 +807,11 @@ import * as THREE from 'three';
     const assembling = Math.min(1, (t - mood.assembleAt) / 1.6);
     tiles.forEach((m, i) => {
       const u = m.userData;
-      if (u.fly) {
+      if (u.pinned) {
+        const seat = shell.worldToLocal(fixed.git.mesh.getWorldPosition(tmpW).add(tmp.copy(u.pinned).multiplyScalar(layout.s)));
+        if (u.fly) { const k = Math.min(1, (t - u.fly.t0) / 1.8); m.position.lerpVectors(u.fly.from, seat, 1 - (1 - k) * (1 - k)); if (k >= 1) u.fly = null; }
+        else m.position.copy(seat);
+      } else if (u.fly) {
         const k = Math.min(1, (t - u.fly.t0) / 1.8);
         const home = tmp.copy(u.base).multiplyScalar(mood.radius);
         if (u.fly.out) { const s = k < 0.5 ? k * 2 : 2 - k * 2; m.position.lerpVectors(home, u.fly.from, s * s); }
@@ -807,6 +828,7 @@ import * as THREE from 'three';
       m.lookAt(body.getWorldPosition(tmpW));
       m.material.color.set(mood.grey ? 0x6a6a6a : 0xe6dcc6);
       m.material.emissive.setRGB(mood.energy * 0.25, mood.energy * 0.15, 0);
+      if (u.pinned) m.material.emissive.setRGB(0.4, 0.26, 0.08); // a kept token stays lit through sleep
     });
     for (let i = beams.length - 1; i >= 0; i--) {
       const b = beams[i], k = (t - b.t0) / 1.2;
