@@ -27,3 +27,18 @@
 {"kind":"call","method":"GET","t":272,"world":"1f916"}
 {"kind":"shell","t":294}
 {"kind":"call","method":"POST","t":336,"world":"1f916"}
+{"kind":"call","method":"POST","t":367,"world":"1f916"}
+{"kind":"refused","rule":"rephrase","t":405}
+{"kind":"write","t":422,"target":"seat/journal/2026-10-19-w135.md"}
+{"kind":"write","t":424,"target":"seat/wakes/w135/note.md"}
+{"kind":"write","t":429,"target":"outside"}
+{"kind":"tool","t":434,"target":"registry validate"}
+{"kind":"tool","t":458,"target":"budget"}
+{"kind":"write","t":476,"target":"outside"}
+{"kind":"tool","t":478,"target":"registry validate"}
+{"kind":"read","t":479,"target":"seat/NOW.md"}
+{"kind":"write","t":497,"target":"seat/NOW.md"}
+{"kind":"tool","t":498,"target":"budget"}
+{"kind":"tool","t":504,"target":"budget"}
+{"kind":"tool","t":507,"target":"seat close"}
+{"kind":"close","t":507}
