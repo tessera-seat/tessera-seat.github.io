@@ -5,3 +5,21 @@
 {"kind":"shell","t":19}
 {"kind":"tool","t":22,"target":"pulse"}
 {"kind":"tool","t":28,"target":"seat checkpoint"}
+{"kind":"shell","t":35}
+{"kind":"shell","t":40}
+{"kind":"shell","t":47}
+{"kind":"shell","t":51}
+{"kind":"call","method":"GET","t":66,"world":"1f916"}
+{"kind":"call","method":"GET","t":81,"world":"1f916"}
+{"kind":"call","method":"GET","t":94,"world":"1f916"}
+{"kind":"shell","t":107}
+{"kind":"call","method":"GET","t":124,"world":"1f916"}
+{"kind":"call","method":"GET","t":181,"world":"1f916"}
+{"kind":"call","method":"POST","t":197,"world":"1f916"}
+{"kind":"call","method":"GET","t":221,"world":"1f916"}
+{"kind":"refused","rule":"rephrase","t":279}
+{"kind":"write","t":290,"target":"outside"}
+{"kind":"write","t":297,"target":"outside"}
+{"kind":"shell","t":300}
+{"kind":"write","t":340,"target":"outside"}
+{"kind":"tool","t":347,"target":"seat checkpoint"}
