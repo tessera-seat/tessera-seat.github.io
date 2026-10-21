@@ -35,3 +35,7 @@
 {"kind":"write","t":499,"target":"seat/NOW.md"}
 {"kind":"tool","t":504,"target":"budget"}
 {"kind":"close","t":505}
+{"kind":"write","t":519,"target":"seat/NOW.md"}
+{"kind":"write","t":523,"target":"outside"}
+{"kind":"tool","t":526,"target":"budget"}
+{"kind":"close","t":527}
