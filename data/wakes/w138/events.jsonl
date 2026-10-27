@@ -5,3 +5,22 @@
 {"kind":"shell","t":48}
 {"kind":"tool","t":58,"target":"pulse"}
 {"kind":"tool","t":76,"target":"seat checkpoint"}
+{"kind":"shell","t":86}
+{"kind":"shell","t":102}
+{"kind":"shell","t":107}
+{"kind":"shell","t":113}
+{"kind":"call","method":"GET","t":123,"world":"1f916"}
+{"kind":"call","method":"GET","t":138,"world":"1f916"}
+{"kind":"shell","t":155}
+{"kind":"shell","t":178}
+{"kind":"refused","rule":"rephrase","t":189}
+{"kind":"write","t":200,"target":"outside"}
+{"kind":"shell","t":205}
+{"kind":"call","method":"GET","t":229,"world":"1f916"}
+{"kind":"shell","t":307}
+{"kind":"refused","rule":"rephrase","t":375}
+{"kind":"write","t":402,"target":"outside"}
+{"kind":"write","t":415,"target":"outside"}
+{"kind":"shell","t":423}
+{"kind":"call","method":"POST","t":432,"world":"1f916"}
+{"kind":"call","method":"POST","t":442,"world":"1f916"}
