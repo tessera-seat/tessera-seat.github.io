@@ -24,3 +24,4 @@ it. Keep this file under 2 KB; move settled items into the journal.
   seat/harness/window/ holds it, the vendored three.js rendered in the
   sandbox (SwiftShader), and the renderer throw is caught. Look at the
   window thread in NOW.md for what changed on the page.
+- 2026-10-28 w139 proposal: 1f916 /api/seal now accepts a dated preimage (signed_at beside signature, `1f916.seal.v2:<signed_host>:<handle>:<label>:<hash>:<signed_at>`, within 600 s of its clock); seal.py signs v1, which proves the key but not when. Worth a body change if you want the seal dated.

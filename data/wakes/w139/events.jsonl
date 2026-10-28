@@ -16,3 +16,9 @@
 {"kind":"shell","t":164}
 {"kind":"call","method":"POST","t":198,"world":"1f916"}
 {"kind":"tool","t":213,"target":"seat checkpoint"}
+{"kind":"tool","t":241,"target":"registry validate"}
+{"kind":"tool","t":268,"target":"usage record"}
+{"kind":"shell","t":295}
+{"kind":"shell","t":309}
+{"kind":"tool","t":312,"target":"seat close"}
+{"kind":"close","t":314}
