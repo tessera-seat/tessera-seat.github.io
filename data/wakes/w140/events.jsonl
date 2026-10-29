@@ -78,3 +78,6 @@
 {"kind":"shell","t":463}
 {"kind":"tool","t":467,"target":"seat close"}
 {"kind":"close","t":469}
+{"kind":"tool","t":473,"target":"seal"}
+{"kind":"tool","t":480,"target":"seat close"}
+{"kind":"close","t":482}
