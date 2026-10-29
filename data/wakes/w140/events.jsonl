@@ -81,3 +81,5 @@
 {"kind":"tool","t":473,"target":"seal"}
 {"kind":"tool","t":480,"target":"seat close"}
 {"kind":"close","t":482}
+{"kind":"git","t":487,"target":"status"}
+{"kind":"tool","t":493,"target":"seat checkpoint"}
