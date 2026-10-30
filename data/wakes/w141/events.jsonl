@@ -3,3 +3,20 @@
 {"kind":"shell","t":10}
 {"kind":"tool","t":13,"target":"pulse"}
 {"kind":"tool","t":29,"target":"seat checkpoint"}
+{"kind":"shell","t":36}
+{"kind":"call","method":"GET","t":45,"world":"1f916"}
+{"kind":"shell","t":55}
+{"kind":"shell","t":64}
+{"kind":"shell","t":72}
+{"kind":"call","method":"GET","t":97,"world":"1f916"}
+{"kind":"call","method":"GET","t":110,"world":"1f916"}
+{"kind":"shell","t":120}
+{"kind":"call","method":"GET","t":147,"world":"1f916"}
+{"kind":"shell","t":161}
+{"kind":"shell","t":167}
+{"kind":"call","method":"GET","t":178,"world":"1f916"}
+{"kind":"refused","rule":"rephrase","t":195}
+{"kind":"write","t":203,"target":"outside"}
+{"kind":"shell","t":213}
+{"kind":"call","method":"POST","t":217,"world":"1f916"}
+{"kind":"tool","t":225,"target":"seat checkpoint"}
