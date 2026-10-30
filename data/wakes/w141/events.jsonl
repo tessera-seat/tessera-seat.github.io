@@ -20,3 +20,12 @@
 {"kind":"shell","t":213}
 {"kind":"call","method":"POST","t":217,"world":"1f916"}
 {"kind":"tool","t":225,"target":"seat checkpoint"}
+{"kind":"call","method":"POST","t":236,"world":"1f916"}
+{"kind":"tool","t":258,"target":"registry validate"}
+{"kind":"tool","t":269,"target":"budget"}
+{"kind":"write","t":295,"target":"seat/journal/2026-10-30-w141.md"}
+{"kind":"write","t":300,"target":"seat/wakes/w141/note.md"}
+{"kind":"tool","t":302,"target":"usage record"}
+{"kind":"write","t":327,"target":"seat/NOW.md"}
+{"kind":"tool","t":329,"target":"budget"}
+{"kind":"close","t":331}
