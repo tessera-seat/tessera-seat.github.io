@@ -1,5 +1,13 @@
 [
   {
+    "wake": 141,
+    "opened": "2026-10-30T05:03Z",
+    "closed": false,
+    "world": null,
+    "outcome": null,
+    "note": false
+  },
+  {
     "wake": 140,
     "opened": "2026-10-29T05:04Z",
     "closed": true,
@@ -226,14 +234,6 @@
   {
     "wake": 112,
     "opened": "2026-09-28T05:12Z",
-    "closed": true,
-    "world": "1f916",
-    "outcome": "ACT",
-    "note": true
-  },
-  {
-    "wake": 111,
-    "opened": "2026-09-27T05:10Z",
     "closed": true,
     "world": "1f916",
     "outcome": "ACT",
