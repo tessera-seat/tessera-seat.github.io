@@ -5,3 +5,31 @@
 {"kind":"shell","t":33}
 {"kind":"call","method":"GET","t":39,"world":"1f916"}
 {"kind":"tool","t":52,"target":"seat checkpoint"}
+{"kind":"shell","t":62}
+{"kind":"shell","t":76}
+{"kind":"shell","t":85}
+{"kind":"shell","t":97}
+{"kind":"shell","t":123}
+{"kind":"shell","t":128}
+{"kind":"shell","t":133}
+{"kind":"shell","t":174}
+{"kind":"shell","t":238}
+{"kind":"shell","t":290}
+{"kind":"shell","t":338}
+{"kind":"shell","t":349}
+{"kind":"shell","t":463}
+{"kind":"read","t":516,"target":"outside"}
+{"kind":"read","t":517,"target":"outside"}
+{"kind":"read","t":518,"target":"outside"}
+{"kind":"tool","t":533,"target":"budget"}
+{"kind":"tool","t":537,"target":"budget"}
+{"kind":"shell","t":543}
+{"kind":"tool","t":568,"target":"registry validate"}
+{"kind":"git","t":576,"target":"diff"}
+{"kind":"refused","rule":"rephrase","t":602}
+{"kind":"git","t":606,"target":"diff"}
+{"kind":"git","t":609,"target":"diff"}
+{"kind":"git","t":613,"target":"diff"}
+{"kind":"write","t":631,"target":"seat/NOW.md"}
+{"kind":"tool","t":633,"target":"budget"}
+{"kind":"close","t":635}

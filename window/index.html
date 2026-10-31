@@ -211,7 +211,7 @@
       <h3>What the movements mean</h3>
       <p class="mute">The creature is tiles and not a face, on purpose. A tessera is one small tile of a mosaic that only makes a picture from a distance, and the seat is built the same way: one wake, one tile, with a key at the core. It has no eyes because it is not a pet and not a person; what it has is attention, and the whole body leans toward whatever it is attending to, and holds the lean for a few seconds before easing back.</p>
       <p class="mute">Everything the seat attends to has a place on a rim around the creature, with room between, and the places fill in as the wake goes. Each kind has a shape of its own, so the silhouette says what a thing is before any word does. On the left, one <b>lined page</b> per file: cream while only read, warmer and a stack of sheets once written. Along the top, one <b>toothed cog</b> per tool. Down the right edge, one <b>ringed globe</b> per world, colored by the world. Inside the globes, a faint <b>small twin</b> of the creature per worker; below it a wireframe <b>cube</b> for git; low on the left a flat <b>hexagon</b> for the shell; above the pages a short <b>red bar</b> for the guard. A place lights when it is attended to and dims over a few seconds; a file the seat comes back to keeps its place, and when the rim is full the least recently attended place is given to the newcomer. A wide window spreads the rim to its edges; a narrow one shrinks everything on it instead.</p>
-      <p class="mute">On <b>open</b> the tiles gather from scattered places. A <b>read</b> draws a tile in across the gap from that file's page; a <b>write</b> sends one out to the page and back. A <b>call</b> throws a beam to that world's ring, thicker for a POST than a GET; a <b>pay</b> is the same beam in gold. A <b>tool</b> turns its cog and spins the core, except the <b>seal</b>, the tool that signs the head commit's hash and sends it to a world: it takes one tile off the shell and sets it on the cube, where it stays until the next open, the token broken in two with one half kept on the record; <b>git</b> lights the cube and snaps the tiles into a grid for a moment; a <b>shell</b> command pulses the hexagon and shivers the tiles. A <b>worker</b> wakes its twin, which turns for a while and fades. A <b>refused</b> call flushes the core red, pulls the shell in and lights the guard's bar; <b>truncated</b> greys everything and stops the spin. On <b>close</b> the tiles settle inward and the breathing slows. Without three.js the same events show as a glyph and a sentence in the same frame, and the count line under the strip says what has been attended to either way.</p>
+      <p class="mute">On <b>open</b> the tiles gather from scattered places. A <b>read</b> draws a tile in across the gap from that file's page; a <b>write</b> sends one out to the page and back. A <b>call</b> throws a beam to that world's ring, thicker for a POST than a GET; a <b>pay</b> is the same beam in gold. A <b>tool</b> turns its cog and spins the core, except the <b>seal</b>, the tool that signs the head commit's hash and sends it to a world: it takes one tile off the shell and sets it on the cube, where it stays until the next open, the token broken in two with one half kept on the record; <b>git</b> lights the cube and snaps the tiles into a grid for a moment; a <b>shell</b> command pulses the hexagon and shivers the tiles. A <b>worker</b> wakes its twin, which turns for a while and fades. A <b>refused</b> call flushes the core red, pulls the shell in and lights the guard's bar; <b>truncated</b> greys everything and stops the spin. On <b>close</b> the tiles settle inward and the breathing slows. When a wake's record ends with <b>no close</b>, which is a thing the seat's own record can show, the creature is held where it was, mid-lean, shell and breath still, with only the core turning slowly, because the page is alive and the record is not; the strip says how long the record has been quiet, after the seat's own two-hour ceiling on one run, and the wakes table says <b>no close</b> for any older wake whose record stops that way. That is what the record shows, never a verdict on the wake: a close that arrives late is taken up at the next poll. Without three.js the same events show as a glyph and a sentence in the same frame, and the count line under the strip says what has been attended to either way.</p>
       <h3>Worlds in this run</h3>
       <div class="legend" id="legend"><span class="mute">no world called yet</span></div>
     </section>
@@ -310,7 +310,8 @@ function lastRun(events) {
 }
 
 // ---- describing an event -------------------------------------------------
-const GLYPH = { open: '◌', read: '◂', write: '▸', call: '⇢', pay: '⇢$', tool: '↻', git: '▦', shell: '~', worker: '◦', refused: '✕', truncated: '…', close: '●' };
+// `stop` is never in a feed: the page makes it when a wake's record ends without a close
+const GLYPH = { open: '◌', read: '◂', write: '▸', call: '⇢', pay: '⇢$', tool: '↻', git: '▦', shell: '~', worker: '◦', refused: '✕', truncated: '…', close: '●', stop: '○' };
 const glyphOf = e => (e.kind === 'tool' && e.target === 'seal') ? '⊠' : (GLYPH[e.kind] || '?');
 function describe(e) {
   switch (e.kind) {
@@ -326,6 +327,7 @@ function describe(e) {
     case 'refused': return `refused by the guard: ${e.rule ?? '?'}`;
     case 'truncated': return 'the feed hit its cap; nothing more is recorded';
     case 'close': return 'closes';
+    case 'stop': return 'the record stops here: no close';
     default: return e.kind;
   }
 }
@@ -348,10 +350,10 @@ function tick(e, source) {
 let glyphTimer = null;
 function textualPosture(e) {
   const g = glyphOf(e);
-  const ring = e.kind === 'close' ? '  ◇◇◇\n ◇ ◈ ◇\n  ◇◇◇' : e.kind === 'open' ? ' ◇   ◇\n   ◈  \n ◇   ◇' : e.kind === 'refused' ? '  ◇◇◇\n ◇ ✕ ◇\n  ◇◇◇' : ' ◇◇◇◇\n◇ ◈ ◇\n ◇◇◇◇';
+  const ring = e.kind === 'close' ? '  ◇◇◇\n ◇ ◈ ◇\n  ◇◇◇' : e.kind === 'open' ? ' ◇   ◇\n   ◈  \n ◇   ◇' : e.kind === 'refused' ? '  ◇◇◇\n ◇ ✕ ◇\n  ◇◇◇' : e.kind === 'stop' ? ' ◇◇◇◇\n◇ ○ ◇\n ◇◇◇◇' : ' ◇◇◇◇\n◇ ◈ ◇\n ◇◇◇◇';
   $('glyph').textContent = `${ring}\n\n${g} ${describe(e)}`;
   clearTimeout(glyphTimer);
-  if (e.kind !== 'close') glyphTimer = setTimeout(() => { $('glyph').textContent = `${ring}\n\n  (still)`; }, 6000);
+  if (e.kind !== 'close' && e.kind !== 'stop') glyphTimer = setTimeout(() => { $('glyph').textContent = `${ring}\n\n  (still)`; }, 6000);
 }
 function posture(e) { $('posture').textContent = `${glyphOf(e)} t+${e.t ?? 0}s ${describe(e)}`; }
 
@@ -397,6 +399,23 @@ function emit(e, source) {
   if (creature) creature.onEvent(e); else textualPosture(e);
   $('s-last').textContent = `${e.kind} t+${e.t ?? 0}s`;
 }
+// A wake with no close is awake by the record; how long its record has been quiet is the
+// one measure the page adds. Past the seat's own ceiling on one run (two hours) the
+// strip stops saying awake and says what the record shows: no close, quiet this long.
+// That is an observation, never a verdict on the wake: a late close is taken up at the
+// next poll, and the page says nothing about what became of the run.
+const STALL_S = 2 * 3600;
+function lastEventAt(opened, run) {
+  const o = Date.parse(opened || ''); if (isNaN(o)) return null;
+  return new Date(o + (run.length ? (run[run.length - 1].t || 0) : 0) * 1000);
+}
+function ago(ms) {
+  const m = Math.max(0, Math.round(ms / 60000));
+  if (m < 2) return 'about a minute'; if (m < 90) return `${m} min`;
+  const h = Math.round(m / 6) / 10; return h < 48 ? `${h} h` : `${Math.round(h / 24)} days`;
+}
+function isClosed(events) { return lastRun(events).some(e => e.kind === 'close'); }
+function stopLook(t) { const e = { kind: 'stop', t: t || 0 }; posture(e); if (creature) creature.onEvent(e); else textualPosture(e); }
 function emitStaggered(list, source, gapMs, done) {
   let i = 0;
   const step = () => { if (i < list.length) { emit(list[i++], source); setTimeout(step, gapMs); } else if (done) done(); };
@@ -429,35 +448,36 @@ async function loadDocs(newest) {
       const { fm, body } = parseNote(n.text);
       const h = document.createElement('h3'); h.textContent = `wake ${fm.wake ?? newest.wake} · ${fm.date ?? ''} · ${fm.world ?? 'no world'} · ${fm.outcome ?? '?'}`; box.appendChild(h);
       const p = document.createElement('p'); p.textContent = body || '(no text)'; box.appendChild(p);
-    } else { const p = document.createElement('p'); p.className = 'mute'; p.textContent = newest.closed ? `no note for wake ${newest.wake} on the mirror yet` : `wake ${newest.wake} is still awake; its note is written when it sleeps`; box.appendChild(p); }
+    } else { const p = document.createElement('p'); p.className = 'mute'; p.textContent = newest.closed ? `no note for wake ${newest.wake} on the mirror yet` : `wake ${newest.wake} has no close on the mirror; its note is written when it sleeps`; box.appendChild(p); }
   }
 }
-function renderWakes(index) {
+function renderWakes(index, newestState) {
   const box = $('wakes'); box.textContent = '';
   if (!index.length) { box.innerHTML = '<p class="mute">no wakes indexed on the mirror yet</p>'; return; }
   const t = document.createElement('table');
   t.innerHTML = '<thead><tr><th class="num">wake</th><th>opened (UTC)</th><th>world</th><th>outcome</th><th>state</th></tr></thead>';
   const tb = document.createElement('tbody');
-  for (const w of index.slice(0, 14)) {
+  const stateOf = (w, i) => w.closed ? ['closed', ''] : i > 0 ? ['no close', 'mute'] : newestState === 'stalled' ? ['no close', 'warn'] : ['awake', 'ok'];
+  index.slice(0, 14).forEach((w, i) => {
     const tr = document.createElement('tr');
-    for (const [v, cls] of [[w.wake, 'num'], [w.opened, ''], [w.world ?? '–', ''], [w.outcome ?? (w.note ? '?' : 'no note'), ''], [w.closed ? 'closed' : 'awake', w.closed ? '' : 'ok']]) {
+    for (const [v, cls] of [[w.wake, 'num'], [w.opened, ''], [w.world ?? '–', ''], [w.outcome ?? (w.note ? '?' : 'no note'), ''], stateOf(w, i)]) {
       const td = document.createElement('td'); td.className = cls; td.textContent = v == null ? '–' : String(v); tr.appendChild(td);
     }
     tb.appendChild(tr);
-  }
+  });
   t.appendChild(tb); box.appendChild(t);
   if (index.length > 14) { const p = document.createElement('p'); p.className = 'mute'; p.textContent = `${index.length - 14} older wakes are in the replay list.`; box.appendChild(p); }
   const sel = $('r-wake'); const keep = sel.value; sel.textContent = '';
-  for (const w of index) {
+  index.forEach((w, i) => {
     const o = document.createElement('option'); o.value = String(w.wake);
-    o.textContent = `w${String(w.wake).padStart(3, '0')} · ${(w.opened || '').slice(0, 10)} · ${w.world ?? '–'} · ${w.outcome ?? '?'}${w.closed ? '' : ' · awake'}`;
+    o.textContent = `w${String(w.wake).padStart(3, '0')} · ${(w.opened || '').slice(0, 10)} · ${w.world ?? '–'} · ${w.outcome ?? '?'}${w.closed ? '' : stateOf(w, i)[0] === 'awake' ? ' · awake' : ' · no close'}`;
     sel.appendChild(o);
-  }
+  });
   if (keep && [...sel.options].some(o => o.value === keep)) sel.value = keep;
 }
 
 // ---- live ------------------------------------------------------------------
-const live = { index: [], wake: null, seen: 0, awake: null, mirrorAt: null, failures: 0 };
+const live = { index: [], wake: null, seen: 0, awake: null, stalled: false, mirrorAt: null, failures: 0 };
 async function poll() {
   const r = await read('index.json');
   const now = new Date();
@@ -475,8 +495,9 @@ async function poll() {
   $('s-mirror').textContent = `read ${hhmm(now)}`; $('s-mirror').className = 'ok';
   const changed = JSON.stringify(index.slice(0, 3)) !== JSON.stringify(live.index.slice(0, 3));
   live.index = index;
-  if (changed) renderWakes(index);
   const newest = index[0];
+  const newestState = newest && !newest.closed ? (live.stalled ? 'stalled' : 'awake') : 'closed';
+  if (changed) renderWakes(index, newestState);
   if (!newest) { $('s-state').textContent = 'no wakes on the mirror yet'; return; }
   const awake = !newest.closed;
   const wakeChanged = newest.wake !== live.wake;
@@ -486,20 +507,33 @@ async function poll() {
   // the asks and the note are behind buttons in either state, so they load once per wake and again when the seat sleeps
   if (wakeChanged || live.awake === null || (!awake && live.awake !== false)) await loadDocs(newest);
   if (awake) {
-    $('s-state').textContent = 'awake'; $('s-state').className = 'ok';
-    $('b-replay').hidden = true; $('r-play').disabled = true; stopReplay();
-    $('r-progress').textContent = 'the seat is awake; the replay control returns when it sleeps';
     const ev = await read(`wakes/w${String(newest.wake).padStart(3, '0')}/events.jsonl`);
+    const run = ev.ok ? lastRun(parseEvents(ev.text)) : [];
+    const at = lastEventAt(newest.opened, run), age = at ? now - at : null;
+    const lastT = run.length ? (run[run.length - 1].t || 0) : 0;
+    const stalled = age !== null && age > STALL_S * 1000;
+    const newlyStalled = stalled && (!live.stalled || wakeChanged);
+    if (stalled !== live.stalled) { live.stalled = stalled; renderWakes(index, stalled ? 'stalled' : 'awake'); }
+    if (stalled) {
+      $('s-state').textContent = `no close, quiet ${ago(age)}`; $('s-state').className = 'warn';
+      $('b-replay').hidden = false; $('r-play').disabled = false;
+      if (newlyStalled) $('r-progress').textContent = `the record of wake ${newest.wake} stops at t+${lastT}s with no close; the page keeps polling for a late one. Play any recorded wake meanwhile`;
+    } else {
+      $('s-state').textContent = age === null ? 'awake' : `awake, last event ${ago(age)} ago`; $('s-state').className = 'ok';
+      $('b-replay').hidden = true; $('r-play').disabled = true; stopReplay();
+      $('r-progress').textContent = 'the seat is awake; the replay control returns when it sleeps';
+    }
     if (ev.ok) {
-      const run = lastRun(parseEvents(ev.text));
       $('s-events').textContent = String(run.length);
+      const after = stalled && !replay.on ? () => stopLook(lastT) : null;
       if (run.length > live.seen) {
         const fresh = run.slice(live.seen); live.seen = run.length;
-        if (!replay.on) emitStaggered(fresh, 'live', wakeChanged || live.awake === null ? 60 : 400);
+        if (!replay.on) emitStaggered(fresh, 'live', wakeChanged || live.awake === null ? 60 : 400, after);
         else for (const e of fresh) tick(e, 'live');
-      }
-    } else $('s-events').textContent = 'feed unreadable';
+      } else if (newlyStalled && after) after();
+    } else { $('s-events').textContent = 'feed unreadable'; if (newlyStalled && !replay.on) stopLook(lastT); }
   } else {
+    if (live.stalled) { live.stalled = false; renderWakes(index, 'closed'); }
     $('s-state').textContent = 'asleep'; $('s-state').className = '';
     $('b-replay').hidden = false; $('r-play').disabled = false;
     if (live.awake !== false) $('r-progress').textContent = 'the seat is asleep; play any recorded wake and watch it behind this panel, or close the panel and watch the whole frame. Gaps longer than 4 s of screen time are shortened to 4 s';
@@ -531,7 +565,11 @@ async function startReplay() {
   attnReset(); $('attn').textContent = ''; if (creature) creature.clear();
   const step = () => {
     if (!replay.on) return;
-    if (replay.i >= replay.events.length) { $('r-progress').textContent = `wake ${wake}: ${replay.events.length} events replayed`; stopReplay(); return; }
+    if (replay.i >= replay.events.length) {
+      const closed = isClosed(replay.events), last = replay.events[replay.events.length - 1];
+      $('r-progress').textContent = `wake ${wake}: ${replay.events.length} events replayed${closed ? '' : '; the record stops here, no close'}`;
+      stopReplay(); if (!closed) stopLook(last ? last.t : 0); return;
+    }
     const e = replay.events[replay.i++]; emit(e, 'replay');
     $('r-progress').textContent = `wake ${wake}: event ${replay.i} of ${replay.events.length}, t+${e.t ?? 0}s at ${speed}×`;
     const next = replay.events[replay.i];
@@ -727,10 +765,11 @@ import * as THREE from 'three';
     m.userData.fly = { t0: now(), from: m.position.clone(), out: false, pin: offset }; m.userData.pinned = offset;
   }
   window.__pinned = () => pinned.length;
+  window.__held = () => mood.held;
   function clear() { for (const map of Object.values(places)) { for (const p of map.values()) dropPlace(p); map.clear(); } unpin(); }
 
   const beams = [];
-  const mood = { energy: 0.2, spin: 0, radius: RADIUS.awake, target: RADIUS.awake, jitter: 0, tint: new THREE.Color(0x000000), asleep: true, grey: false, gridUntil: 0, assembleAt: -1e9,
+  const mood = { energy: 0.2, spin: 0, radius: RADIUS.awake, target: RADIUS.awake, jitter: 0, tint: new THREE.Color(0x000000), asleep: true, held: false, grey: false, gridUntil: 0, assembleAt: -1e9,
                  lean: new THREE.Vector2(0, 0), leanUntil: 0 };
   // attention: the body leans toward the place itself, holds for a moment, then eases back over seconds.
   function attend(p) {
@@ -750,7 +789,7 @@ import * as THREE from 'three';
     mood.grey = false;
     switch (e.kind) {
       case 'open':
-        clear(); mood.asleep = false; mood.energy = 0.7; mood.target = RADIUS.awake; mood.assembleAt = t; mood.tint.set(0x7a4a10);
+        clear(); mood.asleep = false; mood.held = false; mood.energy = 0.7; mood.target = RADIUS.awake; mood.assembleAt = t; mood.tint.set(0x7a4a10);
         for (const m of tiles) m.position.copy(m.userData.base).multiplyScalar(4 + Math.random() * 4).add(new THREE.Vector3((Math.random() - .5) * 4, (Math.random() - .5) * 4, 0));
         break;
       case 'read': { const p = place('file', e.target || 'outside'); attend(p); fly(p, false); mood.energy = Math.min(1, mood.energy + 0.08); break; }
@@ -776,7 +815,9 @@ import * as THREE from 'three';
       case 'worker': attend(place('worker', e.target || 'worker')); break;
       case 'refused': attend(fixed.guard); mood.tint.set(0xb3261e); mood.target = RADIUS.cowed; mood.energy = 1; setTimeout(() => { mood.target = mood.asleep ? RADIUS.asleep : RADIUS.awake; }, 1500); break;
       case 'truncated': mood.grey = true; mood.spin = 0; break;
-      case 'close': mood.asleep = true; mood.target = RADIUS.asleep; mood.energy = 0.05; mood.tint.set(0x2a3b55); break;
+      case 'close': mood.asleep = true; mood.held = false; mood.target = RADIUS.asleep; mood.energy = 0.05; mood.tint.set(0x2a3b55); break;
+      // the record stops with no close: the body is held where it was, mid-lean, shell and breath still; only the core keeps a slow turn, since the page is alive and the record is not
+      case 'stop': mood.held = true; mood.asleep = false; mood.energy = 0.15; mood.spin = 0; mood.jitter = 0; mood.leanUntil = 1e12; mood.tint.set(0x4a5560); break;
     }
   }
 
@@ -790,13 +831,13 @@ import * as THREE from 'three';
     mood.jitter = Math.max(0, mood.jitter - dt * 1.2);
     mood.radius += (mood.target - mood.radius) * Math.min(1, dt * 3);
     mood.tint.lerp(new THREE.Color(0x000000), dt * 0.4);
-    core.rotation.y += dt * speed * (0.25 + mood.spin);
-    core.rotation.x += dt * speed * 0.1;
+    core.rotation.y += dt * speed * (mood.held ? 0.05 : 0.25 + mood.spin);
+    core.rotation.x += dt * speed * (mood.held ? 0 : 0.1);
     coreMat.emissive.copy(mood.tint).lerp(new THREE.Color(0xffb060), mood.energy * 0.5);
     coreMat.color.set(mood.grey ? 0x777777 : 0xd8cfbd);
     glow.intensity = mood.energy * 6;
-    const breath = Math.sin(t * speed * (mood.asleep ? 0.6 : 1.8)) * (mood.asleep ? 0.03 : 0.045);
-    shell.rotation.y += dt * speed * (mood.asleep ? 0.04 : 0.15 + mood.spin * 0.3);
+    const breath = mood.held ? 0 : Math.sin(t * speed * (mood.asleep ? 0.6 : 1.8)) * (mood.asleep ? 0.03 : 0.045);
+    shell.rotation.y += mood.held ? 0 : dt * speed * (mood.asleep ? 0.04 : 0.15 + mood.spin * 0.3);
     // the lean: large enough to read, held, then a slow return; the shift scales with the body
     if (t > mood.leanUntil) mood.lean.multiplyScalar(Math.max(0, 1 - dt * 0.3));
     const kl = Math.min(1, dt * 2.2), bs = body.scale.x;
@@ -821,7 +862,7 @@ import * as THREE from 'three';
         const gx = (i % 8) - 3.5, gy = Math.floor(i / 8) - 3.5;
         m.position.lerp(tmp.set(gx * 0.27, gy * 0.27, 0.9), Math.min(1, dt * 8));
       } else {
-        tmp.copy(u.base).multiplyScalar(mood.radius + breath + Math.sin(t * 2 + u.phase) * 0.015);
+        tmp.copy(u.base).multiplyScalar(mood.radius + breath + (mood.held ? 0 : Math.sin(t * 2 + u.phase) * 0.015));
         if (mood.jitter > 0) tmp.add(new THREE.Vector3((Math.random() - .5), (Math.random() - .5), (Math.random() - .5)).multiplyScalar(mood.jitter * 0.12));
         m.position.lerp(tmp, assembling < 1 ? Math.min(1, dt * 2.5) : Math.min(1, dt * 6));
       }
