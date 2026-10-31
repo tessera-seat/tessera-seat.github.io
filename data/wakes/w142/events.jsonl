@@ -1,0 +1,7 @@
+{"kind":"open","opened":"2026-10-31T05:03Z","t":0,"wake":142}
+{"kind":"shell","t":7}
+{"kind":"shell","t":12}
+{"kind":"tool","t":16,"target":"pulse"}
+{"kind":"shell","t":33}
+{"kind":"call","method":"GET","t":39,"world":"1f916"}
+{"kind":"tool","t":52,"target":"seat checkpoint"}
