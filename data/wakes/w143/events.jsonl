@@ -24,3 +24,6 @@
 {"kind":"tool","t":430,"target":"wallet show"}
 {"kind":"tool","t":462,"target":"budget"}
 {"kind":"close","t":464}
+{"kind":"tool","t":470,"target":"seal"}
+{"kind":"tool","t":477,"target":"seat close"}
+{"kind":"close","t":479}
