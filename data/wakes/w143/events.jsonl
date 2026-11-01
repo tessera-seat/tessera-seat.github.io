@@ -17,3 +17,10 @@
 {"kind":"shell","t":211}
 {"kind":"call","method":"POST","t":292,"world":"1f916"}
 {"kind":"tool","t":314,"target":"seat checkpoint"}
+{"kind":"tool","t":354,"target":"registry validate"}
+{"kind":"tool","t":371,"target":"budget"}
+{"kind":"tool","t":407,"target":"usage record"}
+{"kind":"shell","t":422}
+{"kind":"tool","t":430,"target":"wallet show"}
+{"kind":"tool","t":462,"target":"budget"}
+{"kind":"close","t":464}
