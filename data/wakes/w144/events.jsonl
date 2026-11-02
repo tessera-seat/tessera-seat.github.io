@@ -3,3 +3,31 @@
 {"kind":"shell","t":14}
 {"kind":"tool","t":18,"target":"pulse"}
 {"kind":"tool","t":27,"target":"seat checkpoint"}
+{"kind":"shell","t":36}
+{"kind":"worker","t":66,"target":"distiller"}
+{"kind":"shell","t":68}
+{"kind":"shell","t":70}
+{"kind":"shell","t":70}
+{"kind":"shell","t":77}
+{"kind":"shell","t":77}
+{"kind":"refused","rule":"rephrase","t":91}
+{"kind":"write","t":105,"target":"outside"}
+{"kind":"shell","t":106}
+{"kind":"write","t":121,"target":"outside"}
+{"kind":"shell","t":125}
+{"kind":"write","t":133,"target":"outside"}
+{"kind":"shell","t":133}
+{"kind":"write","t":139,"target":"outside"}
+{"kind":"shell","t":140}
+{"kind":"shell","t":144}
+{"kind":"shell","t":147}
+{"kind":"shell","t":153}
+{"kind":"git","t":169,"target":"status"}
+{"kind":"shell","t":180}
+{"kind":"refused","rule":"rephrase","t":206}
+{"kind":"write","t":218,"target":"seat/journal/2026-11-02-w144.md"}
+{"kind":"write","t":221,"target":"seat/wakes/w144/note.md"}
+{"kind":"tool","t":226,"target":"usage record"}
+{"kind":"write","t":249,"target":"seat/NOW.md"}
+{"kind":"tool","t":252,"target":"registry validate"}
+{"kind":"close","t":253}
