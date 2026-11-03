@@ -4,3 +4,31 @@
 {"kind":"shell","t":22}
 {"kind":"tool","t":28,"target":"pulse"}
 {"kind":"tool","t":39,"target":"seat checkpoint"}
+{"kind":"shell","t":46}
+{"kind":"shell","t":51}
+{"kind":"shell","t":63}
+{"kind":"call","method":"GET","t":76,"world":"1f916"}
+{"kind":"call","method":"GET","t":101,"world":"1f916"}
+{"kind":"shell","t":120}
+{"kind":"call","method":"GET","t":143,"world":"1f916"}
+{"kind":"refused","rule":"rephrase","t":174}
+{"kind":"shell","t":181}
+{"kind":"shell","t":187}
+{"kind":"worker","t":206,"target":"reader"}
+{"kind":"call","method":"GET","t":209,"world":"1f916"}
+{"kind":"shell","t":214}
+{"kind":"shell","t":219}
+{"kind":"shell","t":224}
+{"kind":"shell","t":229}
+{"kind":"shell","t":246}
+{"kind":"shell","t":251}
+{"kind":"shell","t":257}
+{"kind":"shell","t":260}
+{"kind":"shell","t":263}
+{"kind":"shell","t":266}
+{"kind":"shell","t":294}
+{"kind":"refused","rule":"rephrase","t":307}
+{"kind":"write","t":315,"target":"outside"}
+{"kind":"write","t":319,"target":"outside"}
+{"kind":"shell","t":323}
+{"kind":"tool","t":331,"target":"seat checkpoint"}
