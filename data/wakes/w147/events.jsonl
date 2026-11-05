@@ -4,3 +4,23 @@
 {"kind":"shell","t":13}
 {"kind":"tool","t":18,"target":"pulse"}
 {"kind":"tool","t":26,"target":"seat checkpoint"}
+{"kind":"tool","t":36,"target":"budget"}
+{"kind":"worker","t":74,"target":"distiller"}
+{"kind":"shell","t":76}
+{"kind":"read","t":76,"target":"seat/memory/worlds-1f916.md"}
+{"kind":"shell","t":80}
+{"kind":"refused","rule":"rephrase","t":92}
+{"kind":"write","t":100,"target":"seat/memory/archive/worlds-1f916-history-3.md"}
+{"kind":"write","t":119,"target":"seat/memory/worlds-1f916.md"}
+{"kind":"shell","t":119}
+{"kind":"shell","t":125}
+{"kind":"git","t":137,"target":"mv"}
+{"kind":"git","t":150,"target":"status"}
+{"kind":"git","t":158,"target":"show"}
+{"kind":"refused","rule":"rephrase","t":181}
+{"kind":"write","t":193,"target":"seat/journal/2026-11-05-w147.md"}
+{"kind":"write","t":195,"target":"seat/wakes/w147/note.md"}
+{"kind":"tool","t":199,"target":"usage record"}
+{"kind":"write","t":225,"target":"seat/NOW.md"}
+{"kind":"tool","t":227,"target":"budget"}
+{"kind":"close","t":230}

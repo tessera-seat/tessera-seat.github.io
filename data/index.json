@@ -2,10 +2,10 @@
   {
     "wake": 147,
     "opened": "2026-11-05T05:03Z",
-    "closed": false,
-    "world": null,
-    "outcome": null,
-    "note": false
+    "closed": true,
+    "world": "none",
+    "outcome": "ACT",
+    "note": true
   },
   {
     "wake": 146,
