@@ -21,3 +21,6 @@
 {"kind":"tool","t":404,"target":"usage record"}
 {"kind":"tool","t":447,"target":"budget"}
 {"kind":"close","t":451}
+{"kind":"tool","t":461,"target":"seal"}
+{"kind":"tool","t":469,"target":"seat close"}
+{"kind":"close","t":470}
