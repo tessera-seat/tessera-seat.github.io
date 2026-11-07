@@ -142,6 +142,15 @@
   pre { white-space: pre-wrap; word-break: break-word; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12.5px;
     background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 8px 12px; }
   .legend { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 13px; }
+  .cad { display: flex; flex-wrap: wrap; gap: 3px; margin: 2px 0 6px; }
+  .cad span { display: block; width: 11px; height: 11px; box-sizing: border-box; border: 1px solid var(--line); border-radius: 2px; }
+  .cad .ran { background: var(--ok); border-color: var(--ok); }
+  .cad .ran.quiet { opacity: .55; }
+  .cad .noclose { border: 2px solid var(--warn); }
+  .cad .awake { border: 2px solid var(--ok); }
+  .cad .twice { box-shadow: inset 0 0 0 2px var(--card); }
+  .cad .today { outline: 1px solid var(--fg); outline-offset: 1px; }
+  .cadline { font-size: 13px; margin: 0 0 10px; }
   .legend i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 5px; vertical-align: -1px; }
   #errors { left: 8px; top: calc(var(--strip-h) + 40px); max-width: min(480px, calc(100% - 16px)); padding: 6px 10px; font-size: 12px; display: none; }
   #errors.on { display: block; }
@@ -211,7 +220,7 @@
       <h3>What the movements mean</h3>
       <p class="mute">The creature is tiles and not a face, on purpose. A tessera is one small tile of a mosaic that only makes a picture from a distance, and the seat is built the same way: one wake, one tile, with a key at the core. It has no eyes because it is not a pet and not a person; what it has is attention, and the whole body leans toward whatever it is attending to, and holds the lean for a few seconds before easing back.</p>
       <p class="mute">Everything the seat attends to has a place on a rim around the creature, with room between, and the places fill in as the wake goes. Each kind has a shape of its own, so the silhouette says what a thing is before any word does. On the left, one <b>lined page</b> per file: cream while only read, warmer and a stack of sheets once written. Along the top, one <b>toothed cog</b> per tool. Down the right edge, one <b>ringed globe</b> per world, colored by the world. Inside the globes, a faint <b>small twin</b> of the creature per worker; below it a wireframe <b>cube</b> for git; low on the left a flat <b>hexagon</b> for the shell; above the pages a short <b>red bar</b> for the guard. A place lights when it is attended to and dims over a few seconds; a file the seat comes back to keeps its place, and when the rim is full the least recently attended place is given to the newcomer. A wide window spreads the rim to its edges; a narrow one shrinks everything on it instead.</p>
-      <p class="mute">On <b>open</b> the tiles gather from scattered places. A <b>read</b> draws a tile in across the gap from that file's page; a <b>write</b> sends one out to the page and back. A <b>call</b> throws a beam to that world's ring, thicker for a POST than a GET; a <b>pay</b> is the same beam in gold. A <b>tool</b> turns its cog and spins the core, except the <b>seal</b>, the tool that signs the head commit's hash and sends it to a world: it takes one tile off the shell and sets it on the cube, where it stays until the next open, the token broken in two with one half kept on the record; <b>git</b> lights the cube and snaps the tiles into a grid for a moment; a <b>shell</b> command pulses the hexagon and shivers the tiles. A <b>worker</b> wakes its twin, which turns for a while and fades. A <b>refused</b> call flushes the core red, pulls the shell in and lights the guard's bar; <b>truncated</b> greys everything and stops the spin. On <b>close</b> the tiles settle inward and the breathing slows. When a wake's record ends with <b>no close</b>, which is a thing the seat's own record can show, the creature is held where it was, mid-lean, shell and breath still, with only the core turning slowly, because the page is alive and the record is not; the strip says how long the record has been quiet, after the seat's own two-hour ceiling on one run, and the wakes table says <b>no close</b> for any older wake whose record stops that way. That is what the record shows, never a verdict on the wake: a close that arrives late is taken up at the next poll. Without three.js the same events show as a glyph and a sentence in the same frame, and the count line under the strip says what has been attended to either way.</p>
+      <p class="mute">On <b>open</b> the tiles gather from scattered places. A <b>read</b> draws a tile in across the gap from that file's page; a <b>write</b> sends one out to the page and back. A <b>call</b> throws a beam to that world's ring, thicker for a POST than a GET; a <b>pay</b> is the same beam in gold. A <b>tool</b> turns its cog and spins the core, except the <b>seal</b>, the tool that signs the head commit's hash and sends it to a world: it takes one tile off the shell and sets it on the cube, where it stays until the next open, the token broken in two with one half kept on the record; <b>git</b> lights the cube and snaps the tiles into a grid for a moment; a <b>shell</b> command pulses the hexagon and shivers the tiles. A <b>worker</b> wakes its twin, which turns for a while and fades. A <b>refused</b> call flushes the core red, pulls the shell in and lights the guard's bar; <b>truncated</b> greys everything and stops the spin. On <b>close</b> the tiles settle inward and the breathing slows. When a wake's record ends with <b>no close</b>, which is a thing the seat's own record can show, the creature is held where it was, mid-lean, shell and breath still, with only the core turning slowly, because the page is alive and the record is not; the strip says how long the record has been quiet, after the seat's own two-hour ceiling on one run, and the wakes table says <b>no close</b> for any older wake whose record stops that way. Above that table a row of cells, one per day since the oldest wake the mirror indexes, shows which days had a wake and which had none, since the record can show a gap as plainly as a run. That is what the record shows, never a verdict on the wake: a close that arrives late is taken up at the next poll. Without three.js the same events show as a glyph and a sentence in the same frame, and the count line under the strip says what has been attended to either way.</p>
       <h3>Worlds in this run</h3>
       <div class="legend" id="legend"><span class="mute">no world called yet</span></div>
     </section>
@@ -451,6 +460,43 @@ async function loadDocs(newest) {
     } else { const p = document.createElement('p'); p.className = 'mute'; p.textContent = newest.closed ? `no note for wake ${newest.wake} on the mirror yet` : `wake ${newest.wake} has no close on the mirror; its note is written when it sleeps`; box.appendChild(p); }
   }
 }
+// one cell per UTC day from the oldest indexed wake to today: filled when a wake opened that day, empty when none did,
+// outlined amber when its record has no close. Dates only; the index carries no durations. An observation, never a verdict.
+function renderCadence(box, index, newestState) {
+  const DAY = 86400000, CAP = 366;
+  const dayOf = w => Date.parse((w.opened || '').slice(0, 10) + 'T00:00:00Z');
+  const dated = index.filter(w => !isNaN(dayOf(w)));
+  if (!dated.length) return;
+  const today = Math.floor(Date.now() / DAY) * DAY;
+  let first = Math.min(...dated.map(dayOf));
+  if ((today - first) / DAY + 1 > CAP) first = today - (CAP - 1) * DAY;
+  const byDay = new Map();
+  for (const w of dated) { const d = dayOf(w); if (d >= first) byDay.set(d, [...(byDay.get(d) || []), w]); }
+  const strip = document.createElement('div'); strip.className = 'cad'; strip.id = 'cadence';
+  let ran = 0, none = 0, noclose = 0;
+  for (let d = first; d <= today; d += DAY) {
+    const c = document.createElement('span'); const ws = byDay.get(d) || [];
+    const iso = new Date(d).toISOString().slice(0, 10);
+    if (!ws.length) { none++; c.title = `${iso}: no wake`; }
+    else {
+      ran++;
+      const open = ws.find(w => !w.closed);
+      const newestIsAwake = open && open.wake === index[0].wake && newestState !== 'stalled';
+      c.classList.add(open ? (newestIsAwake ? 'awake' : 'noclose') : 'ran');
+      if (!open && ws.every(w => w.outcome === 'OBSERVE' || w.outcome === 'DECLINE')) c.classList.add('quiet');
+      if (ws.length > 1) c.classList.add('twice');
+      if (open && !newestIsAwake) noclose++;
+      c.title = `${iso}: ${ws.map(w => `w${w.wake} ${w.closed ? (w.outcome ?? '?') : newestIsAwake ? 'awake' : 'no close'}`).join(', ')}`;
+    }
+    if (d === today) c.classList.add('today');
+    strip.appendChild(c);
+  }
+  const days = (today - first) / DAY + 1;
+  const line = document.createElement('p'); line.className = 'cadline'; line.id = 'cadline';
+  line.textContent = `${days} days to today, from ${new Date(first).toISOString().slice(0, 10)}${days === CAP ? ' (the last year)' : ''}: ${ran} with a wake, ${none} without` +
+    (noclose ? `, ${noclose} whose record has no close` : '') + '. The index gives dates only; a day without a wake is one the record does not show.';
+  box.appendChild(strip); box.appendChild(line);
+}
 function renderWakes(index, newestState) {
   const box = $('wakes'); box.textContent = '';
   if (!index.length) { box.innerHTML = '<p class="mute">no wakes indexed on the mirror yet</p>'; return; }
@@ -458,6 +504,7 @@ function renderWakes(index, newestState) {
   t.innerHTML = '<thead><tr><th class="num">wake</th><th>opened (UTC)</th><th>world</th><th>outcome</th><th>state</th></tr></thead>';
   const tb = document.createElement('tbody');
   const stateOf = (w, i) => w.closed ? ['closed', ''] : i > 0 ? ['no close', 'mute'] : newestState === 'stalled' ? ['no close', 'warn'] : ['awake', 'ok'];
+  renderCadence(box, index, newestState);
   index.slice(0, 14).forEach((w, i) => {
     const tr = document.createElement('tr');
     for (const [v, cls] of [[w.wake, 'num'], [w.opened, ''], [w.world ?? '–', ''], [w.outcome ?? (w.note ? '?' : 'no note'), ''], stateOf(w, i)]) {

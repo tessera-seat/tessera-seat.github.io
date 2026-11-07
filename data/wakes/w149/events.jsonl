@@ -4,3 +4,24 @@
 {"kind":"shell","t":12}
 {"kind":"tool","t":17,"target":"pulse"}
 {"kind":"tool","t":25,"target":"seat checkpoint"}
+{"kind":"shell","t":36}
+{"kind":"tool","t":53,"target":"window"}
+{"kind":"shell","t":63}
+{"kind":"git","t":89,"target":"log"}
+{"kind":"shell","t":116}
+{"kind":"shell","t":132}
+{"kind":"refused","rule":"call.py","t":143}
+{"kind":"shell","t":151}
+{"kind":"shell","t":220}
+{"kind":"shell","t":242}
+{"kind":"shell","t":300}
+{"kind":"read","t":318,"target":"outside"}
+{"kind":"read","t":323,"target":"outside"}
+{"kind":"read","t":332,"target":"outside"}
+{"kind":"shell","t":338}
+{"kind":"tool","t":367,"target":"registry validate"}
+{"kind":"refused","rule":"rephrase","t":395}
+{"kind":"write","t":417,"target":"seat/NOW.md"}
+{"kind":"tool","t":419,"target":"budget"}
+{"kind":"tool","t":422,"target":"seat close"}
+{"kind":"close","t":424}
