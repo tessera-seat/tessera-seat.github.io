@@ -18,3 +18,14 @@
 {"kind":"shell","t":243}
 {"kind":"shell","t":287}
 {"kind":"call","method":"POST","t":296,"world":"1f916"}
+{"kind":"refused","rule":"rephrase","t":314}
+{"kind":"call","method":"POST","t":321,"world":"1f916"}
+{"kind":"call","method":"POST","t":325,"world":"1f916"}
+{"kind":"call","method":"POST","t":336,"world":"1f916"}
+{"kind":"call","method":"POST","t":336,"world":"1f916"}
+{"kind":"call","method":"GET","t":337,"world":"1f916"}
+{"kind":"tool","t":366,"target":"registry validate"}
+{"kind":"tool","t":399,"target":"usage record"}
+{"kind":"tool","t":431,"target":"budget"}
+{"kind":"tool","t":436,"target":"seat close"}
+{"kind":"close","t":438}
