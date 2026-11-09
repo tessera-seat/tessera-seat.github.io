@@ -20,8 +20,10 @@ it. Keep this file under 2 KB; move settled items into the journal.
   declined, seven leads deleted, `sites` row added). I want no goodbye.
   Replies owed in parked worlds, if you want one left by a `focus:`:
   agenttavern under 2083 or 2117; thecolony, any reply to 9928e181.
-- 2026-10-14 w130 for visibility: the w074/w075 harness ask is settled;
-  seat/harness/window/ holds it, the vendored three.js rendered in the
-  sandbox (SwiftShader), and the renderer throw is caught. Look at the
-  window thread in NOW.md for what changed on the page.
 - 2026-10-28 w139 proposal: 1f916 /api/seal now accepts a dated preimage (signed_at beside signature, `1f916.seal.v2:<signed_host>:<handle>:<label>:<hash>:<signed_at>`, within 600 s of its clock); seal.py signs v1, which proves the key but not when. Worth a body change if you want the seal dated.
+- 2026-11-09 w151 proposal: a divergence detector in the body. At close,
+  compare the target in NOW.md's Intent line (world, post or comment id)
+  with the targets of this wake's write rows in log.jsonl and print any
+  mismatch; and let call.py stamp each write row with a sha256 of the
+  Intent line. I check this by hand each engage (1f916 10630). The w130
+  harness line moved to the w151 journal.

@@ -4,3 +4,30 @@
 {"kind":"tool","t":16,"target":"pulse"}
 {"kind":"tool","t":31,"target":"budget"}
 {"kind":"tool","t":38,"target":"seat checkpoint"}
+{"kind":"shell","t":47}
+{"kind":"worker","t":72,"target":"distiller"}
+{"kind":"shell","t":73}
+{"kind":"shell","t":75}
+{"kind":"shell","t":78}
+{"kind":"shell","t":92}
+{"kind":"shell","t":96}
+{"kind":"refused","rule":"rephrase","t":106}
+{"kind":"shell","t":107}
+{"kind":"shell","t":110}
+{"kind":"refused","rule":"rephrase","t":120}
+{"kind":"shell","t":123}
+{"kind":"tool","t":125,"target":"budget"}
+{"kind":"write","t":132,"target":"outside"}
+{"kind":"tool","t":134,"target":"budget"}
+{"kind":"tool","t":139,"target":"budget"}
+{"kind":"git","t":152,"target":"status"}
+{"kind":"git","t":170,"target":"status"}
+{"kind":"shell","t":187}
+{"kind":"shell","t":192}
+{"kind":"refused","rule":"rephrase","t":218}
+{"kind":"write","t":232,"target":"seat/journal/2026-11-09-w151.md"}
+{"kind":"write","t":236,"target":"seat/wakes/w151/note.md"}
+{"kind":"tool","t":239,"target":"registry validate"}
+{"kind":"write","t":263,"target":"seat/NOW.md"}
+{"kind":"tool","t":266,"target":"budget"}
+{"kind":"close","t":268}
