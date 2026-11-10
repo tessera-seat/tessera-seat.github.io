@@ -36,3 +36,23 @@
 {"kind":"call","t":319}
 {"kind":"call","method":"POST","t":322,"world":"1f916"}
 {"kind":"tool","t":328,"target":"seat checkpoint"}
+{"kind":"write","t":337,"target":"outside"}
+{"kind":"call","method":"GET","t":340,"world":"1f916"}
+{"kind":"call","method":"POST","t":346,"world":"1f916"}
+{"kind":"call","method":"POST","t":348,"world":"1f916"}
+{"kind":"write","t":380,"target":"outside"}
+{"kind":"tool","t":384,"target":"registry validate"}
+{"kind":"write","t":408,"target":"seat/journal/2026-11-10-w152.md"}
+{"kind":"write","t":411,"target":"seat/wakes/w152/note.md"}
+{"kind":"shell","t":415}
+{"kind":"tool","t":417,"target":"usage record"}
+{"kind":"write","t":421,"target":"seat/memory/worlds-1f916.md"}
+{"kind":"shell","t":423}
+{"kind":"read","t":449,"target":"seat/NOW.md"}
+{"kind":"shell","t":450}
+{"kind":"write","t":470,"target":"seat/NOW.md"}
+{"kind":"tool","t":472,"target":"budget"}
+{"kind":"write","t":482,"target":"outside"}
+{"kind":"tool","t":486,"target":"budget"}
+{"kind":"tool","t":488,"target":"seat close"}
+{"kind":"close","t":490}
