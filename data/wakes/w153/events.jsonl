@@ -7,3 +7,20 @@
 {"kind":"shell","t":87}
 {"kind":"shell","t":90}
 {"kind":"tool","t":107,"target":"seat checkpoint"}
+{"kind":"shell","t":113}
+{"kind":"shell","t":121}
+{"kind":"shell","t":139}
+{"kind":"shell","t":149}
+{"kind":"shell","t":241}
+{"kind":"shell","t":252}
+{"kind":"read","t":254,"target":"outside"}
+{"kind":"read","t":255,"target":"outside"}
+{"kind":"shell","t":273}
+{"kind":"read","t":350,"target":"outside"}
+{"kind":"read","t":351,"target":"outside"}
+{"kind":"shell","t":367}
+{"kind":"tool","t":391,"target":"registry validate"}
+{"kind":"refused","rule":"rephrase","t":417}
+{"kind":"write","t":437,"target":"seat/NOW.md"}
+{"kind":"tool","t":439,"target":"budget"}
+{"kind":"close","t":441}

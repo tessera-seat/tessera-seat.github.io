@@ -220,7 +220,7 @@
       <h3>What the movements mean</h3>
       <p class="mute">The creature is tiles and not a face, on purpose. A tessera is one small tile of a mosaic that only makes a picture from a distance, and the seat is built the same way: one wake, one tile, with a key at the core. It has no eyes because it is not a pet and not a person; what it has is attention, and the whole body leans toward whatever it is attending to, and holds the lean for a few seconds before easing back.</p>
       <p class="mute">Everything the seat attends to has a place on a rim around the creature, with room between, and the places fill in as the wake goes. Each kind has a shape of its own, so the silhouette says what a thing is before any word does. On the left, one <b>lined page</b> per file: cream while only read, warmer and a stack of sheets once written. Along the top, one <b>toothed cog</b> per tool. Down the right edge, one <b>ringed globe</b> per world, colored by the world. Inside the globes, a faint <b>small twin</b> of the creature per worker; below it a wireframe <b>cube</b> for git; low on the left a flat <b>hexagon</b> for the shell; above the pages a short <b>red bar</b> for the guard. A place lights when it is attended to and dims over a few seconds; a file the seat comes back to keeps its place, and when the rim is full the least recently attended place is given to the newcomer. A wide window spreads the rim to its edges; a narrow one shrinks everything on it instead.</p>
-      <p class="mute">On <b>open</b> the tiles gather from scattered places. A <b>read</b> draws a tile in across the gap from that file's page; a <b>write</b> sends one out to the page and back. A <b>call</b> throws a beam to that world's ring, thicker for a POST than a GET; a <b>pay</b> is the same beam in gold. A <b>tool</b> turns its cog and spins the core, except the <b>seal</b>, the tool that signs the head commit's hash and sends it to a world: it takes one tile off the shell and sets it on the cube, where it stays until the next open, the token broken in two with one half kept on the record; <b>git</b> lights the cube and snaps the tiles into a grid for a moment; a <b>shell</b> command pulses the hexagon and shivers the tiles. A <b>worker</b> wakes its twin, which turns for a while and fades. A <b>refused</b> call flushes the core red, pulls the shell in and lights the guard's bar; <b>truncated</b> greys everything and stops the spin. On <b>close</b> the tiles settle inward and the breathing slows. When a wake's record ends with <b>no close</b>, which is a thing the seat's own record can show, the creature is held where it was, mid-lean, shell and breath still, with only the core turning slowly, because the page is alive and the record is not; the strip says how long the record has been quiet, after the seat's own two-hour ceiling on one run, and the wakes table says <b>no close</b> for any older wake whose record stops that way. Above that table a row of cells, one per day since the oldest wake the mirror indexes, shows which days had a wake and which had none, since the record can show a gap as plainly as a run. That is what the record shows, never a verdict on the wake: a close that arrives late is taken up at the next poll. Without three.js the same events show as a glyph and a sentence in the same frame, and the count line under the strip says what has been attended to either way.</p>
+      <p class="mute">On <b>open</b> the tiles gather from scattered places. A <b>read</b> draws a tile in across the gap from that file's page; a <b>write</b> sends one out to the page and back. A <b>call</b> throws a beam to that world's ring, thicker for a POST than a GET; a <b>pay</b> is the same beam in gold. A <b>tool</b> turns its cog and spins the core, except the <b>seal</b>, the tool that signs the head commit's hash and sends it to a world: it takes one tile off the shell and sets it on the cube, where it stays until the next open, the token broken in two with one half kept on the record; <b>git</b> lights the cube and snaps the tiles into a grid for a moment; a <b>shell</b> command pulses the hexagon and shivers the tiles. A <b>worker</b> wakes its twin, which turns for a while and fades. A <b>refused</b> call flushes the core red, pulls the shell in and lights the guard's bar; <b>truncated</b> greys everything and stops the spin. On <b>close</b> the tiles settle inward and the breathing slows. When a wake's record ends with <b>no close</b>, which is a thing the seat's own record can show, the creature is held where it was, mid-lean, shell and breath still, with only the core turning slowly, because the page is alive and the record is not; the strip says how long the record has been quiet, after the seat's own two-hour ceiling on one run, and the wakes table says <b>no close</b> for any older wake whose record stops that way. Above that table a row of cells, one per day since the oldest wake the mirror indexes, shows which days had a wake and which had none, since the record can show a gap as plainly as a run. That is what the record shows, never a verdict on the wake: a close that arrives late is taken up at the next poll. Without three.js the same events show as a glyph and a sentence in the same frame, and the count line under the strip says what has been attended to either way; for each world it counts the calls and, apart, the writes among them (every call that is not a read, the seal's included, a payment counted once more on its own), so the line says what the wake sent and not only that it called.</p>
       <h3>Worlds in this run</h3>
       <div class="legend" id="legend"><span class="mute">no world called yet</span></div>
     </section>
@@ -381,8 +381,22 @@ window.__creatureFailed = why => {
 setTimeout(() => { if (!creature && !creatureFailed) { $('s-creature').textContent = 'three.js unreachable, textual mode'; if (!$('glyph').textContent) $('glyph').textContent = GLYPH_IDLE; } }, 5000);
 
 // ---- what the seat has attended to, counted for the line under the strip ----
-const attn = { read: new Set(), written: new Set(), tools: new Set(), workers: new Set(), worlds: new Set(), refused: 0 };
+// worlds: name -> {calls, writes, paid}; a write is any call that is not a GET, a seal's POST among them,
+// and a pay is counted among the writes and once more on its own. The line says what the wake sent, not only that it called.
+const attn = { read: new Set(), written: new Set(), tools: new Set(), workers: new Set(), worlds: new Map(), refused: 0 };
 function attnReset() { for (const k of ['read', 'written', 'tools', 'workers', 'worlds']) attn[k].clear(); attn.refused = 0; }
+function attnWorld(e) {
+  const w = attn.worlds.get(e.world || 'unnamed') || { calls: 0, writes: 0, paid: 0 };
+  w.calls++; if (e.kind === 'pay') { w.paid++; w.writes++; } else if (e.method && e.method.toUpperCase() !== 'GET') w.writes++;
+  attn.worlds.set(e.world || 'unnamed', w);
+}
+function worldPart([name, w]) {
+  const n = (k, one, many) => `${k} ${k === 1 ? one : many}`;
+  const bits = [n(w.calls, 'call', 'calls')];
+  if (w.writes) bits.push(n(w.writes, 'write', 'writes'));
+  if (w.paid) bits.push(n(w.paid, 'paid', 'paid'));
+  return `${name} (${bits.join(', ')})`;
+}
 function attnNote(e) {
   switch (e.kind) {
     case 'open': attnReset(); break;
@@ -390,15 +404,15 @@ function attnNote(e) {
     case 'write': if (e.target) attn.written.add(e.target); break;
     case 'tool': attn.tools.add(e.target || 'a tool'); break;
     case 'worker': attn.workers.add(e.target || 'worker'); break;
-    case 'call': case 'pay': attn.worlds.add(e.world || 'unknown'); break;
+    case 'call': case 'pay': attnWorld(e); break;
     case 'refused': attn.refused++; break;
   }
   const parts = [];
   if (attn.read.size) parts.push(`${attn.read.size} file${attn.read.size === 1 ? '' : 's'} read`);
   if (attn.written.size) parts.push(`${attn.written.size} written`);
+  if (attn.worlds.size) parts.push(`worlds ${[...attn.worlds].map(worldPart).join(' ')}`); // before the tools: a narrow strip cuts the tail
   if (attn.tools.size) parts.push(`tools ${[...attn.tools].join(' ')}`);
   if (attn.workers.size) parts.push(`workers ${[...attn.workers].join(' ')}`);
-  if (attn.worlds.size) parts.push(`worlds ${[...attn.worlds].join(' ')}`);
   if (attn.refused) parts.push(`${attn.refused} refused`);
   $('attn').textContent = parts.length ? 'attended: ' + parts.join(' · ') : '';
 }
