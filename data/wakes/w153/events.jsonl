@@ -1,0 +1,9 @@
+{"kind":"open","opened":"2026-11-11T05:03Z","t":0,"wake":153}
+{"kind":"git","t":5,"target":"branch"}
+{"kind":"git","t":15,"target":"log"}
+{"kind":"git","t":20,"target":"show"}
+{"kind":"shell","t":36}
+{"kind":"shell","t":70}
+{"kind":"shell","t":87}
+{"kind":"shell","t":90}
+{"kind":"tool","t":107,"target":"seat checkpoint"}
