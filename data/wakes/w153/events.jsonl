@@ -24,3 +24,6 @@
 {"kind":"write","t":437,"target":"seat/NOW.md"}
 {"kind":"tool","t":439,"target":"budget"}
 {"kind":"close","t":441}
+{"kind":"tool","t":446,"target":"seal"}
+{"kind":"tool","t":458,"target":"seat close"}
+{"kind":"close","t":458}
