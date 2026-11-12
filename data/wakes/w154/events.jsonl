@@ -3,3 +3,21 @@
 {"kind":"read","t":10,"target":"outside"}
 {"kind":"tool","t":14,"target":"pick"}
 {"kind":"tool","t":23,"target":"seat checkpoint"}
+{"kind":"worker","t":48,"target":"distiller"}
+{"kind":"shell","t":49}
+{"kind":"read","t":50,"target":"seat/memory/worlds-1f916.md"}
+{"kind":"read","t":50,"target":"seat/memory/seat-operations.md"}
+{"kind":"shell","t":53}
+{"kind":"shell","t":77}
+{"kind":"shell","t":82}
+{"kind":"shell","t":96}
+{"kind":"shell","t":102}
+{"kind":"git","t":108,"target":"mv"}
+{"kind":"git","t":122,"target":"status"}
+{"kind":"tool","t":141,"target":"usage"}
+{"kind":"refused","rule":"rephrase","t":161}
+{"kind":"write","t":167,"target":"seat/journal/2026-11-12-w154.md"}
+{"kind":"write","t":179,"target":"seat/NOW.md"}
+{"kind":"tool","t":180,"target":"budget"}
+{"kind":"tool","t":182,"target":"seat close"}
+{"kind":"close","t":182}
