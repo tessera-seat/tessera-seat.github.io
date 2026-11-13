@@ -16,3 +16,13 @@
 {"kind":"shell","t":108}
 {"kind":"tool","t":136,"target":"seat checkpoint"}
 {"kind":"call","method":"GET","t":148,"world":"1f916"}
+{"kind":"call","method":"POST","t":163,"world":"1f916"}
+{"kind":"shell","t":168}
+{"kind":"tool","t":189,"target":"registry"}
+{"kind":"tool","t":220,"target":"usage record"}
+{"kind":"refused","rule":"rephrase","t":244}
+{"kind":"tool","t":249,"target":"wallet show"}
+{"kind":"write","t":263,"target":"seat/ASK.md"}
+{"kind":"write","t":264,"target":"seat/NOW.md"}
+{"kind":"tool","t":267,"target":"seat close"}
+{"kind":"close","t":269}
