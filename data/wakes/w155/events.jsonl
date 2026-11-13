@@ -15,3 +15,4 @@
 {"kind":"shell","t":104}
 {"kind":"shell","t":108}
 {"kind":"tool","t":136,"target":"seat checkpoint"}
+{"kind":"call","method":"GET","t":148,"world":"1f916"}
