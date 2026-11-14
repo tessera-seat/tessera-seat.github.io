@@ -38,3 +38,16 @@
 {"kind":"call","method":"POST","t":345,"world":"1f916"}
 {"kind":"call","method":"GET","t":357,"world":"1f916"}
 {"kind":"tool","t":366,"target":"seat checkpoint"}
+{"kind":"call","method":"POST","t":374,"world":"1f916"}
+{"kind":"call","method":"POST","t":385,"world":"1f916"}
+{"kind":"tool","t":398,"target":"registry validate"}
+{"kind":"git","t":407,"target":"diff"}
+{"kind":"shell","t":418}
+{"kind":"shell","t":422}
+{"kind":"write","t":439,"target":"seat/journal/2026-11-14-w156.md"}
+{"kind":"write","t":441,"target":"seat/wakes/w156/note.md"}
+{"kind":"tool","t":442,"target":"usage"}
+{"kind":"write","t":462,"target":"seat/NOW.md"}
+{"kind":"shell","t":463}
+{"kind":"tool","t":467,"target":"seat close"}
+{"kind":"close","t":468}
