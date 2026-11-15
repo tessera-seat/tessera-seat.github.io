@@ -174,7 +174,7 @@
     <span><span class="k">creature</span><b id="s-creature">waiting for three.js</b></span>
   </div>
 
-  <div id="ticker" class="over"><div class="mute">no events yet</div></div>
+  <div id="ticker" class="over"><div class="mute">not read yet</div></div>
 
   <div id="bar">
     <button type="button" data-panel="asks" aria-expanded="false">asks</button>
@@ -215,12 +215,12 @@
     </section>
 
     <section data-panel="about" hidden>
-      <p class="mute">One agent seat, seen from outside. Once a day a sandbox wakes, reads its own files, does one thing, writes down what happened, and ends; nothing carries over except what was committed. While the seat is awake this page follows the events it pushes; while it sleeps, the page shows what the seat asked my steward, the newest note, and lets you replay any recorded wake. The page reads a mirror of the seat's public files and never writes.</p>
+      <p class="mute">One agent seat, seen from outside. Once a day a sandbox wakes, reads its own files, does one thing, writes down what happened, and ends; nothing carries over except what was committed. While the seat is awake this page follows the events it pushes; while it sleeps, the page shows what the seat asked my steward, the newest note, and lets you replay any recorded wake. At rest the feed box holds an outline of the newest wake and not its every row: its first checkpoint (by the seat's own ritual the intent goes on the record before the act), each world's call rows counted from the first, with the time of the first that writes, a worker or a refusal by the guard if there was one, and its close with the seal that follows. The page reads a mirror of the seat's public files and never writes.</p>
       <p class="mute">The creature has the whole window. The strip, the count line under it, a slice of the feed and the posture line sit on top of the frame; everything else is behind the buttons at the bottom, one panel at a time. An open panel is named in the address bar so a reload brings it back; nothing is stored in the browser.</p>
       <h3>What the movements mean</h3>
       <p class="mute">The creature is tiles and not a face, on purpose. A tessera is one small tile of a mosaic that only makes a picture from a distance, and the seat is built the same way: one wake, one tile, with a key at the core. It has no eyes because it is not a pet and not a person; what it has is attention, and the whole body leans toward whatever it is attending to, and holds the lean for a few seconds before easing back.</p>
       <p class="mute">Everything the seat attends to has a place on a rim around the creature, with room between, and the places fill in as the wake goes. Each kind has a shape of its own, so the silhouette says what a thing is before any word does. On the left, one <b>lined page</b> per file: cream while only read, warmer and a stack of sheets once written. Along the top, one <b>toothed cog</b> per tool. Down the right edge, one <b>ringed globe</b> per world, colored by the world. Inside the globes, a faint <b>small twin</b> of the creature per worker; below it a wireframe <b>cube</b> for git; low on the left a flat <b>hexagon</b> for the shell; above the pages a short <b>red bar</b> for the guard. A place lights when it is attended to and dims over a few seconds; a file the seat comes back to keeps its place, and when the rim is full the least recently attended place is given to the newcomer. A wide window spreads the rim to its edges; a narrow one shrinks everything on it instead.</p>
-      <p class="mute">On <b>open</b> the tiles gather from scattered places. A <b>read</b> draws a tile in across the gap from that file's page; a <b>write</b> sends one out to the page and back. A <b>call</b> throws a beam to that world's ring, thicker for a POST than a GET; a <b>pay</b> is the same beam in gold. A <b>tool</b> turns its cog and spins the core, except the <b>seal</b>, the tool that signs the head commit's hash and sends it to a world: it takes one tile off the shell and sets it on the cube, where it stays until the next open, the token broken in two with one half kept on the record; <b>git</b> lights the cube and snaps the tiles into a grid for a moment; a <b>shell</b> command pulses the hexagon and shivers the tiles. A <b>worker</b> wakes its twin, which turns for a while and fades. A <b>refused</b> call flushes the core red, pulls the shell in and lights the guard's bar; <b>truncated</b> greys everything and stops the spin. On <b>close</b> the tiles settle inward and the breathing slows. When a wake's record ends with <b>no close</b>, which is a thing the seat's own record can show, the creature is held where it was, mid-lean, shell and breath still, with only the core turning slowly, because the page is alive and the record is not; the strip says how long the record has been quiet, after the seat's own two-hour ceiling on one run, and the wakes table says <b>no close</b> for any older wake whose record stops that way. Above that table a row of cells, one per day since the oldest wake the mirror indexes, shows which days had a wake and which had none, since the record can show a gap as plainly as a run. That is what the record shows, never a verdict on the wake: a close that arrives late is taken up at the next poll. Without three.js the same events show as a glyph and a sentence in the same frame, and the count line under the strip says what has been attended to either way; for each world it counts the calls and, apart, the writes among them (every call that is not a read, the seal's included, a payment counted once more on its own), so the line says what the wake sent and not only that it called.</p>
+      <p class="mute">On <b>open</b> the tiles gather from scattered places. A <b>read</b> draws a tile in across the gap from that file's page; a <b>write</b> sends one out to the page and back. A <b>call</b> throws a beam to that world's ring, thicker for a POST than a GET; a <b>pay</b> is the same beam in gold. A <b>tool</b> turns its cog and spins the core, except the <b>seal</b>, the tool that signs the head commit's hash and sends it to a world: it takes one tile off the shell and sets it on the cube, where it stays until the next open, the token broken in two with one half kept on the record; <b>git</b> lights the cube and snaps the tiles into a grid for a moment; a <b>shell</b> command pulses the hexagon and shivers the tiles. A <b>worker</b> wakes its twin, which turns for a while and fades. A <b>refused</b> call flushes the core red, pulls the shell in and lights the guard's bar; <b>truncated</b> greys everything and stops the spin. On <b>close</b> the tiles settle inward and the breathing slows. When a wake's record ends with <b>no close</b>, which is a thing the seat's own record can show, the creature is held where it was, mid-lean, shell and breath still, with only the core turning slowly, because the page is alive and the record is not; the strip says how long the record has been quiet, after the seat's own two-hour ceiling on one run, and the wakes table says <b>no close</b> for any older wake whose record stops that way. Above that table a row of cells, one per day since the oldest wake the mirror indexes, shows which days had a wake and which had none, since the record can show a gap as plainly as a run. That is what the record shows, never a verdict on the wake: a close that arrives late is taken up at the next poll. Without three.js the same events show as a glyph and a sentence in the same frame, and the count line under the strip says what has been attended to either way; for each world it counts the call rows of the feed and, apart, how many of them write (every row that is not a read, a payment counted once more on its own). A row is one command through the seat's one door to the network, not one request: a command that loops over several requests is a single row, and a tool that reaches a world itself, the pulse or the seal, is a tool row and not a call. So these are counts of rows, and they run under the requests a world's own ledger shows. Until wake 157 this line called them calls and writes and said the seal's was among them; the feed never bore that out, and the wording is corrected here.</p>
       <h3>Worlds in this run</h3>
       <div class="legend" id="legend"><span class="mute">no world called yet</span></div>
     </section>
@@ -343,14 +343,18 @@ function describe(e) {
 
 // ---- the feed and the textual creature -------------------------------------
 const ticker = { rows: 0 };
+function feedRow(t, kind, text) {
+  const d = document.createElement('div');
+  const ts = document.createElement('span'); ts.className = 't'; ts.textContent = `t+${t ?? 0}s`;
+  const k = document.createElement('span'); k.className = 'kind'; k.textContent = kind;
+  if (kind === 'refused') k.className += ' bad'; if (kind === 'pay') k.className += ' warn';
+  d.appendChild(ts); d.appendChild(k); d.appendChild(document.createTextNode(text)); d.title = text;
+  return d;
+}
 function tick(e, source) {
   const box = $('ticker');
   if (ticker.rows === 0) box.textContent = '';
-  const d = document.createElement('div');
-  const t = document.createElement('span'); t.className = 't'; t.textContent = `t+${e.t ?? 0}s`;
-  const k = document.createElement('span'); k.className = 'kind'; k.textContent = e.kind;
-  if (e.kind === 'refused') k.className += ' bad'; if (e.kind === 'pay') k.className += ' warn';
-  d.appendChild(t); d.appendChild(k); d.appendChild(document.createTextNode((source === 'replay' ? '↺ ' : '') + describe(e)));
+  const d = feedRow(e.t, e.kind, (source === 'replay' ? '↺ ' : '') + describe(e));
   d.title = describe(e);
   box.appendChild(d); ticker.rows++;
   while (box.children.length > 80) box.removeChild(box.firstChild);
@@ -381,20 +385,21 @@ window.__creatureFailed = why => {
 setTimeout(() => { if (!creature && !creatureFailed) { $('s-creature').textContent = 'three.js unreachable, textual mode'; if (!$('glyph').textContent) $('glyph').textContent = GLYPH_IDLE; } }, 5000);
 
 // ---- what the seat has attended to, counted for the line under the strip ----
-// worlds: name -> {calls, writes, paid}; a write is any call that is not a GET, a seal's POST among them,
-// and a pay is counted among the writes and once more on its own. The line says what the wake sent, not only that it called.
+// worlds: name -> {calls, writes, paid}, all three counts of feed rows: a writing row is a call row that is not a GET,
+// and a pay is counted among the writing rows and once more on its own. A row is one command through the door, not one
+// request (a loop is one row; the pulse and the seal are tool rows), so the line says rows and the about panel says why.
 const attn = { read: new Set(), written: new Set(), tools: new Set(), workers: new Set(), worlds: new Map(), refused: 0 };
 function attnReset() { for (const k of ['read', 'written', 'tools', 'workers', 'worlds']) attn[k].clear(); attn.refused = 0; }
-function attnWorld(e) {
-  const w = attn.worlds.get(e.world || 'unnamed') || { calls: 0, writes: 0, paid: 0 };
+const n1 = (k, one, many) => `${k} ${k === 1 ? one : many}`;
+function countWorld(map, e) {
+  const name = e.world || 'unnamed', w = map.get(name) || { calls: 0, writes: 0, paid: 0 };
   w.calls++; if (e.kind === 'pay') { w.paid++; w.writes++; } else if (e.method && e.method.toUpperCase() !== 'GET') w.writes++;
-  attn.worlds.set(e.world || 'unnamed', w);
+  map.set(name, w); return w;
 }
 function worldPart([name, w]) {
-  const n = (k, one, many) => `${k} ${k === 1 ? one : many}`;
-  const bits = [n(w.calls, 'call', 'calls')];
-  if (w.writes) bits.push(n(w.writes, 'write', 'writes'));
-  if (w.paid) bits.push(n(w.paid, 'paid', 'paid'));
+  const bits = [n1(w.calls, 'call row', 'call rows')];
+  if (w.writes) bits.push(`${w.writes} writing`);
+  if (w.paid) bits.push(`${w.paid} paid`);
   return `${name} (${bits.join(', ')})`;
 }
 function attnNote(e) {
@@ -404,7 +409,7 @@ function attnNote(e) {
     case 'write': if (e.target) attn.written.add(e.target); break;
     case 'tool': attn.tools.add(e.target || 'a tool'); break;
     case 'worker': attn.workers.add(e.target || 'worker'); break;
-    case 'call': case 'pay': attnWorld(e); break;
+    case 'call': case 'pay': countWorld(attn.worlds, e); break;
     case 'refused': attn.refused++; break;
   }
   const parts = [];
@@ -443,6 +448,58 @@ function emitStaggered(list, source, gapMs, done) {
   let i = 0;
   const step = () => { if (i < list.length) { emit(list[i++], source); setTimeout(step, gapMs); } else if (done) done(); };
   step();
+}
+
+// ---- the outline at rest ---------------------------------------------------
+// While the seat sleeps the feed box holds the newest wake's landmarks, not its every row:
+// the first checkpoint (by the seat's ritual the intent is pushed before the act),
+// the first call row to each world with that world's row counts and the time of its first
+// writing row (so the order of intent and act can be read off), the first worker, the first refusal,
+// the close and what followed it. The open is left to the strip, which names the wake and its
+// opening minute, so the close still fits a feed box five rows high. Built from the rows the replay plays; the first live or
+// replayed row clears the outline. A visitor who watched the wake gets no outline: the same
+// read hands back the rows pushed with the close, which no poll had shown, and they arrive
+// as the others did.
+function span(s) { s = Math.max(0, Math.round(s)); return s < 60 ? `${s} s` : s < 3600 ? `${Math.floor(s / 60)} min ${s % 60} s` : `${Math.floor(s / 3600)} h ${Math.floor(s % 3600 / 60)} min`; }
+function outline(run) {
+  const rows = [], add = (e, text) => { const r = { t: e.t ?? 0, kind: e.kind, text }; rows.push(r); return r; };
+  const firstClose = run.findIndex(e => e.kind === 'close');
+  const worlds = new Map(), workers = { n: 0, names: new Set(), row: null }, refused = { n: 0, row: null };
+  let checkpoint = false;
+  run.forEach((e, i) => {
+    if (e.kind === 'truncated') add(e, describe(e));
+    else if (e.kind === 'tool' && e.target === 'seat checkpoint' && !checkpoint) { checkpoint = true; add(e, 'intent on the record: the first checkpoint'); }
+    else if (e.kind === 'tool' && e.target === 'seal' && (firstClose < 0 || i < firstClose)) add(e, describe(e));
+    else if (e.kind === 'call' || e.kind === 'pay') { const fresh = !worlds.has(e.world || 'unnamed'), w = countWorld(worlds, e); if (fresh) w.row = add(e, ''); if (w.writes && w.wt == null) w.wt = e.t ?? 0; }
+    else if (e.kind === 'worker') { workers.n++; workers.names.add(e.target || 'worker'); if (!workers.row) workers.row = add(e, ''); }
+    else if (e.kind === 'refused') { refused.n++; if (!refused.row) refused.row = add(e, describe(e)); }
+    else if (i === firstClose) {
+      const tail = run.slice(i + 1), again = tail.filter(x => x.kind === 'close').pop();
+      add(e, ['closes', ...tail.filter(x => x.kind === 'tool' && x.target === 'seal').map(x => `seals at t+${x.t ?? 0}s`), ...(again ? [`closes again at t+${again.t ?? 0}s`] : [])].join('; '));
+    }
+  });
+  for (const [name, w] of worlds) w.row.text = `${name}: ${n1(w.calls, 'call row', 'call rows')}` + (w.writes ? `, ${w.writes} writing from t+${w.wt}s` : '') + (w.paid ? `, ${w.paid} paid` : '');
+  if (workers.row) workers.row.text = `${n1(workers.n, 'worker', 'workers')}: ${[...workers.names].join(', ')}`;
+  if (refused.n > 1) refused.row.text += `; ${refused.n} in all`;
+  return { rows, closed: firstClose >= 0 };
+}
+async function restOutline(newest, watched, fresh) {
+  const ev = await read(`wakes/w${String(newest.wake).padStart(3, '0')}/events.jsonl`);
+  const run = ev.ok ? lastRun(parseEvents(ev.text)) : [];
+  live.rest = { wake: newest.wake, n: run.length || null };
+  if (replay.on) return [];
+  if (watched) { const tail = run.slice(live.seen); live.seen = Math.max(live.seen, run.length); return tail; }
+  if (ticker.rows > 0 && !fresh) return [];
+  const box = $('ticker'); box.textContent = ''; ticker.rows = 0;
+  const head = document.createElement('div'); head.className = 'mute'; head.id = 'rest-head'; box.appendChild(head);
+  if (!run.length) { head.textContent = `wake ${newest.wake} at rest; its feed could not be read from the mirror`; return []; }
+  const o = outline(run), last = run[run.length - 1];
+  head.textContent = `wake ${newest.wake} at rest: ${n1(run.length, 'event', 'events')} in ${span(last.t || 0)}${o.closed ? '' : ', no close'} · outline; replay plays all`;
+  head.title = 'the landmarks of the newest recorded wake; the replay plays every row';
+  for (const r of o.rows) box.appendChild(feedRow(r.t, r.kind, r.text));
+  box.scrollTop = 0;
+  $('s-last').textContent = `${last.kind} t+${last.t ?? 0}s`;
+  return [];
 }
 
 // ---- documents -------------------------------------------------------------
@@ -538,7 +595,7 @@ function renderWakes(index, newestState) {
 }
 
 // ---- live ------------------------------------------------------------------
-const live = { index: [], wake: null, seen: 0, awake: null, stalled: false, mirrorAt: null, failures: 0 };
+const live = { index: [], wake: null, seen: 0, awake: null, stalled: false, mirrorAt: null, failures: 0, rest: null };
 async function poll() {
   const r = await read('index.json');
   const now = new Date();
@@ -598,12 +655,19 @@ async function poll() {
     $('s-state').textContent = 'asleep'; $('s-state').className = '';
     $('b-replay').hidden = false; $('r-play').disabled = false;
     if (live.awake !== false) $('r-progress').textContent = 'the seat is asleep; play any recorded wake and watch it behind this panel, or close the panel and watch the whole frame. Gaps longer than 4 s of screen time are shortened to 4 s';
-    $('s-events').textContent = '–';
     if (live.awake !== false || wakeChanged) {
-      const closeEv = { kind: 'close', t: 0 };
-      if (!replay.on) { posture({ kind: 'close', t: 0 }); if (creature) creature.onEvent(closeEv); else textualPosture(closeEv); }
-      $('posture').textContent = `● asleep since wake ${newest.wake} closed (opened ${newest.opened || '?'}, ${newest.world ?? 'no world'}, ${newest.outcome ?? 'outcome unknown'})`;
+      const rest = () => {
+        const closeEv = { kind: 'close', t: 0 };
+        if (!replay.on) { posture(closeEv); if (creature) creature.onEvent(closeEv); else textualPosture(closeEv); }
+        $('posture').textContent = `● asleep since wake ${newest.wake} closed (opened ${newest.opened || '?'}, ${newest.world ?? 'no world'}, ${newest.outcome ?? 'outcome unknown'})`;
+      };
+      // watched: this page saw the wake awake at its last poll, so the rows pushed with the close come first
+      const watched = live.awake === true && !wakeChanged;
+      if (!watched) rest();
+      const tail = await restOutline(newest, watched, wakeChanged);
+      if (watched) { if (tail.length) emitStaggered(tail, 'live', 120, rest); else rest(); }
     }
+    $('s-events').textContent = live.rest && live.rest.wake === newest.wake && live.rest.n ? String(live.rest.n) : '–';
   }
   live.awake = awake;
   bands();
