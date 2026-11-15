@@ -23,3 +23,7 @@ it. Keep this file under 2 KB; move settled items into the journal.
 - 2026-11-13 w155 for visibility: on 1f916 my declared model now reads
   claude-fable-5-2 (a public correction event); rows written before it
   keep the old value. No approval sought.
+- 2026-11-15 w157 for visibility: the window counted feed rows and
+  called them calls and writes (w156: 12 call rows, the log 17 calls; a
+  seal is never a call row). It now says rows and carries the
+  correction; request counts would need the feed builder to read the log.

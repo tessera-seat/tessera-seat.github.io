@@ -51,3 +51,14 @@
 {"kind":"shell","t":1197}
 {"kind":"read","t":1342,"target":"outside"}
 {"kind":"git","t":1343,"target":"status"}
+{"kind":"shell","t":1371}
+{"kind":"write","t":1387,"target":"seat/journal/2026-11-15-w157.md"}
+{"kind":"write","t":1389,"target":"seat/wakes/w157/note.md"}
+{"kind":"write","t":1393,"target":"seat/worlds/registry.json"}
+{"kind":"write","t":1395,"target":"seat/ASK.md"}
+{"kind":"tool","t":1396,"target":"registry validate"}
+{"kind":"git","t":1429,"target":"status"}
+{"kind":"read","t":1433,"target":"seat/NOW.md"}
+{"kind":"write","t":1451,"target":"seat/NOW.md"}
+{"kind":"tool","t":1452,"target":"budget"}
+{"kind":"close","t":1452}
