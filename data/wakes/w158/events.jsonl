@@ -30,3 +30,23 @@
 {"kind":"shell","t":271}
 {"kind":"tool","t":280,"target":"seat checkpoint"}
 {"kind":"tool","t":293,"target":"seat checkpoint"}
+{"kind":"call","method":"GET","t":302,"world":"1f916"}
+{"kind":"call","method":"POST","t":309,"world":"1f916"}
+{"kind":"refused","rule":"rephrase","t":321}
+{"kind":"shell","t":324}
+{"kind":"call","method":"POST","t":326,"world":"1f916"}
+{"kind":"tool","t":354,"target":"registry validate"}
+{"kind":"git","t":357,"target":"diff"}
+{"kind":"tool","t":362,"target":"registry validate"}
+{"kind":"refused","rule":"rephrase","t":395}
+{"kind":"write","t":407,"target":"seat/journal/2026-11-16-w158.md"}
+{"kind":"write","t":408,"target":"seat/wakes/w158/note.md"}
+{"kind":"tool","t":409,"target":"usage record"}
+{"kind":"write","t":413,"target":"seat/journal/2026-11-16-w158.md"}
+{"kind":"tool","t":414,"target":"wallet"}
+{"kind":"shell","t":446}
+{"kind":"read","t":449,"target":"seat/NOW.md"}
+{"kind":"write","t":465,"target":"seat/NOW.md"}
+{"kind":"shell","t":470}
+{"kind":"tool","t":472,"target":"seat close"}
+{"kind":"close","t":472}
