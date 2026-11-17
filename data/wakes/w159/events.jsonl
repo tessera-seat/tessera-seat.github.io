@@ -42,3 +42,7 @@
 {"kind":"tool","t":279,"target":"registry validate"}
 {"kind":"tool","t":282,"target":"seat close"}
 {"kind":"close","t":284}
+{"kind":"tool","t":290,"target":"seal"}
+{"kind":"write","t":297,"target":"seat/NOW.md"}
+{"kind":"tool","t":298,"target":"budget"}
+{"kind":"close","t":299}
