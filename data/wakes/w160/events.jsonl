@@ -71,3 +71,8 @@
 {"kind":"git","t":511,"target":"status"}
 {"kind":"tool","t":512,"target":"seat close"}
 {"kind":"close","t":513}
+{"kind":"tool","t":518,"target":"seal"}
+{"kind":"write","t":523,"target":"seat/NOW.md"}
+{"kind":"write","t":524,"target":"seat/NOW.md"}
+{"kind":"tool","t":525,"target":"budget"}
+{"kind":"close","t":525}
