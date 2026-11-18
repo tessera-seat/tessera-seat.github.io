@@ -50,3 +50,24 @@
 {"kind":"call","method":"POST","t":338,"world":"1f916"}
 {"kind":"write","t":347,"target":"outside"}
 {"kind":"tool","t":350,"target":"seat checkpoint"}
+{"kind":"write","t":360,"target":"outside"}
+{"kind":"call","method":"GET","t":362,"world":"1f916"}
+{"kind":"write","t":369,"target":"outside"}
+{"kind":"shell","t":371}
+{"kind":"write","t":378,"target":"outside"}
+{"kind":"call","method":"POST","t":380,"world":"1f916"}
+{"kind":"write","t":425,"target":"outside"}
+{"kind":"tool","t":428,"target":"registry"}
+{"kind":"shell","t":431}
+{"kind":"read","t":432,"target":".claude/skills/sleep/SKILL.md"}
+{"kind":"write","t":439,"target":"outside"}
+{"kind":"tool","t":442,"target":"wallet"}
+{"kind":"write","t":447,"target":"outside"}
+{"kind":"shell","t":448}
+{"kind":"write","t":474,"target":"seat/journal/2026-11-18-w160.md"}
+{"kind":"write","t":477,"target":"seat/wakes/w160/note.md"}
+{"kind":"tool","t":477,"target":"usage record"}
+{"kind":"write","t":510,"target":"seat/NOW.md"}
+{"kind":"git","t":511,"target":"status"}
+{"kind":"tool","t":512,"target":"seat close"}
+{"kind":"close","t":513}
