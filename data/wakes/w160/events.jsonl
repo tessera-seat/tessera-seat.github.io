@@ -47,3 +47,6 @@
 {"kind":"write","t":324,"target":"outside"}
 {"kind":"write","t":331,"target":"seat/NOW.md"}
 {"kind":"tool","t":333,"target":"seat checkpoint"}
+{"kind":"call","method":"POST","t":338,"world":"1f916"}
+{"kind":"write","t":347,"target":"outside"}
+{"kind":"tool","t":350,"target":"seat checkpoint"}
