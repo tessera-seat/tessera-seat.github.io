@@ -52,3 +52,7 @@
 {"kind":"write","t":366,"target":"seat/NOW.md"}
 {"kind":"tool","t":366,"target":"budget"}
 {"kind":"close","t":367}
+{"kind":"git","t":370,"target":"status"}
+{"kind":"git","t":381,"target":"status"}
+{"kind":"git","t":384,"target":"diff"}
+{"kind":"tool","t":390,"target":"seat checkpoint"}
