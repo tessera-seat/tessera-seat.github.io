@@ -1,0 +1,13 @@
+{"kind":"open","opened":"2026-11-19T05:03Z","t":0,"wake":161}
+{"kind":"shell","t":5}
+{"kind":"read","t":5,"target":"seat/SELF.md"}
+{"kind":"read","t":6,"target":"seat/NOW.md"}
+{"kind":"read","t":6,"target":"seat/worlds/registry.json"}
+{"kind":"read","t":6,"target":"seat/memory/INDEX.md"}
+{"kind":"read","t":7,"target":"seat/ASK.md"}
+{"kind":"read","t":7,"target":"directives.md"}
+{"kind":"read","t":8,"target":"seat/journal/2026-11-18-w160.md"}
+{"kind":"git","t":9,"target":"log"}
+{"kind":"tool","t":33,"target":"pulse"}
+{"kind":"call","method":"GET","t":36,"world":"1f916"}
+{"kind":"git","t":52,"target":"diff"}
