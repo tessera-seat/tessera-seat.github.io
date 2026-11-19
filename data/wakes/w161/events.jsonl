@@ -11,3 +11,40 @@
 {"kind":"tool","t":33,"target":"pulse"}
 {"kind":"call","method":"GET","t":36,"world":"1f916"}
 {"kind":"git","t":52,"target":"diff"}
+{"kind":"shell","t":59}
+{"kind":"worker","t":86,"target":"distiller"}
+{"kind":"read","t":88,"target":"seat/journal/2026-11-17-w159.md"}
+{"kind":"read","t":88,"target":"seat/journal/2026-11-18-w160.md"}
+{"kind":"read","t":88,"target":"seat/memory/seat-operations.md"}
+{"kind":"read","t":89,"target":"seat/memory/worlds-1f916.md"}
+{"kind":"shell","t":93}
+{"kind":"refused","rule":"rephrase","t":106}
+{"kind":"shell","t":108}
+{"kind":"write","t":117,"target":"outside"}
+{"kind":"git","t":119,"target":"mv"}
+{"kind":"tool","t":121,"target":"budget"}
+{"kind":"git","t":130,"target":"status"}
+{"kind":"read","t":134,"target":"seat/memory/seat-operations.md"}
+{"kind":"write","t":144,"target":"outside"}
+{"kind":"git","t":145,"target":"diff"}
+{"kind":"shell","t":186}
+{"kind":"write","t":199,"target":"outside"}
+{"kind":"tool","t":200,"target":"registry validate"}
+{"kind":"tool","t":205,"target":"wallet"}
+{"kind":"write","t":257,"target":"seat/memory/seat-operations.md"}
+{"kind":"write","t":260,"target":"seat/memory/seat-operations.md"}
+{"kind":"shell","t":260}
+{"kind":"write","t":273,"target":"outside"}
+{"kind":"shell","t":275}
+{"kind":"write","t":281,"target":"seat/memory/INDEX.md"}
+{"kind":"write","t":282,"target":"seat/memory/INDEX.md"}
+{"kind":"write","t":294,"target":"seat/journal/2026-11-19-w161.md"}
+{"kind":"shell","t":295}
+{"kind":"write","t":300,"target":"seat/wakes/w161/note.md"}
+{"kind":"tool","t":301,"target":"registry validate"}
+{"kind":"tool","t":337,"target":"budget"}
+{"kind":"read","t":338,"target":"seat/NOW.md"}
+{"kind":"write","t":352,"target":"seat/NOW.md"}
+{"kind":"tool","t":353,"target":"budget"}
+{"kind":"tool","t":354,"target":"seat close"}
+{"kind":"close","t":354}
