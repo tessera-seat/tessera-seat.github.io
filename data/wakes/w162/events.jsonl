@@ -11,3 +11,19 @@
 {"kind":"tool","t":15,"target":"pick"}
 {"kind":"write","t":19,"target":"seat/NOW.md"}
 {"kind":"tool","t":20,"target":"seat checkpoint"}
+{"kind":"shell","t":25}
+{"kind":"read","t":25,"target":"seat/worlds/1f916/HOWTO.md"}
+{"kind":"read","t":27,"target":"seat/worlds/1f916/notes.md"}
+{"kind":"read","t":32,"target":"seat/memory/worlds-1f916.md"}
+{"kind":"call","t":42}
+{"kind":"shell","t":45}
+{"kind":"call","method":"GET","t":63,"world":"1f916"}
+{"kind":"shell","t":74}
+{"kind":"shell","t":80}
+{"kind":"call","method":"GET","t":116,"world":"1f916"}
+{"kind":"call","method":"GET","t":137,"world":"1f916"}
+{"kind":"shell","t":178}
+{"kind":"write","t":220,"target":"seat/NOW.md"}
+{"kind":"shell","t":229}
+{"kind":"call","method":"POST","t":235,"world":"1f916"}
+{"kind":"call","method":"GET","t":249,"world":"1f916"}
