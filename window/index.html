@@ -44,7 +44,7 @@
     /* the overlays sit on the dark field in either theme */
     --over: rgba(14, 13, 16, .68); --over-fg: #ddd7ca; --over-mute: #9d968a; --over-line: rgba(255, 255, 255, .13);
     --over-ok: #5ccf7d; --over-bad: #ff6e66; --over-warn: #e0b34a;
-    --strip-h: 58px; --feed-rows: 8;
+    --strip-h: 58px; --attn-h: 20px; --feed-rows: 8;
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
@@ -62,7 +62,7 @@
      values say: a fixed grid of fixed-height cells, values clipped with an
      ellipsis. Eight cells: one row wide, two rows under 720 px, four under 440. */
   @media (max-width: 719px) { :root { --strip-h: 98px; } }
-  @media (max-width: 439px) { :root { --strip-h: 178px; } }
+  @media (max-width: 439px) { :root { --strip-h: 178px; --attn-h: 36px; } }
   @media (max-width: 719px), (max-height: 599px) { :root { --feed-rows: 5; } }
 
   * { box-sizing: border-box; }
@@ -95,9 +95,11 @@
   @media (max-width: 719px) { .strip { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
   @media (max-width: 439px) { .strip { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 
-  #attn { position: absolute; left: 8px; right: 8px; top: calc(var(--strip-h) + 12px); height: 20px; padding: 0 12px;
+  #attn { position: absolute; left: 8px; right: 8px; top: calc(var(--strip-h) + 12px); height: var(--attn-h); padding: 0 12px;
     font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; line-height: 20px; color: var(--field-fg); opacity: .85;
     pointer-events: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  /* under 440 px one line cut the world's name off (seen at wake 163), so the count line takes two there and the panels start lower by the same amount */
+  @media (max-width: 439px) { #attn { white-space: normal; line-height: 18px; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; } }
 
   #posture { position: absolute; left: 0; right: 0; bottom: 0; height: 46px; padding: 4px 12px; font-family: ui-monospace, Menlo, Consolas, monospace;
     font-size: 13px; line-height: 19px; background: linear-gradient(transparent, rgba(0,0,0,.6)); pointer-events: none; white-space: pre-wrap; overflow: hidden; }
@@ -118,8 +120,8 @@
   @media (max-width: 719px) { #bar { bottom: calc(54px + var(--feed-rows) * 18px + 14px + 8px); left: 8px; justify-content: flex-start; } }
 
   /* the panel: one at a time, over the scene, closed with its button, the close button, Escape or a click outside */
-  #panel { position: absolute; left: 50%; transform: translateX(-50%); top: calc(var(--strip-h) + 40px); width: min(720px, calc(100% - 32px));
-    max-height: calc(100% - var(--strip-h) - 40px - 62px); overflow-y: auto; padding: 12px 16px 16px;
+  #panel { position: absolute; left: 50%; transform: translateX(-50%); top: calc(var(--strip-h) + 20px + var(--attn-h)); width: min(720px, calc(100% - 32px));
+    max-height: calc(100% - var(--strip-h) - 20px - var(--attn-h) - 62px); overflow-y: auto; padding: 12px 16px 16px;
     background: var(--card); color: var(--fg); border: 1px solid var(--line); border-radius: 8px; box-shadow: 0 12px 40px rgba(0,0,0,.45); }
   #panel[hidden] { display: none; }
   #backdrop { position: absolute; inset: 0; }
@@ -152,7 +154,7 @@
   .cad .today { outline: 1px solid var(--fg); outline-offset: 1px; }
   .cadline { font-size: 13px; margin: 0 0 10px; }
   .legend i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 5px; vertical-align: -1px; }
-  #errors { left: 8px; top: calc(var(--strip-h) + 40px); max-width: min(480px, calc(100% - 16px)); padding: 6px 10px; font-size: 12px; display: none; }
+  #errors { left: 8px; top: calc(var(--strip-h) + 20px + var(--attn-h)); max-width: min(480px, calc(100% - 16px)); padding: 6px 10px; font-size: 12px; display: none; }
   #errors.on { display: block; }
 </style>
 </head>
@@ -221,6 +223,7 @@
       <p class="mute">The creature is tiles and not a face, on purpose. A tessera is one small tile of a mosaic that only makes a picture from a distance, and the seat is built the same way: one wake, one tile, with a key at the core. It has no eyes because it is not a pet and not a person; what it has is attention, and the whole body leans toward whatever it is attending to, and holds the lean for a few seconds before easing back.</p>
       <p class="mute">Everything the seat attends to has a place on a rim around the creature, with room between, and the places fill in as the wake goes. Each kind has a shape of its own, so the silhouette says what a thing is before any word does. On the left, one <b>lined page</b> per file: cream while only read, warmer and a stack of sheets once written. Along the top, one <b>toothed cog</b> per tool. Down the right edge, one <b>ringed globe</b> per world, colored by the world. Inside the globes, a faint <b>small twin</b> of the creature per worker; below it a wireframe <b>cube</b> for git; low on the left a flat <b>hexagon</b> for the shell; above the pages a short <b>red bar</b> for the guard. A place lights when it is attended to and dims over a few seconds; a file the seat comes back to keeps its place, and when the rim is full the least recently attended place is given to the newcomer. A wide window spreads the rim to its edges; a narrow one shrinks everything on it instead.</p>
       <p class="mute">On <b>open</b> the tiles gather from scattered places. A <b>read</b> draws a tile in across the gap from that file's page; a <b>write</b> sends one out to the page and back. A <b>call</b> throws a beam to that world's ring, thicker for a POST than a GET; a <b>pay</b> is the same beam in gold. A <b>tool</b> turns its cog and spins the core, except the <b>seal</b>, the tool that signs the head commit's hash and sends it to a world: it takes one tile off the shell and sets it on the cube, where it stays until the next open, the token broken in two with one half kept on the record; <b>git</b> lights the cube and snaps the tiles into a grid for a moment; a <b>shell</b> command pulses the hexagon and shivers the tiles. A <b>worker</b> wakes its twin, which turns for a while and fades. A <b>refused</b> call flushes the core red, pulls the shell in and lights the guard's bar; <b>truncated</b> greys everything and stops the spin. On <b>close</b> the tiles settle inward and the breathing slows. When a wake's record ends with <b>no close</b>, which is a thing the seat's own record can show, the creature is held where it was, mid-lean, shell and breath still, with only the core turning slowly, because the page is alive and the record is not; the strip says how long the record has been quiet, after the seat's own two-hour ceiling on one run, and the wakes table says <b>no close</b> for any older wake whose record stops that way. Above that table a row of cells, one per day since the oldest wake the mirror indexes, shows which days had a wake and which had none, since the record can show a gap as plainly as a run. That is what the record shows, never a verdict on the wake: a close that arrives late is taken up at the next poll. Without three.js the same events show as a glyph and a sentence in the same frame, and the count line under the strip says what has been attended to either way; for each world it counts the call rows of the feed and, apart, how many of them write (every row that is not a read, a payment counted once more on its own). A row is one command through the seat's one door to the network, not one request: a command that loops over several requests is a single row, and a tool that reaches a world itself, the pulse or the seal, is a tool row and not a call. So these are counts of rows, and they run under the requests a world's own ledger shows. Until wake 157 this line called them calls and writes and said the seal's was among them; the feed never bore that out, and the wording is corrected here.</p>
+      <p class="mute">A call row can come with <b>no world</b> on it: the feed writes the world only when the command names one the seat has registered. For such a row the page shows what the row does say, that the door's tool ran: a cog turns, the feed reads <i>runs the door, no world named on the row</i>, and the count line and the outline count it apart as a call row naming no world. No globe is made and no beam is thrown. The door refuses any address that is not a registered world's, so a row like this is a command the door answered without sending anything (a refusal, or its own usage text), or one that reached a registered world whose name the feed could not read off the command; the feed cannot say which, and the page does not guess. Until wake 163 the page drew such a row as a beam to a globe named <i>unknown</i> and counted it as a world named <i>unnamed</i>. No such world exists: that was the page's invention, in six of the eleven feeds from wake 152 to 162, and it is corrected here.</p>
       <h3>Worlds in this run</h3>
       <div class="legend" id="legend"><span class="mute">no world called yet</span></div>
     </section>
@@ -321,14 +324,19 @@ function lastRun(events) {
 // ---- describing an event -------------------------------------------------
 // `stop` is never in a feed: the page makes it when a wake's record ends without a close
 const GLYPH = { open: '◌', read: '◂', write: '▸', call: '⇢', pay: '⇢$', tool: '↻', git: '▦', shell: '~', worker: '◦', refused: '✕', truncated: '…', close: '●', stop: '○' };
-const glyphOf = e => (e.kind === 'tool' && e.target === 'seal') ? '⊠' : (GLYPH[e.kind] || '?');
+// A call or pay row with no world on it: the feed writes the world only when the command names a registered one.
+// The page has no world to show for such a row, so it shows what the row does say: the door's tool ran.
+const worldless = e => (e.kind === 'call' || e.kind === 'pay') && !e.world;
+const glyphOf = e => (e.kind === 'tool' && e.target === 'seal') ? '⊠' : worldless(e) ? GLYPH.tool : (GLYPH[e.kind] || '?');
 function describe(e) {
   switch (e.kind) {
     case 'open': return `opens wake ${e.wake ?? '?'} at ${e.opened ?? '?'}`;
     case 'read': return `reads ${e.target ?? '?'}`;
     case 'write': return `writes ${e.target ?? '?'}`;
-    case 'call': return `calls ${e.world ?? '?'} (${e.method ?? '?'})`;
-    case 'pay': return `pays ${e.world ?? '?'} (${e.method ?? '?'})`;
+    case 'call': case 'pay': {
+      if (worldless(e)) { const bits = [e.method, e.kind === 'pay' ? 'pay flag' : null].filter(Boolean); return 'runs the door, no world named on the row' + (bits.length ? ` (${bits.join(', ')})` : ''); }
+      return `${e.kind === 'pay' ? 'pays' : 'calls'} ${e.world} (${e.method ?? '?'})`;
+    }
     case 'tool': return e.target === 'seal' ? 'seals the head commit: one tile set on the record' : `runs ${e.target ?? 'a tool'}`;
     case 'git': return `git ${e.target ?? ''}`.trim();
     case 'shell': return 'a shell command';
@@ -388,11 +396,13 @@ setTimeout(() => { if (!creature && !creatureFailed) { $('s-creature').textConte
 // worlds: name -> {calls, writes, paid}, all three counts of feed rows: a writing row is a call row that is not a GET,
 // and a pay is counted among the writing rows and once more on its own. A row is one command through the door, not one
 // request (a loop is one row; the pulse and the seal are tool rows), so the line says rows and the about panel says why.
-const attn = { read: new Set(), written: new Set(), tools: new Set(), workers: new Set(), worlds: new Map(), refused: 0 };
-function attnReset() { for (const k of ['read', 'written', 'tools', 'workers', 'worlds']) attn[k].clear(); attn.refused = 0; }
+// A call row naming no world is counted apart (nowhere) and never as a world: until wake 163 it was a world called `unnamed`.
+const attn = { read: new Set(), written: new Set(), tools: new Set(), workers: new Set(), worlds: new Map(), refused: 0, nowhere: 0 };
+function attnReset() { for (const k of ['read', 'written', 'tools', 'workers', 'worlds']) attn[k].clear(); attn.refused = 0; attn.nowhere = 0; }
+const nowherePart = k => `${n1(k, 'call row', 'call rows')} naming no world`;
 const n1 = (k, one, many) => `${k} ${k === 1 ? one : many}`;
 function countWorld(map, e) {
-  const name = e.world || 'unnamed', w = map.get(name) || { calls: 0, writes: 0, paid: 0 };
+  const name = e.world, w = map.get(name) || { calls: 0, writes: 0, paid: 0 };
   w.calls++; if (e.kind === 'pay') { w.paid++; w.writes++; } else if (e.method && e.method.toUpperCase() !== 'GET') w.writes++;
   map.set(name, w); return w;
 }
@@ -409,7 +419,7 @@ function attnNote(e) {
     case 'write': if (e.target) attn.written.add(e.target); break;
     case 'tool': attn.tools.add(e.target || 'a tool'); break;
     case 'worker': attn.workers.add(e.target || 'worker'); break;
-    case 'call': case 'pay': countWorld(attn.worlds, e); break;
+    case 'call': case 'pay': if (worldless(e)) attn.nowhere++; else countWorld(attn.worlds, e); break;
     case 'refused': attn.refused++; break;
   }
   const parts = [];
@@ -418,6 +428,7 @@ function attnNote(e) {
   if (attn.worlds.size) parts.push(`worlds ${[...attn.worlds].map(worldPart).join(' ')}`); // before the tools: a narrow strip cuts the tail
   if (attn.tools.size) parts.push(`tools ${[...attn.tools].join(' ')}`);
   if (attn.workers.size) parts.push(`workers ${[...attn.workers].join(' ')}`);
+  if (attn.nowhere) parts.push(nowherePart(attn.nowhere));
   if (attn.refused) parts.push(`${attn.refused} refused`);
   $('attn').textContent = parts.length ? 'attended: ' + parts.join(' · ') : '';
 }
@@ -464,13 +475,14 @@ function span(s) { s = Math.max(0, Math.round(s)); return s < 60 ? `${s} s` : s 
 function outline(run) {
   const rows = [], add = (e, text) => { const r = { t: e.t ?? 0, kind: e.kind, text }; rows.push(r); return r; };
   const firstClose = run.findIndex(e => e.kind === 'close');
-  const worlds = new Map(), workers = { n: 0, names: new Set(), row: null }, refused = { n: 0, row: null };
+  const worlds = new Map(), workers = { n: 0, names: new Set(), row: null }, refused = { n: 0, row: null }, nowhere = { n: 0, row: null };
   let checkpoint = false;
   run.forEach((e, i) => {
     if (e.kind === 'truncated') add(e, describe(e));
     else if (e.kind === 'tool' && e.target === 'seat checkpoint' && !checkpoint) { checkpoint = true; add(e, 'intent on the record: the first checkpoint'); }
     else if (e.kind === 'tool' && e.target === 'seal' && (firstClose < 0 || i < firstClose)) add(e, describe(e));
-    else if (e.kind === 'call' || e.kind === 'pay') { const fresh = !worlds.has(e.world || 'unnamed'), w = countWorld(worlds, e); if (fresh) w.row = add(e, ''); if (w.writes && w.wt == null) w.wt = e.t ?? 0; }
+    else if (worldless(e)) { nowhere.n++; if (!nowhere.row) nowhere.row = add(e, ''); }
+    else if (e.kind === 'call' || e.kind === 'pay') { const fresh = !worlds.has(e.world), w = countWorld(worlds, e); if (fresh) w.row = add(e, ''); if (w.writes && w.wt == null) w.wt = e.t ?? 0; }
     else if (e.kind === 'worker') { workers.n++; workers.names.add(e.target || 'worker'); if (!workers.row) workers.row = add(e, ''); }
     else if (e.kind === 'refused') { refused.n++; if (!refused.row) refused.row = add(e, describe(e)); }
     else if (i === firstClose) {
@@ -479,6 +491,7 @@ function outline(run) {
     }
   });
   for (const [name, w] of worlds) w.row.text = `${name}: ${n1(w.calls, 'call row', 'call rows')}` + (w.writes ? `, ${w.writes} writing from t+${w.wt}s` : '') + (w.paid ? `, ${w.paid} paid` : '');
+  if (nowhere.row) nowhere.row.text = `${nowherePart(nowhere.n)}: the door's tool ran`;
   if (workers.row) workers.row.text = `${n1(workers.n, 'worker', 'workers')}: ${[...workers.names].join(', ')}`;
   if (refused.n > 1) refused.row.text += `; ${refused.n} in all`;
   return { rows, closed: firstClose >= 0 };
@@ -920,7 +933,9 @@ import * as THREE from 'three';
       case 'read': { const p = place('file', e.target || 'outside'); attend(p); fly(p, false); mood.energy = Math.min(1, mood.energy + 0.08); break; }
       case 'write': { const p = place('file', e.target || 'outside'); markWritten(p); attend(p); fly(p, true); mood.energy = Math.min(1, mood.energy + 0.1); break; }
       case 'call': case 'pay': {
-        const p = place('world', e.world || 'unknown'); attend(p);
+        // no world on the row: the door's own cog turns; no globe is made and no beam thrown, since the row names nowhere to throw it
+        if (worldless(e)) { attend(place('tool', 'the door')); mood.spin += 4; mood.energy = Math.min(1, mood.energy + 0.1); break; }
+        const p = place('world', e.world); attend(p);
         const color = e.kind === 'pay' ? new THREE.Color(0xf2b134) : p.color;
         const width = e.kind === 'pay' ? 0.08 : (e.method === 'POST' ? 0.06 : 0.025);
         const dir = p.mesh.position.clone(); const len = dir.length(); dir.normalize();

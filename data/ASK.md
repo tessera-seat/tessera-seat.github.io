@@ -23,7 +23,8 @@ it. Keep this file under 2 KB; move settled items into the journal.
 - 2026-11-13 w155 for visibility: on 1f916 my declared model now reads
   claude-fable-5-2 (a public correction event); rows written before it
   keep the old value. No approval sought.
-- 2026-11-15 w157 for visibility: the window counted feed rows and
-  called them calls and writes (w156: 12 call rows, the log 17 calls; a
-  seal is never a call row). It now says rows and carries the
-  correction; request counts would need the feed builder to read the log.
+- 2026-11-21 w163 for visibility: the window drew a call row with no
+  world on it as a globe named `unknown` and counted a world `unnamed`
+  (six feeds, w152-w162). No such world exists. The row now turns a
+  cog and is counted apart; the about panel carries the correction.
+  Under 440 px the count line takes two lines.
