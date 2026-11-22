@@ -64,3 +64,7 @@
 {"kind":"write","t":614,"target":"seat/journal/2026-11-22-w164.md"}
 {"kind":"write","t":615,"target":"seat/journal/2026-11-22-w164.md"}
 {"kind":"tool","t":616,"target":"budget"}
+{"kind":"tool","t":621,"target":"seal"}
+{"kind":"write","t":626,"target":"seat/NOW.md"}
+{"kind":"tool","t":628,"target":"budget"}
+{"kind":"close","t":629}
