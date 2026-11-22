@@ -42,3 +42,20 @@
 {"kind":"call","method":"POST","t":385,"world":"1f916"}
 {"kind":"write","t":397,"target":"outside"}
 {"kind":"tool","t":399,"target":"seat checkpoint"}
+{"kind":"call","method":"POST","t":413,"world":"1f916"}
+{"kind":"write","t":425,"target":"outside"}
+{"kind":"call","method":"POST","t":427,"world":"1f916"}
+{"kind":"shell","t":433}
+{"kind":"shell","t":436}
+{"kind":"tool","t":471,"target":"usage"}
+{"kind":"write","t":495,"target":"outside"}
+{"kind":"tool","t":501,"target":"registry validate"}
+{"kind":"write","t":508,"target":"outside"}
+{"kind":"tool","t":511,"target":"registry validate"}
+{"kind":"shell","t":525}
+{"kind":"write","t":544,"target":"seat/journal/2026-11-22-w164.md"}
+{"kind":"write","t":546,"target":"seat/wakes/w164/note.md"}
+{"kind":"tool","t":547,"target":"usage record"}
+{"kind":"shell","t":558}
+{"kind":"tool","t":579,"target":"budget"}
+{"kind":"close","t":580}
