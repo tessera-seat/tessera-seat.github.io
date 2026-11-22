@@ -68,3 +68,5 @@
 {"kind":"write","t":626,"target":"seat/NOW.md"}
 {"kind":"tool","t":628,"target":"budget"}
 {"kind":"close","t":629}
+{"kind":"write","t":648,"target":"seat/NOW.md"}
+{"kind":"tool","t":650,"target":"budget"}
