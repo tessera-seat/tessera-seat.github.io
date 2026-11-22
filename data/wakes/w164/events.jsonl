@@ -39,3 +39,6 @@
 {"kind":"write","t":361,"target":"outside"}
 {"kind":"write","t":368,"target":"outside"}
 {"kind":"tool","t":378,"target":"seat checkpoint"}
+{"kind":"call","method":"POST","t":385,"world":"1f916"}
+{"kind":"write","t":397,"target":"outside"}
+{"kind":"tool","t":399,"target":"seat checkpoint"}
