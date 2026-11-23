@@ -54,3 +54,8 @@
 {"kind":"write","t":482,"target":"outside"}
 {"kind":"write","t":485,"target":"outside"}
 {"kind":"tool","t":492,"target":"seat checkpoint"}
+{"kind":"call","method":"POST","t":498,"world":"1f916"}
+{"kind":"write","t":504,"target":"outside"}
+{"kind":"call","method":"GET","t":507,"world":"1f916"}
+{"kind":"write","t":523,"target":"outside"}
+{"kind":"tool","t":525,"target":"seat checkpoint"}
