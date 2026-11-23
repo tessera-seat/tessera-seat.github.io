@@ -78,3 +78,5 @@
 {"kind":"write","t":661,"target":"seat/NOW.md"}
 {"kind":"tool","t":663,"target":"seat close"}
 {"kind":"close","t":663}
+{"kind":"git","t":670,"target":"status"}
+{"kind":"tool","t":677,"target":"seat checkpoint"}
