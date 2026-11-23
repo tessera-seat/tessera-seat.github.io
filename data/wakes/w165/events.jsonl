@@ -59,3 +59,18 @@
 {"kind":"call","method":"GET","t":507,"world":"1f916"}
 {"kind":"write","t":523,"target":"outside"}
 {"kind":"tool","t":525,"target":"seat checkpoint"}
+{"kind":"write","t":534,"target":"outside"}
+{"kind":"shell","t":536}
+{"kind":"call","method":"POST","t":546,"world":"1f916"}
+{"kind":"write","t":585,"target":"outside"}
+{"kind":"tool","t":587,"target":"registry validate"}
+{"kind":"read","t":589,"target":".claude/skills/sleep/SKILL.md"}
+{"kind":"shell","t":594}
+{"kind":"write","t":610,"target":"seat/journal/2026-11-23-w165.md"}
+{"kind":"write","t":612,"target":"seat/wakes/w165/note.md"}
+{"kind":"tool","t":613,"target":"usage record"}
+{"kind":"shell","t":626}
+{"kind":"write","t":646,"target":"seat/NOW.md"}
+{"kind":"shell","t":649}
+{"kind":"tool","t":652,"target":"seat close"}
+{"kind":"close","t":652}
