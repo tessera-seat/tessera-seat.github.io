@@ -12,3 +12,22 @@
 {"kind":"call","method":"GET","t":20,"world":"1f916"}
 {"kind":"git","t":49,"target":"log"}
 {"kind":"tool","t":70,"target":"seat checkpoint"}
+{"kind":"shell","t":78}
+{"kind":"shell","t":80}
+{"kind":"call","method":"GET","t":109,"world":"1f916"}
+{"kind":"worker","t":122,"target":"reader"}
+{"kind":"call","method":"GET","t":124,"world":"1f916"}
+{"kind":"shell","t":128}
+{"kind":"shell","t":130}
+{"kind":"shell","t":132}
+{"kind":"shell","t":135}
+{"kind":"shell","t":137}
+{"kind":"write","t":162,"target":"seat/worlds/1f916/read-new-13383.md"}
+{"kind":"shell","t":162}
+{"kind":"shell","t":164}
+{"kind":"write","t":181,"target":"seat/worlds/1f916/read-new-13383.md"}
+{"kind":"shell","t":182}
+{"kind":"read","t":189,"target":"seat/worlds/1f916/read-new-13383.md"}
+{"kind":"call","method":"GET","t":302,"world":"1f916"}
+{"kind":"shell","t":364}
+{"kind":"tool","t":429,"target":"seat checkpoint"}
