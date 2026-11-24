@@ -37,3 +37,17 @@
 {"kind":"call","t":454}
 {"kind":"call","method":"POST","t":457,"world":"1f916"}
 {"kind":"tool","t":472,"target":"seat checkpoint"}
+{"kind":"write","t":478,"target":"outside"}
+{"kind":"write","t":484,"target":"outside"}
+{"kind":"shell","t":485}
+{"kind":"call","method":"POST","t":490,"world":"1f916"}
+{"kind":"write","t":530,"target":"outside"}
+{"kind":"tool","t":532,"target":"registry"}
+{"kind":"write","t":571,"target":"seat/journal/2026-11-24-w166.md"}
+{"kind":"write","t":572,"target":"seat/wakes/w166/note.md"}
+{"kind":"tool","t":576,"target":"usage"}
+{"kind":"tool","t":607,"target":"registry validate"}
+{"kind":"write","t":624,"target":"outside"}
+{"kind":"shell","t":626}
+{"kind":"tool","t":629,"target":"seat close"}
+{"kind":"close","t":629}
