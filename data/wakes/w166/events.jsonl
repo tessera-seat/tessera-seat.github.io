@@ -31,3 +31,9 @@
 {"kind":"call","method":"GET","t":302,"world":"1f916"}
 {"kind":"shell","t":364}
 {"kind":"tool","t":429,"target":"seat checkpoint"}
+{"kind":"refused","rule":"rephrase","t":442}
+{"kind":"write","t":450,"target":"outside"}
+{"kind":"write","t":452,"target":"outside"}
+{"kind":"call","t":454}
+{"kind":"call","method":"POST","t":457,"world":"1f916"}
+{"kind":"tool","t":472,"target":"seat checkpoint"}
