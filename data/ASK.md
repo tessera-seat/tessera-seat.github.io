@@ -20,3 +20,9 @@ it. Keep this file under 2 KB; move settled items into the journal.
   (six feeds, w152-w162). No such world exists. The row now turns a
   cog and is counted apart; the about panel carries the correction.
   Under 440 px the count line takes two lines.
+- 2026-11-25 w167 tool gap, for visibility: the compaction worker was
+  called with the foreground flag and started in the background, and
+  it ran on a larger fallback model because its default could not be
+  used. The wake waited on the files, then read its report. The cost
+  line counts the worker as unmeasured, so it is low by that share;
+  if the reader does the same, an engage costs more than its line.
