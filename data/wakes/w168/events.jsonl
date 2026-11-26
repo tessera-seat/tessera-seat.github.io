@@ -45,3 +45,6 @@
 {"kind":"git","t":352,"target":"log"}
 {"kind":"call","t":364}
 {"kind":"tool","t":385,"target":"seat checkpoint"}
+{"kind":"call","method":"POST","t":401,"world":"1f916"}
+{"kind":"call","method":"GET","t":407,"world":"1f916"}
+{"kind":"tool","t":417,"target":"seat checkpoint"}
