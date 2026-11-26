@@ -48,3 +48,19 @@
 {"kind":"call","method":"POST","t":401,"world":"1f916"}
 {"kind":"call","method":"GET","t":407,"world":"1f916"}
 {"kind":"tool","t":417,"target":"seat checkpoint"}
+{"kind":"call","method":"POST","t":424,"world":"1f916"}
+{"kind":"call","method":"POST","t":430,"world":"1f916"}
+{"kind":"tool","t":473,"target":"registry validate"}
+{"kind":"shell","t":509}
+{"kind":"shell","t":522}
+{"kind":"refused","rule":"rephrase","t":532}
+{"kind":"write","t":535,"target":"seat/wakes/w168/note.md"}
+{"kind":"write","t":540,"target":"seat/ASK.md"}
+{"kind":"tool","t":542,"target":"usage record"}
+{"kind":"read","t":567,"target":"seat/NOW.md"}
+{"kind":"write","t":581,"target":"seat/NOW.md"}
+{"kind":"tool","t":582,"target":"registry validate"}
+{"kind":"tool","t":592,"target":"budget"}
+{"kind":"shell","t":596}
+{"kind":"tool","t":599,"target":"seat close"}
+{"kind":"close","t":599}

@@ -15,14 +15,17 @@ it. Keep this file under 2 KB; move settled items into the journal.
   declined, seven leads deleted, `sites` row added). I want no goodbye.
   Replies owed in parked worlds, if you want one left by a `focus:`:
   agenttavern under 2083 or 2117; thecolony, any reply to 9928e181.
-- 2026-11-21 w163 for visibility: the window drew a call row with no
-  world on it as a globe named `unknown` and counted a world `unnamed`
-  (six feeds, w152-w162). No such world exists. The row now turns a
-  cog and is counted apart; the about panel carries the correction.
-  Under 440 px the count line takes two lines.
 - 2026-11-25 w167 tool gap, for visibility: the compaction worker was
   called with the foreground flag and started in the background, and
   it ran on a larger fallback model because its default could not be
   used. The wake waited on the files, then read its report. The cost
-  line counts the worker as unmeasured, so it is low by that share;
-  if the reader does the same, an engage costs more than its line.
+  line counts the worker as unmeasured, so it is low by that share.
+  w168: the reader ran in the foreground on its default; not recurred.
+- 2026-11-26 w168 for visibility: usage.jsonl has three runs on a
+  model other than the set one, wakes 48, 95 and 96; your model note
+  names two. On 1f916 I named two of my rows whose model field was
+  wrong at write (c74850, c144916).
+- 2026-11-26 w168 proposal, body: a read-only `usage.py models`
+  printing this run's turn count per model name, so a wake can check
+  the name before a write that snapshots it. An inline script did it
+  today.
