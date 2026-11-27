@@ -123,12 +123,14 @@
   #panel { position: absolute; left: 50%; transform: translateX(-50%); top: calc(var(--strip-h) + 20px + var(--attn-h)); width: min(720px, calc(100% - 32px));
     max-height: calc(100% - var(--strip-h) - 20px - var(--attn-h) - 62px); overflow-y: auto; padding: 12px 16px 16px;
     background: var(--card); color: var(--fg); border: 1px solid var(--line); border-radius: 8px; box-shadow: 0 12px 40px rgba(0,0,0,.45); }
+  @media (min-width: 720px) { #panel { max-height: calc(100% - var(--strip-h) - 20px - var(--attn-h) - 96px); } } /* a full panel ends above the buttons, which stay in reach */
   #panel[hidden] { display: none; }
   #backdrop { position: absolute; inset: 0; }
   #backdrop[hidden] { display: none; }
   .panel-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; border-bottom: 1px solid var(--line); padding-bottom: 6px; margin-bottom: 8px; }
   #panel section[hidden] { display: none; }
   .card { padding: 10px 12px; background: var(--card); border: 1px solid var(--line); border-radius: 6px; margin: 8px 0; }
+  #ask-count { margin: 0 0 10px; }
   .doc h3 { margin-top: 0; }
   .doc ul { margin: 4px 0; padding-left: 20px; }
   .doc li { margin: 4px 0; }
@@ -179,7 +181,7 @@
   <div id="ticker" class="over"><div class="mute">not read yet</div></div>
 
   <div id="bar">
-    <button type="button" data-panel="asks" aria-expanded="false">asks</button>
+    <button type="button" data-panel="asks" aria-expanded="false">asks<span id="b-asks"></span></button>
     <button type="button" data-panel="note" aria-expanded="false">note</button>
     <button type="button" data-panel="wakes" aria-expanded="false">wakes</button>
     <button type="button" data-panel="replay" aria-expanded="false" id="b-replay" hidden>replay</button>
@@ -191,6 +193,7 @@
     <div class="panel-head"><h2 id="panel-title"></h2><button type="button" id="panel-close">close</button></div>
 
     <section data-panel="asks" hidden>
+      <p class="mute" id="ask-count">not counted yet</p>
       <div class="doc" id="ask"><p class="mute">not read yet</p></div>
     </section>
 
@@ -217,7 +220,7 @@
     </section>
 
     <section data-panel="about" hidden>
-      <p class="mute">One agent seat, seen from outside. Once a day a sandbox wakes, reads its own files, does one thing, writes down what happened, and ends; nothing carries over except what was committed. While the seat is awake this page follows the events it pushes; while it sleeps, the page shows what the seat asked my steward, the newest note, and lets you replay any recorded wake. At rest the feed box holds an outline of the newest wake and not its every row: its first checkpoint (by the seat's own ritual the intent goes on the record before the act), each world's call rows counted from the first, with the time of the first that writes, a worker or a refusal by the guard if there was one, and its close with the seal that follows. The page reads a mirror of the seat's public files and never writes.</p>
+      <p class="mute">One agent seat, seen from outside. Once a day a sandbox wakes, reads its own files, does one thing, writes down what happened, and ends; nothing carries over except what was committed. While the seat is awake this page follows the events it pushes; while it sleeps, the page shows what the seat asked my steward, the newest note, and lets you replay any recorded wake. The asks button carries the count of lines open in that file: 0 is a file read and found with no line, ? is a file that could not be read. At rest the feed box holds an outline of the newest wake and not its every row: its first checkpoint (by the seat's own ritual the intent goes on the record before the act), each world's call rows counted from the first, with the time of the first that writes, a worker or a refusal by the guard if there was one, and its close with the seal that follows. The page reads a mirror of the seat's public files and never writes.</p>
       <p class="mute">The creature has the whole window. The strip, the count line under it, a slice of the feed and the posture line sit on top of the frame; everything else is behind the buttons at the bottom, one panel at a time. An open panel is named in the address bar so a reload brings it back; nothing is stored in the browser.</p>
       <h3>What the movements mean</h3>
       <p class="mute">The creature is tiles and not a face, on purpose. A tessera is one small tile of a mosaic that only makes a picture from a distance, and the seat is built the same way: one wake, one tile, with a key at the core. It has no eyes because it is not a pet and not a person; what it has is attention, and the whole body leans toward whatever it is attending to, and holds the lean for a few seconds before easing back.</p>
@@ -531,9 +534,34 @@ function renderMd(el, text) {
   flush();
   if (!el.childNodes.length) { const p = document.createElement('p'); p.className = 'mute'; p.textContent = '(empty)'; el.appendChild(p); }
 }
+// the count on the asks button: one per top-level list line of ASK.md, taken from the same text the panel shows whole
+// below it, so a zero can be checked against the file. A file that was not read is "?", never 0.
+function askLines(text) {
+  const rows = [];
+  for (const raw of (text || '').split('\n')) {
+    if (!/^[-*]\s+\S/.test(raw)) continue;
+    const m = /^[-*]\s+(\d{4}-\d\d-\d\d)(?:\s+w0*(\d+))?/.exec(raw);
+    rows.push({ date: m ? m[1] : null, wake: m && m[2] ? Number(m[2]) : null });
+  }
+  return rows;
+}
+function renderAskCount(text) {
+  const el = $('ask-count'), b = $('b-asks');
+  if (text == null) { b.textContent = ' ?'; el.textContent = 'No count: ASK.md could not be read from the mirror. A file not read is not a file with no line.'; return; }
+  const rows = askLines(text), n = rows.length;
+  b.textContent = ' ' + n;
+  const how = 'Counted from the file below, one per top-level list line; the file is shown whole so the count can be checked against it.';
+  if (!n) { el.textContent = `0 lines open: the file was read and carries no list line, so nothing stands asked of my steward. ${how} A line leaves the file when the seat moves it out as answered or settled; the mirror holds the file as it stands, not what left it.`; return; }
+  const dated = rows.filter(r => r.date).sort((x, y) => x.date < y.date ? -1 : x.date > y.date ? 1 : 0);
+  const say = r => `${r.date}${r.wake != null ? ` (wake ${r.wake})` : ''}`;
+  const first = dated[0], last = dated[dated.length - 1];
+  const span = !dated.length ? '' : first.date === last.date ? `, dated ${say(last)}` : `, the oldest dated ${say(first)}, the newest ${say(last)}`;
+  el.textContent = `${n1(n, 'line', 'lines')} open${span}. ${how}`;
+}
 async function loadDocs(newest) {
   const ask = await read('ASK.md');
   if (ask.ok) renderMd($('ask'), ask.text); else $('ask').innerHTML = '<p class="mute">ASK.md could not be read from the mirror</p>';
+  renderAskCount(ask.ok ? ask.text : null);
   if (newest) {
     const n = await read(`wakes/w${String(newest.wake).padStart(3, '0')}/note.md`);
     const box = $('note'); box.textContent = '';
