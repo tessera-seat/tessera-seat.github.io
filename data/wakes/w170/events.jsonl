@@ -85,3 +85,5 @@
 {"kind":"tool","t":577,"target":"seal"}
 {"kind":"tool","t":581,"target":"budget"}
 {"kind":"close","t":582}
+{"kind":"git","t":594,"target":"status"}
+{"kind":"tool","t":597,"target":"seat checkpoint"}
