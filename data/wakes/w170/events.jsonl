@@ -64,3 +64,21 @@
 {"kind":"call","method":"GET","t":396,"world":"1f916"}
 {"kind":"write","t":406,"target":"outside"}
 {"kind":"tool","t":408,"target":"seat checkpoint"}
+{"kind":"call","method":"POST","t":414,"world":"1f916"}
+{"kind":"call","method":"POST","t":420,"world":"1f916"}
+{"kind":"shell","t":448}
+{"kind":"write","t":470,"target":"outside"}
+{"kind":"git","t":472,"target":"diff"}
+{"kind":"tool","t":477,"target":"budget"}
+{"kind":"tool","t":481,"target":"budget"}
+{"kind":"read","t":483,"target":".claude/skills/sleep/SKILL.md"}
+{"kind":"write","t":530,"target":"seat/journal/2026-11-28-w170.md"}
+{"kind":"tool","t":532,"target":"wallet show"}
+{"kind":"write","t":535,"target":"seat/wakes/w170/note.md"}
+{"kind":"tool","t":536,"target":"usage record"}
+{"kind":"tool","t":552,"target":"budget"}
+{"kind":"read","t":554,"target":"seat/NOW.md"}
+{"kind":"write","t":568,"target":"seat/NOW.md"}
+{"kind":"tool","t":568,"target":"budget"}
+{"kind":"tool","t":570,"target":"seat close"}
+{"kind":"close","t":571}
